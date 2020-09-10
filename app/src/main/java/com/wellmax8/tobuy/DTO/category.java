@@ -5,7 +5,10 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.wellmax8.tobuy.colors.color;
 
 @Entity()
 public class category {
@@ -25,6 +28,8 @@ public class category {
     private int date_of_reminder;
     private boolean remind_every_week;
     private boolean remind_every_month;
+    @Ignore
+    private color color;
 
     public category(String name, int created_at, int last_edit, String related_to, String description, String extra, int chosenColor, boolean should_be_reminded, int date_of_reminder, boolean remind_every_week, boolean remind_every_month) {
         this.name = name;
@@ -38,7 +43,9 @@ public class category {
         this.date_of_reminder = date_of_reminder;
         this.remind_every_week = remind_every_week;
         this.remind_every_month = remind_every_month;
+        color =new color();
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -70,6 +77,11 @@ public class category {
 
     public String getExtra() {
         return extra;
+    }
+
+    public color getColor() {
+        color.setChosenColor(chosenColor);
+        return color;
     }
 
     public int getChosenColor() {
