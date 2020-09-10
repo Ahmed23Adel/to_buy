@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+
+    <ImageView
+        style="@style/main_imageView_add"
+        android:src="@drawable/ic_action_add_colored"
+        android:id="@+id/main_imageView_add"
+
+        />
+    <TextView
+        style="@style/main_textView"
+        android:layout_below="@id/main_imageView_add"
+        android:id="@+id/main_textView_add"
+        android:gravity="center"
+        />
+
+
+
+    <ListView
+        style="@style/main_listView"
+        android:id="@+id/main_listView"
+        android:visibility="gone"
+        android:dividerHeight="16dp"
+        android:drawSelectorOnTop="true"
+        android:padding="16dip"
+        android:clipToPadding="false"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_fab"
+        app:srcCompat="@drawable/ic_action_add"
+        style="@style/main_floatingButton"
+
+        />
+
+
+</RelativeLayout>

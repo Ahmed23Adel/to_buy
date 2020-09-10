@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="3dp"
+        tools:context=".add_thing">
+
+        <LinearLayout style="@style/add_category_Linear">
+
+            <TextView
+                style="@style/add_category_add_field"
+                android:text="@string/total" />
+
+            <TextView
+                android:id="@+id/total_stat"
+                style="@style/add_category_add_field_edit"
+                android:text="1500"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/add_category_Linear"
+
+            >
+
+            <TextView
+                style="@style/add_category_add_field"
+                android:text="@string/you_spent" />
+
+            <TextView
+                android:id="@+id/spent_stat"
+                style="@style/add_category_add_field_edit"
+                android:text="300" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_category_Linear">
+
+            <TextView
+                style="@style/add_category_add_field"
+                android:text="@string/left_to_buy" />
+
+            <TextView
+                android:id="@+id/left_stat"
+                style="@style/add_category_add_field_edit"
+                android:text="1200" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_category_Linear"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/bought_not_bought_stat"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/bought_with_dots" />
+
+            <TextView
+                android:id="@+id/bought_stat"
+                style="@style/bought_not_bought_stat"
+                android:text="1-t-shirt \n 2-pants \n 3-trousers \n 4-jeap \n 5-bras \n 6-gloves"
+                android:paddingTop="4dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_category_Linear"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:text="@string/not_bought_yet"
+                style="@style/bought_not_bought_stat"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                />
+
+            <TextView
+                android:id="@+id/not_bought_stat"
+                android:text="1-t-meat \n 2-potato \n 3-villa "
+                style="@style/bought_not_bought_stat"
+                android:paddingTop="4dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_category_Linear"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="@string/common_where_to_buy"
+                style="@style/bought_not_bought_stat"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                />
+
+            <TextView
+                android:id="@+id/common_where_to_buy"
+                android:text="1-supermarket \n     1.1-potato \n     1.2-villa \n 2-zara \n     2.1-t-shirt \n      2.2-pants "
+                style="@style/bought_not_bought_stat"
+                android:paddingTop="4dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+
+                />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

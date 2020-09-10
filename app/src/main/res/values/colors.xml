@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00b979</color>
+    <color name="colorPrimaryDark">#00773a</color>
+    <color name="colorAccent">#02eec3</color>
+
+    <color name="blue">#4E84BF</color>
+    <color name="red">#BF6262</color>
+    <color name="yellow">#E7BF74</color>
+    <color name="green">#6CB1AC</color>
+    <color name="purple">#808EDF</color>
+    <color name="add_category_bacground">#FBDD9D</color>
+</resources>

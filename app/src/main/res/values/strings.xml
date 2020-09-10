@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">to buy</string>
+    <string name="add_new_category">Start by adding new category Now!!</string>
+    <string name="add_category_textView_add_Name">Name</string>
+    <string name="ex_refrigerator">Ex : Clothes</string>
+    <string name="add_category_textView_add_related_to">Related to</string>
+    <string name="ex_work">Ex : Work / home</string>
+    <string name="add_category_textView_add_desc">Description</string>
+    <string name="add_category_textView_add_extra">Extra information</string>
+    <string name="action_bar_add_new_category">Add new Category</string>
+    <string name="action_bar_save">Save</string>
+    <string name="Delet">Delete</string>
+    <string name="red_choice">Red</string>
+    <string name="yellow_choice">Yellow</string>
+    <string name="blue_choice">Blue</string>
+    <string name="purple_choice">Purple</string>
+    <string name="green_choice">Green</string>
+
+    <!-- Toast message in editor when new pet has been successfully updated [CHAR LIMIT=NONE] -->
+    <string name="insert_Category_successful">Category saved</string>
+    <string name="insert_thing_successful">Your item is  saved</string>
+
+    <!-- Toast message in editor when new pet has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="insert_Category_failed">Error with saving Category</string>
+    <string name="insert_item_failed">Error with saving item</string>
+    <string name="things_add_new_thing">Start by adding by new item to this category Now!!</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="want_to_delet">Are you sure you want to delete this whole Category?</string>
+    <string name="want_to_delet_thing">Are you sure you want to delete this item?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="action_bar_add_new_thing">Add new Item</string>
+    <string name="price">Price</string>
+    <string name="where_to_buy">Where to buy</string>
+    <string name="ex_meat">Ex: T-shirt</string>
+    <string name="ex_32">Ex: 32</string>
+    <string name="ex_supermarket">Ex: clothing store</string>
+    <string name="related_to">Related to:</string>
+    <string name="name">Name:</string>
+    <string name="buy_from">Buy from :</string>
+    <string name="bought">Bought</string>
+    <string name="created_at">Created at: </string>
+    <string name="last_edit">Last edit:</string>
+    <string name="description">Description:</string>
+    <string name="statistics">Statistics</string>
+    <string name="edit">"Edit: "</string>
+    <string name="total">Total:</string>
+    <string name="you_spent">You spent:</string>
+    <string name="left_to_buy">Left to buy:</string>
+    <string name="bought_with_dots">Bought:</string>
+    <string name="not_bought_yet">Not bought yet:</string>
+    <string name="common_where_to_buy">Common sellers:</string>
+</resources>

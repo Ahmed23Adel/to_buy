@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/oval_red"
+    android:id="@+id/item_layout"
+    android:layout_margin="16dp"
+    >
+
+    <TextView style="@style/add_category_add_field"
+        android:text="Name : Refreigator "
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:id="@+id/item_name"
+        />
+
+    <TextView style="@style/add_category_add_field"
+        android:text="work "
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:id="@+id/item_relate_to"
+
+        />
+
+    <LinearLayout style="@style/add_category_Linear"
+        android:padding="10dp"
+        android:weightSum="2"
+            >
+        <TextView style="@style/add_category_add_field"
+            android:text="Created at : May, 6  "
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:id="@+id/item_created_at"
+
+            />
+
+        <TextView
+            style="@style/add_category_add_field"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:padding="10dp"
+            android:text="Last edit : May. 6 6:30 PM  "
+            android:layout_alignParentEnd="true"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:id="@+id/item_lastEdit"
+
+            />
+
+    </LinearLayout>
+</LinearLayout>
