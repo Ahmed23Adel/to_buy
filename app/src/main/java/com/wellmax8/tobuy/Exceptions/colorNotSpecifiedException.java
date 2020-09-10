@@ -1,0 +1,11 @@
+package com.wellmax8.tobuy.Exceptions;
+
+import androidx.annotation.Nullable;
+
+public class colorNotSpecifiedException extends Exception {
+    @Nullable
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
+}
