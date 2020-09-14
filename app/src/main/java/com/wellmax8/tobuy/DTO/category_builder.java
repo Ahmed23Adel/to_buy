@@ -12,10 +12,7 @@ public class category_builder {
     private String extra;
     private int chosenColor;
 
-    private boolean should_be_reminded;
-    private int date_of_reminder;
-    private boolean remind_every_week;
-    private boolean remind_every_month;
+
 
     public category_builder setName(String name) {
         this.name = name;
@@ -52,28 +49,8 @@ public class category_builder {
         return this;
     }
 
-    public category_builder setShould_be_reminded(boolean should_be_reminded) {
-        this.should_be_reminded = should_be_reminded;
-        return this;
-    }
-
-    public category_builder setDate_of_reminder(int date_of_reminder) {
-        this.date_of_reminder = date_of_reminder;
-        return this;
-    }
-
-    public category_builder setRemind_every_week(boolean remind_every_week) {
-        this.remind_every_week = remind_every_week;
-        return this;
-    }
-
-    public category_builder setRemind_every_month(boolean remind_every_month) {
-        this.remind_every_month = remind_every_month;
-        return this;
-    }
-
     public category build() {
-        category category = new category(name, created_at, last_edit, related_to, description, extra, chosenColor, should_be_reminded, date_of_reminder, remind_every_week, remind_every_month);
+        category category = new category(name, created_at, last_edit, related_to, description, extra, chosenColor);
         return category;
     }
 
