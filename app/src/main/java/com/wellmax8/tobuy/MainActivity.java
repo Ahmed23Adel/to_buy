@@ -57,9 +57,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         category c= new category_builder().setChosenColor(0).setCreated_at(0).setDescription("desc").setExtra("extra").setLast_edit(21).setName("name").setRelated_to("relas").build();
-        VM_add_category.setContext(this);
         VM_add_category vm_add_category=new ViewModelProvider(this).get(VM_add_category.class);
-
+        vm_add_category.setContext(this);
         vm_add_category.insert(c);
 
 

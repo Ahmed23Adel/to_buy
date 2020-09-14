@@ -7,10 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.item;
 import com.wellmax8.tobuy.ROOM.category.DAO_category;
 
-@Database(entities = {item.class,category.class},version = 1,exportSchema = false)
+@Database(entities = {category.class},version = 1,exportSchema = false)
 public abstract class to_buy_db extends RoomDatabase {
     private volatile static to_buy_db toBuyDbInstance;
     public abstract DAO_category getDaoCategory();

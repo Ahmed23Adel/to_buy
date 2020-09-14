@@ -8,12 +8,19 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.ROOM.DAO;
 
 import java.util.List;
 
 @Dao
-public interface DAO_category extends DAO {
+public interface DAO_category {
+    @Insert
+    void insert(category item);
+
+    @Update
+    void update(category item);
+
+    @Delete
+    void delete(category item);
 
     @Query("SELECT * from category ORDER BY created_at DESC")
     LiveData<List<category>> getCategoriesOrderedCreatedAtDESC();

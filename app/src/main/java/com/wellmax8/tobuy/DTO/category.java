@@ -1,9 +1,5 @@
 package com.wellmax8.tobuy.DTO;
 
-import android.app.AlertDialog.Builder;
-import android.net.Uri;
-import android.provider.BaseColumns;
-
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
