@@ -24,7 +24,6 @@ public class toBuyDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        category category= new category_builder().setChosenColor(2).build();
 
         String SQL_CREATE_CATEGORY="CREATE TABLE "+ toBuyContract.categories_entry.TABLE_NAME
                 +"( "+toBuyContract.categories_entry.COLUMN_ID_CATEGORY+" INTEGER PRIMARY KEY AUTOINCREMENT,"

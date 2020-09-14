@@ -77,8 +77,8 @@ public class category {
         return color;
     }
 
+    public int getChosenColor() {
+        return chosenColor;
 
-
-
-
+    }
 }
