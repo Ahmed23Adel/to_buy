@@ -11,21 +11,31 @@ import com.wellmax8.tobuy.ROOM.category.repo_category;
 import java.util.List;
 
 public class VM_add_category extends ViewModel {
-    private repo_category repo_;
+    private repo_category repo;
     private Context context;
-    public VM_add_category() {
-    }
 
-    public void setContext(Context context) {
-        repo_ = new repo_category(context);
+    public VM_add_category(Context context) {
+        repo = new repo_category(context);
         this.context = context;
     }
 
-    public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC() {
-        return repo_.getCategoriesOrderedCreatedAtDESC();
+    public void setContext(Context context) {
+
     }
 
-    public void insert(category category){
-        repo_.insertCategory(category);
+    public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC() {
+        return repo.getCategoriesOrderedCreatedAtDESC();
+    }
+
+    public void insert(category category) {
+        repo.insert(category);
+    }
+
+    public void update(category category) {
+        repo.update(category);
+    }
+
+    public void delete(category category) {
+        repo.delete(category);
     }
 }

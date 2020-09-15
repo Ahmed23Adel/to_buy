@@ -20,13 +20,13 @@ public class repo_category {
         dao_category=to_buy_db.getDaoCategory();
     }
 
-    public void insertCategory(category category){
+    public void insert(category category){
         new insertCategory(dao_category).execute(category);
     }
-    public void updateCategory(category category){
+    public void update(category category){
         new updateCategory(dao_category).execute(category);
     }
-    public void deleteCategory(category category){
+    public void delete(category category){
         new deleteCategory(dao_category).execute(category);
     }
 
