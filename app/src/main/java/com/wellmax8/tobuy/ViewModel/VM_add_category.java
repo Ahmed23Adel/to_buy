@@ -14,13 +14,13 @@ public class VM_add_category extends ViewModel {
     private repo_category repo;
     private Context context;
 
-    public VM_add_category(Context context) {
-        repo = new repo_category(context);
-        this.context = context;
+    public VM_add_category() {
+
     }
 
     public void setContext(Context context) {
-
+        repo = new repo_category(context);
+        this.context = context;
     }
 
     public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC() {
