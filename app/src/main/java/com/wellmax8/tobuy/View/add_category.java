@@ -6,16 +6,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.colors.color;
 import com.wellmax8.tobuy.colors.colorsManager;
 
-import java.util.logging.Logger;
+import com.wellmax8.tobuy.DTO.categoryForUndoManager;
 
 public class add_category extends AppCompatActivity {
 
@@ -34,12 +37,16 @@ public class add_category extends AppCompatActivity {
     private ImageView color_purple;
     private ImageView color_green;
     private colorsManager colorsManager;
+
+    private categoryForUndoManager categoryForUndoManager;
+    private LinearLayout wholeLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
         instantiateViews();
         colorsManager=new colorsManager(rRed,rYellow,rBlue,rPurple,rGreen);
+        categoryForUndoManager= new categoryForUndoManager(category_name,category_relatedTo,category_desc,category_extra);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setOnColorPressed(color_red,rRed,color.RED);
@@ -50,25 +57,6 @@ public class add_category extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_category,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.save:{
-                break;
-            }
-            case android.R.id.home:{
-                onBackPressed();
-                break;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void instantiateViews(){
         category_name=findViewById(R.id.add_category_name);
@@ -85,6 +73,7 @@ public class add_category extends AppCompatActivity {
         color_blue=findViewById(R.id.add_category_blue);
         color_purple=findViewById(R.id.add_category_purple);
         color_green=findViewById(R.id.add_category_green);
+        wholeLayout=findViewById(R.id.wholeLayout);
     }
 
     private void setOnColorPressed(ImageView imageView,RelativeLayout relativeLayout,int color){
@@ -105,5 +94,44 @@ public class add_category extends AppCompatActivity {
     private void onColorPressed(int pressedColor){
         colorsManager.press(pressedColor);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_category,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.save:{
+                break;
+            }
+            case R.id.reset:{
+                reset();
+                break;
+            }
+            case android.R.id.home:{
+                onBackPressed();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void reset(){
+        categoryForUndoManager.reset();
+        showDialog();
+    }
+
+   public void showDialog(){
+        Snackbar.make(wholeLayout,"Undo?",Snackbar.LENGTH_LONG).setAction("Undo",v -> {
+            undoChanges();
+        }).show();
+   }
+   public void undoChanges(){
+        categoryForUndoManager.undo();
+   }
 
 }
