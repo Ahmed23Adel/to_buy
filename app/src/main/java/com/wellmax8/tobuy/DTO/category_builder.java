@@ -4,8 +4,8 @@ public class category_builder {
     private int id;
     private String name;
 
-    private int created_at;
-    private int last_edit;
+    private String created_at;
+    private String last_edit;
 
     private String related_to;
     private String description;
@@ -19,12 +19,12 @@ public class category_builder {
         return this;
     }
 
-    public category_builder setCreated_at(int created_at) {
+    public category_builder setCreated_at(String created_at) {
         this.created_at = created_at;
         return this;
     }
 
-    public category_builder setLast_edit(int last_edit) {
+    public category_builder setLast_edit(String last_edit) {
         this.last_edit = last_edit;
         return this;
     }
@@ -48,6 +48,8 @@ public class category_builder {
         this.chosenColor = chosenColor;
         return this;
     }
+
+
 
     public category build() {
         category category = new category(name, created_at, last_edit, related_to, description, extra, chosenColor);

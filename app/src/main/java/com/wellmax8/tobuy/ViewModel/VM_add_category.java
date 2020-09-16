@@ -2,7 +2,9 @@ package com.wellmax8.tobuy.ViewModel;
 
 import android.content.Context;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.wellmax8.tobuy.DTO.category;
@@ -23,13 +25,24 @@ public class VM_add_category extends ViewModel {
         this.context = context;
     }
 
+    public void insert(category category) {
+        repo.insert(category);
+    }
+
+    public LiveData<List<category>> getWhereNameAndRelated(String name,String relatedTo){
+        return repo.getCategoriesByNameAndRelatedTo(name,relatedTo);
+    }
     public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC() {
         return repo.getCategoriesOrderedCreatedAtDESC();
     }
 
-    public void insert(category category) {
-        repo.insert(category);
+    public String getCurrentTime(){
+        Long timeInSecond=System.currentTimeMillis()/1000;
+        String timeInSecondeText=timeInSecond.toString();
+        return timeInSecondeText;
     }
+
+
 
     public void update(category category) {
         repo.update(category);

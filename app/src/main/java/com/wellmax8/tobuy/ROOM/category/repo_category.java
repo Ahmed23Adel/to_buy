@@ -33,6 +33,9 @@ public class repo_category {
     public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC(){
         return dao_category.getCategoriesOrderedCreatedAtDESC();
     }
+    public LiveData<List<category>>getCategoriesByNameAndRelatedTo(String name,String relatedTo){
+        return dao_category.getCategoriesByNameAndRelatedTo(name,relatedTo);
+    }
 
 
     private static class insertCategory extends AsyncTask<category,Void,Void>{

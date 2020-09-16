@@ -25,5 +25,8 @@ public interface DAO_category {
     @Query("SELECT * from category ORDER BY created_at DESC")
     LiveData<List<category>> getCategoriesOrderedCreatedAtDESC();
 
+    @Query("SELECT * FROM category WHERE name = :name AND related_to = :relatedTo")
+    LiveData<List<category>> getCategoriesByNameAndRelatedTo(String name,String relatedTo);
+
 
 }

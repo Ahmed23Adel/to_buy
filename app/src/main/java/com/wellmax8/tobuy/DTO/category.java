@@ -12,8 +12,8 @@ public class category {
     private int id;
     private String name;
 
-    private int created_at;
-    private int last_edit;
+    private String created_at;
+    private String last_edit;
 
     private String related_to;
     private String description;
@@ -24,7 +24,7 @@ public class category {
     @Ignore
     private color color;
 
-    public category(String name, int created_at, int last_edit, String related_to, String description, String extra, int chosenColor) {
+    public category(String name, String created_at, String last_edit, String related_to, String description, String extra, int chosenColor) {
         this.name = name;
         this.created_at = created_at;
         this.last_edit = last_edit;
@@ -48,11 +48,11 @@ public class category {
         return name;
     }
 
-    public int getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public int getLast_edit() {
+    public String getLast_edit() {
         return last_edit;
     }
 

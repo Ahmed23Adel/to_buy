@@ -60,6 +60,9 @@ public class colorsManager {
         color.setChosenColor(lastPressedColor);
         return color;
     }
+    public int getChosenColor(){
+        return lastPressedColor;
+    }
 
     private void setOtherLayoutsToNormal(RelativeLayout r1,RelativeLayout r2,RelativeLayout r3,RelativeLayout r4){
         setZeroPaddingToLayout(r1);

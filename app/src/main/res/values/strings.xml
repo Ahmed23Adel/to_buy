@@ -38,7 +38,9 @@
     <string name="ex_32">Ex: 32</string>
     <string name="ex_supermarket">Ex: clothing store</string>
     <string name="related_to">Related to:</string>
+    <string name="related_toFiled" translatable="false">related to</string>
     <string name="name">Name:</string>
+    <string name="nameField" translatable="false">name</string>
     <string name="buy_from">Buy from :</string>
     <string name="bought">Bought</string>
     <string name="created_at">Created at: </string>
