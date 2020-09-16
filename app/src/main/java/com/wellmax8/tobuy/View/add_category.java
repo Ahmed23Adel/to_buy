@@ -51,7 +51,7 @@ public class add_category extends AppCompatActivity {
         setOnColorPressed(color_blue,rBlue,color.BLUE);
         setOnColorPressed(color_purple,rPurple,color.PURPLE);
         setOnColorPressed(color_green,rGreen,color.GREEN);
-
+        setTitle(getString(R.string.add_category));
     }
 
 
