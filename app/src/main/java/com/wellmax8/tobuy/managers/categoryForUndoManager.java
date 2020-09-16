@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.DTO;
+package com.wellmax8.tobuy.managers;
 
 import android.widget.EditText;
 

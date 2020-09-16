@@ -8,17 +8,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.colors.color;
 import com.wellmax8.tobuy.colors.colorsManager;
-
-import com.wellmax8.tobuy.DTO.categoryForUndoManager;
+import com.wellmax8.tobuy.managers.categoryForUndoManager;
 
 public class add_category extends AppCompatActivity {
 
