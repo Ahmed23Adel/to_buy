@@ -83,7 +83,7 @@ android:layout_width="match_parent">
         android:orientation="horizontal">
 
         <RelativeLayout style="@style/add_category_Relative"
-            android:padding="10dp"
+            android:id="@+id/rRed"
             >
 
             <ImageView
@@ -92,7 +92,9 @@ android:layout_width="match_parent">
                 android:background="@drawable/circle_red" />
         </RelativeLayout>
 
-        <RelativeLayout style="@style/add_category_Relative">
+        <RelativeLayout style="@style/add_category_Relative"
+            android:id="@+id/rYellow"
+            >
 
             <ImageView
                 style="@style/add_category_color"
@@ -101,6 +103,7 @@ android:layout_width="match_parent">
         </RelativeLayout>
 
         <RelativeLayout style="@style/add_category_Relative"
+            android:id="@+id/rBlue"
 
             >
 
@@ -110,7 +113,10 @@ android:layout_width="match_parent">
                 android:id="@+id/add_category_blue" />
         </RelativeLayout>
 
-        <RelativeLayout style="@style/add_category_Relative">
+        <RelativeLayout style="@style/add_category_Relative"
+            android:id="@+id/rPurple"
+
+            >
 
             <ImageView
                 style="@style/add_category_color"
@@ -119,6 +125,7 @@ android:layout_width="match_parent">
         </RelativeLayout>
 
         <RelativeLayout style="@style/add_category_Relative"
+            android:id="@+id/rGreen"
 
             >
 
