@@ -25,6 +25,14 @@ public class categoryForUndoManager {
         setAllFieldsToNull();
     }
 
+    public void undo(){
+        nameField.setText(name);
+        relatedToField.setText(relatedTo);
+        descField.setText(desc);
+        extraField.setText(extra);
+    }
+
+
     private void saveInstance(){
         name=nameField.getText().toString();
         relatedTo=relatedToField.getText().toString();
@@ -37,12 +45,6 @@ public class categoryForUndoManager {
         relatedToField.setText("");
         descField.setText("");
         extraField.setText("");
-    }
-    public void undo(){
-        nameField.setText(name);
-        relatedToField.setText(relatedTo);
-        descField.setText(desc);
-        extraField.setText(extra);
     }
 
 }
