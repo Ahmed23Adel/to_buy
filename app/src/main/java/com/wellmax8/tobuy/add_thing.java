@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.wellmax8.tobuy.data.toBuyContract;
 public class add_thing extends AppCompatActivity  implements  LoaderManager.LoaderCallbacks<Cursor> {
 
+
     private final static int PATH_EDIT=0;
     private final static int PATH_ADD=1;
     private static final int THING_LOADER = 0;

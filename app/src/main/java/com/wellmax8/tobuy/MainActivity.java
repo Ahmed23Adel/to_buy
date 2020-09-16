@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(MainActivity.this, add_category.class);
+                Intent i = new Intent(MainActivity.this, com.wellmax8.tobuy.View.add_category .class);
                 i.setData(null);
                 startActivity(i);
             }

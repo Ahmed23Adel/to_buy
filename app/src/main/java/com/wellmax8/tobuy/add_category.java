@@ -26,11 +26,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.wellmax8.tobuy.data.toBuyContract.categories_entry;
 import com.wellmax8.tobuy.data.toBuyContract;
-
 import java.net.ConnectException;
+import java.util.ArrayList;
 
 public class add_category extends AppCompatActivity implements  LoaderManager.LoaderCallbacks<Cursor> {
-
 
     private final static int PATH_EDIT=0;
     private final static int PATH_ADD=1;
