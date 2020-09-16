@@ -1,44 +1,25 @@
 package com.wellmax8.tobuy;
 
-import androidx.annotation.MainThread;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.category_builder;
 import com.wellmax8.tobuy.ViewModel.VM_add_category;
-import com.wellmax8.tobuy.data.toBuyDbHelper;
 
 import android.app.LoaderManager;
-import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wellmax8.tobuy.data.toBuyContract;
 import com.wellmax8.tobuy.data.toBuyContract.categories_entry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
-import java.util.logging.Logger;
-import androidx.lifecycle.ViewModelProviders;
 
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -54,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.categories);
 
         VM_add_category vm_add_category=new ViewModelProvider(this).get(VM_add_category.class);
         vm_add_category.setContext(this);
