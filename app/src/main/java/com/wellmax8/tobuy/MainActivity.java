@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         vm_add_category.setContext(this);
 
 
-        vm_add_category.getCategoriesOrderedCreatedAtDESC().observe(this, new Observer<List<category>>() {
+      /*  vm_add_category.getCategoriesOrderedCreatedAtDESC().observe(this, new Observer<List<category>>() {
             @Override
             public void onChanged(List<category> categories) {
                 if (categories.size()>0){
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     Log.v("main",c.getName());
                 }
             }
-        });
+        });*/
 
 
         main_imageView_add = findViewById(R.id.main_imageView_add);

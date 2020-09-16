@@ -32,9 +32,6 @@ public class VM_add_category extends ViewModel {
     public LiveData<List<category>> getWhereNameAndRelated(String name,String relatedTo){
         return repo.getCategoriesByNameAndRelatedTo(name,relatedTo);
     }
-    public LiveData<List<category>> getCategoriesOrderedCreatedAtDESC() {
-        return repo.getCategoriesOrderedCreatedAtDESC();
-    }
 
     public String getCurrentTime(){
         Long timeInSecond=System.currentTimeMillis()/1000;
@@ -42,13 +39,4 @@ public class VM_add_category extends ViewModel {
         return timeInSecondeText;
     }
 
-
-
-    public void update(category category) {
-        repo.update(category);
-    }
-
-    public void delete(category category) {
-        repo.delete(category);
-    }
 }
