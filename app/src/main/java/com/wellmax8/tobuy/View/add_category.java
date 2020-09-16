@@ -3,7 +3,11 @@ package com.wellmax8.tobuy.View;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +45,6 @@ public class add_category extends AppCompatActivity {
                 onBackPressed();
                 break;
             }
-
         }
         return super.onOptionsItemSelected(item);
     }

@@ -82,12 +82,14 @@ android:layout_width="match_parent">
         style="@style/add_category_Linear"
         android:orientation="horizontal">
 
-        <RelativeLayout style="@style/add_category_Relative">
+        <RelativeLayout style="@style/add_category_Relative"
+            android:padding="10dp"
+            >
 
             <ImageView
+                android:id="@+id/add_category_red"
                 style="@style/add_category_color"
-                android:background="@drawable/circle_red"
-                android:id="@+id/add_category_red" />
+                android:background="@drawable/circle_red" />
         </RelativeLayout>
 
         <RelativeLayout style="@style/add_category_Relative">

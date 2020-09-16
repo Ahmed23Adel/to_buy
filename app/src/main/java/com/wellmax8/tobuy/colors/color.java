@@ -12,6 +12,7 @@ public class color {
 
     private int COLOR_NOT_SPECIFIED=-1;
     private int MAX_INT_COLOR=GREEN;
+    private int MIN_INT_COLOR=RED;
     private int chosenColor=COLOR_NOT_SPECIFIED;
 
     private String[] colorsNames= new String[]{"RED","YELLOW","BLUE","PURPLE","GREEN"};
@@ -19,7 +20,7 @@ public class color {
 
 
     public void setChosenColor(int chosenColor) throws IllegalArgumentException{
-        if (chosenColor<0||chosenColor>MAX_INT_COLOR){
+        if (chosenColor<MIN_INT_COLOR||chosenColor>MAX_INT_COLOR){
             throw new IllegalArgumentException("your integer must be within range "+0+" and "+MAX_INT_COLOR);
         }
         this.chosenColor = chosenColor;
@@ -30,5 +31,13 @@ public class color {
             throw new colorNotSpecifiedException();
         }
         return chosenColor;
+    }
+
+    public int getMAX_INT_COLOR() {
+        return MAX_INT_COLOR;
+    }
+
+    public int getMIN_INT_COLOR() {
+        return MIN_INT_COLOR;
     }
 }
