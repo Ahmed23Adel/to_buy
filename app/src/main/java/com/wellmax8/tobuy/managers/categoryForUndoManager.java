@@ -1,24 +1,18 @@
 package com.wellmax8.tobuy.managers;
 
+import android.view.View;
 import android.widget.EditText;
 
 public class categoryForUndoManager {
-    private String name;
-    private String relatedTo;
-    private String desc;
-    private String extra;
 
-    private EditText nameField;
-    private EditText relatedToField;
-    private EditText descField;
-    private EditText extraField;
+    private EditText [] views;
+    private String [] textOfViews;
 
-    public categoryForUndoManager(EditText nameField, EditText relatedToField, EditText descField, EditText extraField) {
-        this.nameField = nameField;
-        this.relatedToField = relatedToField;
-        this.descField = descField;
-        this.extraField = extraField;
+    public categoryForUndoManager(EditText... views) {
+        this.views = views;
+        textOfViews=new String[views.length];
     }
+
 
     public void reset(){
         saveInstance();
@@ -26,25 +20,22 @@ public class categoryForUndoManager {
     }
 
     public void undo(){
-        nameField.setText(name);
-        relatedToField.setText(relatedTo);
-        descField.setText(desc);
-        extraField.setText(extra);
+        for (int i=0;i<views.length;i++){
+            views[i].setText(textOfViews[i]);
+        }
     }
 
 
     private void saveInstance(){
-        name=nameField.getText().toString();
-        relatedTo=relatedToField.getText().toString();
-        desc=descField.getText().toString();
-        extra=extraField.getText().toString();
+       for (int i=0;i<views.length;i++){
+           textOfViews[i]=views[i].getText().toString().trim();
+       }
     }
 
     private void setAllFieldsToNull(){
-        nameField.setText("");
-        relatedToField.setText("");
-        descField.setText("");
-        extraField.setText("");
+        for (EditText e:views){
+            e.setText("");
+        }
     }
 
 }
