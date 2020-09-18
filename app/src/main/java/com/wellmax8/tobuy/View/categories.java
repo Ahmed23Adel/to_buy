@@ -7,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wellmax8.tobuy.Fragments.viewQuilt;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
@@ -29,6 +33,8 @@ public class categories extends AppCompatActivity {
     private FloatingActionButton add_category;
     private RecyclerView recyclerView;
     private TextView textView_add_category;
+    private FrameLayout frameLayoutForImageView;
+    private ImageView imageViewForClicking;
     private VM_categories VM;
 
 
@@ -54,6 +60,8 @@ public class categories extends AppCompatActivity {
         add_category = findViewById(R.id.main_fab);
         textView_add_category = findViewById(R.id.main_textView_add);
         recyclerView=findViewById(R.id.category_recyclerView);
+        imageViewForClicking=findViewById(R.id.img_background_forClicking);
+        frameLayoutForImageView=findViewById(R.id.layout_forRearrange);
     }
 
     private void setActionOnButtons(){
@@ -102,5 +110,29 @@ public class categories extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.categories,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.rearrange:{
+                showRearrangeFragment();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showRearrangeFragment() {
+        viewQuilt viewQuilt=new viewQuilt();
+        FragmentManager fragmentManager= getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(frameLayoutForImageView.getId(),viewQuilt)
+                .commit();
+    }
+
 
 }
