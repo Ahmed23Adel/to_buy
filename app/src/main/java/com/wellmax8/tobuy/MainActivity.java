@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         main_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView nameView = view.findViewById(R.id.item_name);
+                TextView nameView = view.findViewById(R.id.item_category_name);
                 String name= nameView.getText().toString();
                 String [] nameC=name.split(":",-1);
                 Intent i = new Intent(MainActivity.this, things.class);

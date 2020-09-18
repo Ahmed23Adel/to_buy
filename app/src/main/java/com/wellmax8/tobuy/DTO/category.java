@@ -1,10 +1,17 @@
 package com.wellmax8.tobuy.DTO;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.wellmax8.tobuy.Exceptions.colorNotSpecifiedException;
 import com.wellmax8.tobuy.colors.color;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Entity()
 public class category {
@@ -32,7 +39,7 @@ public class category {
         this.description = description;
         this.extra = extra;
         this.chosenColor = chosenColor;
-        color =new color();
+        color = new color();
     }
 
 
@@ -76,5 +83,39 @@ public class category {
     public int getChosenColor() {
         return chosenColor;
 
+    }
+
+    public int getChosenColorID() {
+        try {
+            return getColor().getChosenColorID();
+        } catch (colorNotSpecifiedException e) {
+            color.setChosenColor(color.RED);
+            return getChosenColorID();
+        }
+    }
+
+    public String getCreatedAtReadable() {
+        Date date = new Date(Long.parseLong(getCreated_at()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
+        return simpleDateFormat.format(date).trim();
+    }
+
+    public String getLastEditReadable() {
+        Date date = new Date(Long.parseLong(getLast_edit()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
+        return simpleDateFormat.format(date).trim();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        category category = (com.wellmax8.tobuy.DTO.category) obj;
+        if (id == category.id && name.equals(category.name) && created_at.equals(category.created_at) && last_edit.equals(category.last_edit)
+                && related_to.equals(category.related_to) && description.equals(category.description)
+                && extra.equals(category.extra) && chosenColor == category.chosenColor
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

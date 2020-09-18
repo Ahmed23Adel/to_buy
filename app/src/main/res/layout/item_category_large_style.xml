@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/oval_red"
-    android:id="@+id/item_layout"
+    android:id="@+id/category_item_background_largeStyle"
     android:layout_margin="16dp"
     >
 
@@ -12,14 +12,14 @@
         android:text="Name : Refreigator "
         android:padding="10dp"
         android:textColor="#fff"
-        android:id="@+id/item_name"
+        android:id="@+id/item_category_name"
         />
 
     <TextView style="@style/add_category_add_field"
         android:text="work "
         android:padding="10dp"
         android:textColor="#fff"
-        android:id="@+id/item_relate_to"
+        android:id="@+id/item_category_relate_to"
 
         />
 
@@ -35,7 +35,7 @@
             android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:textColor="#fff"
-            android:id="@+id/item_created_at"
+            android:id="@+id/item_category_created_at"
 
             />
 
@@ -50,7 +50,7 @@
             android:textSize="14sp"
             android:layout_weight="1"
             android:textColor="#fff"
-            android:id="@+id/item_lastEdit"
+            android:id="@+id/item_category_lastEdit"
 
             />
 

@@ -33,6 +33,13 @@ public class color {
         return chosenColor;
     }
 
+    public int getChosenColorID() throws colorNotSpecifiedException{
+        if (chosenColor==COLOR_NOT_SPECIFIED){
+            throw new colorNotSpecifiedException();
+        }
+        return colorsValues[chosenColor];
+    }
+
     public int getMAX_INT_COLOR() {
         return MAX_INT_COLOR;
     }

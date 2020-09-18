@@ -34,7 +34,7 @@ public class VM_add_category extends ViewModel {
     }
 
     public String getCurrentTime(){
-        Long timeInSecond=System.currentTimeMillis()/1000;
+        Long timeInSecond=System.currentTimeMillis();
         String timeInSecondeText=timeInSecond.toString();
         return timeInSecondeText;
     }

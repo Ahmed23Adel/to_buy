@@ -3,7 +3,6 @@ package com.wellmax8.tobuy;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,9 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.wellmax8.tobuy.data.toBuyContract.categories_entry;
-import com.wellmax8.tobuy.data.toBuyContract;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class cursor_adapter_categories extends CursorAdapter {
 
@@ -29,7 +26,7 @@ public class cursor_adapter_categories extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.item_category,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.item_category_large_style,parent,false);
     }
 
     @Override
@@ -39,10 +36,10 @@ public class cursor_adapter_categories extends CursorAdapter {
         //view.generateViewId();
         //view.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(categories_entry.COLUMN_ID_CATEGORY))));
 
-        TextView nameView=view.findViewById(R.id.item_name);
-        TextView relatedToView=view.findViewById(R.id.item_relate_to);
-        TextView createAtView=view.findViewById(R.id.item_created_at);
-        TextView lastEditView=view.findViewById(R.id.item_lastEdit);
+        TextView nameView=view.findViewById(R.id.item_category_name);
+        TextView relatedToView=view.findViewById(R.id.item_category_relate_to);
+        TextView createAtView=view.findViewById(R.id.item_category_created_at);
+        TextView lastEditView=view.findViewById(R.id.item_category_lastEdit);
 
         String  name=cursor.getString(cursor.getColumnIndex(categories_entry.COLUMN_NAME));
         String  relatedTo=cursor.getString(cursor.getColumnIndex(categories_entry.COLUMN_RELATED_TO));
@@ -54,7 +51,7 @@ public class cursor_adapter_categories extends CursorAdapter {
         if (relatedTo.equals("")){
             relatedToView.setVisibility(View.GONE);
         }
-        LinearLayout textContainer= view.findViewById(R.id.item_layout);
+        LinearLayout textContainer= view.findViewById(R.id.category_item_background_largeStyle);
         GradientDrawable gradientDrawable=(GradientDrawable) textContainer.getBackground();
 
         switch (color){
