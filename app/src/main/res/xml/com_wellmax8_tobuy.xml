@@ -4,15 +4,15 @@
 
     <PreferenceCategory app:title="@string/categories_content">
 
-        <SwitchPreferenceCompat
+        <CheckBoxPreference
             app:title="@string/large_style"
-            android:defaultValue="true"
-            android:key="@string/keyCategories_largeStyle"
+            app:key="@string/keyCategories_largeStyle"
+            app:defaultValue="true"
             />
         <SwitchPreferenceCompat
             app:title="@string/small_sytle"
-            android:defaultValue="false"
-            android:key="@string/keyCategories_smallStyle"
+            app:defaultValue="false"
+            app:key="@string/keyCategories_smallStyle"
             />
 
     </PreferenceCategory>

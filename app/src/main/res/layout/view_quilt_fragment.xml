@@ -18,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/layout_smallStyle"
+            android:layout_margin="16dp"
             >
 
             <ImageView
@@ -42,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/grey"
-            android:id="@+id/layout_largeStyle">
+            android:id="@+id/layout_largeStyle"
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/largeStyle"

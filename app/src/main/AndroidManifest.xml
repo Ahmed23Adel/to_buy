@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
-        <activity
             android:name=".View.categories"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
