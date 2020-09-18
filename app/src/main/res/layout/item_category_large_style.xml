@@ -5,7 +5,10 @@
     android:orientation="vertical"
     android:background="@drawable/oval_red"
     android:id="@+id/category_item_background_largeStyle"
-    android:layout_margin="16dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
     >
 
     <TextView style="@style/add_category_add_field"
