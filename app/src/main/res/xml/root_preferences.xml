@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <PreferenceCategory app:title="@string/categories_content">
+
+        <SwitchPreferenceCompat
+            app:title="@string/large_style"
+            android:defaultValue="true"
+            android:key="@string/keyCategories_largeStyle"
+            />
+        <SwitchPreferenceCompat
+            app:title="@string/small_sytle"
+            android:defaultValue="false"
+            android:key="@string/keyCategories_smallStyle"
+            />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
