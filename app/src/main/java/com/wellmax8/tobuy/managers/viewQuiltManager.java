@@ -22,6 +22,8 @@ public class viewQuiltManager {
 
     private viewQuilt viewQuilt;
 
+    private boolean isFragmentShown=false;
+
     public viewQuiltManager(FrameLayout frameLayoutToShowIn, ImageView backgroundImageView, ImageView buttonToPress, FragmentActivity fragmentActivity, View[] viewsToHide, View[] viewsToVisible) {
         this.frameLayoutToShowIn = frameLayoutToShowIn;
         this.backgroundImageView = backgroundImageView;
@@ -31,17 +33,25 @@ public class viewQuiltManager {
         this.viewsToVisible = viewsToVisible;
         viewQuilt = com.wellmax8.tobuy.Fragments.viewQuilt.newInstance();
         instantiateButton();
+        instantiateBackground();
     }
 
 
 
     private void instantiateButton() {
-        buttonToPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonToPress.setOnClickListener(v -> {
+            if (!isFragmentShown) {
                 showRearrangeFragment();
+                isFragmentShown=true;
+            }
+            else{
+                hideRearrangeFragment();
+                isFragmentShown=false;
             }
         });
+    }
+    private void instantiateBackground(){
+        backgroundImageView.setOnClickListener(v -> hideRearrangeFragment());
     }
 
     private void showRearrangeFragment() {
@@ -52,6 +62,13 @@ public class viewQuiltManager {
                 .commit();
 
     }
+    private void hideRearrangeFragment(){
+        switchToActivity();
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .remove(viewQuilt)
+                .commit();
+    }
 
     private void switchToFragment(){
         backgroundImageView.setVisibility(View.VISIBLE);
@@ -59,6 +76,12 @@ public class viewQuiltManager {
         hideViewGiven();
         visibleViewGiven();
 
+    }
+    private void switchToActivity(){
+        backgroundImageView.setVisibility(View.GONE);
+        frameLayoutToShowIn.setVisibility(View.GONE);
+        undoHide();
+        undoVisible();
     }
 
     private void hideViewGiven(){
@@ -70,6 +93,18 @@ public class viewQuiltManager {
     private void visibleViewGiven(){
         for(View v: viewsToVisible){
             v.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void undoHide(){
+        for(View v: viewsToHide){
+            v.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void undoVisible(){
+        for(View v: viewsToVisible){
+            v.setVisibility(View.GONE);
         }
     }
 
