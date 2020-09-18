@@ -26,7 +26,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         style="@style/main_listView"
-        android:id="@+id/main_listView"
+        android:id="@+id/category_recyclerView"
         android:visibility="gone"
         android:dividerHeight="16dp"
         android:drawSelectorOnTop="true"

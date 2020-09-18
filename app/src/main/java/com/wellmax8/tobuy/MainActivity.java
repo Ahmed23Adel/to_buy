@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         main_imageView_add = findViewById(R.id.main_imageView_add);
         fab = findViewById(R.id.main_fab);
-        main_listView = findViewById(R.id.main_listView);
+        main_listView = findViewById(R.id.category_recyclerView);
         main_textView_add = findViewById(R.id.main_textView_add);
 
         mCursor_adapter_categories = new cursor_adapter_categories(this, null);

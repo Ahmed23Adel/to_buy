@@ -24,7 +24,7 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
     private Context context;
 
 
-    protected adapter_categories_largeStyle(Context context) {
+    public adapter_categories_largeStyle(Context context) {
         super(diffCallback);
         this.context = context;
     }
