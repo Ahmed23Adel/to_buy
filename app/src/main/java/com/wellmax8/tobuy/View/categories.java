@@ -2,42 +2,37 @@ package com.wellmax8.tobuy.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.LayoutManager;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.Fragments.viewQuilt;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
+import com.wellmax8.tobuy.managers.viewQuiltManager;
+import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
 
 public class categories extends AppCompatActivity {
     private ImageView imageView_add_category;
     private FloatingActionButton add_category;
     private RecyclerView recyclerView;
     private TextView textView_add_category;
-    private FrameLayout frameLayoutForImageView;
-    private ImageView imageViewForClicking;
+    private FrameLayout frameLayoutToShowViewQuiltIn;
+    private ImageView background_imageView;
     private VM_categories VM;
     private viewQuilt viewQuilt;
-    private ImageView viewQuiltView;
+    private ImageView viewQuiltViewButton;
+    private viewQuiltManager viewQuiltManager;
 
 
     @Override
@@ -54,19 +49,23 @@ public class categories extends AppCompatActivity {
                 categoriesNotEmpty();
             }
         });
-        setViewQuiltSetup();
         showRecyclerView();
+       showQuiltViews();
+
+
 
     }
+
+
 
     private void instantiateViews(){
         imageView_add_category = findViewById(R.id.main_imageView_add);
         add_category = findViewById(R.id.main_fab);
         textView_add_category = findViewById(R.id.main_textView_add);
         recyclerView=findViewById(R.id.category_recyclerView);
-        imageViewForClicking=findViewById(R.id.img_background_forClicking);
-        frameLayoutForImageView=findViewById(R.id.layout_forRearrange);
-        viewQuiltView=findViewById(R.id.viewQuilt);
+        background_imageView =findViewById(R.id.backgroundImageView);
+        frameLayoutToShowViewQuiltIn =findViewById(R.id.layout_forRearrange);
+        viewQuiltViewButton =findViewById(R.id.viewQuilt);
     }
 
     private void setActionOnButtons(){
@@ -116,27 +115,18 @@ public class categories extends AppCompatActivity {
 
     }
 
-    private void setViewQuiltSetup(){
-        viewQuiltView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showRearrangeFragment();
-            }
-        });
+
+    private void showQuiltViews() {
+        viewQuiltManager =new viewQuiltManagerBuilder()
+                .setBackgroundImageView(background_imageView)
+                .setFrameLayoutToShowIn(frameLayoutToShowViewQuiltIn)
+                .setImgToPress(viewQuiltViewButton)
+                .setFragmentActivity(this)
+                .setViewsToHide(add_category)
+                .setViewsToVisible()
+                .build();
     }
 
-    private void showRearrangeFragment() {
-        switchViewsToFragment();
-        FragmentManager fragmentManager= getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(frameLayoutForImageView.getId(),viewQuilt)
-                .commit();
-    }
-    private void switchViewsToFragment(){
-        frameLayoutForImageView.setVisibility(View.VISIBLE);
-        imageViewForClicking.setVisibility(View.VISIBLE);
-        add_category.setVisibility(View.GONE);
-    }
 
 
 
