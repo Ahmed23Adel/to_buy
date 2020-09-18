@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@color/grey"
-    >
+    tools:context=".MainActivity">
 
-
-
-
-    <ImageView
-        style="@style/main_imageView_add"
-        android:src="@drawable/ic_action_add_colored"
-        android:id="@+id/main_imageView_add"
-
-        />
-    <TextView
-        style="@style/main_textView"
-        android:layout_below="@id/main_imageView_add"
-        android:id="@+id/main_textView_add"
-        android:gravity="center"
-        />
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        style="@style/main_listView"
-        android:id="@+id/category_recyclerView"
-        android:visibility="gone"
-        android:dividerHeight="16dp"
-        android:drawSelectorOnTop="true"
-        android:paddingTop="16dip"
-        android:paddingBottom="16dip"
-        android:clipToPadding="false"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_fab"
-        app:srcCompat="@drawable/ic_action_add"
-        style="@style/main_floatingButton"
-
-        />
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/img_background_forClicking"
-        />
+        android:orientation="vertical">
 
 
-    <FrameLayout
+        <ImageView
+            android:id="@+id/main_imageView_add"
+            style="@style/main_imageView_add"
+            android:src="@drawable/ic_action_add_colored"
+
+            />
+
+        <TextView
+            android:id="@+id/main_textView_add"
+            style="@style/main_textView"
+            android:layout_below="@id/main_imageView_add"
+            android:gravity="center" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recyclerView"
+            style="@style/main_listView"
+            android:clipToPadding="false"
+            android:dividerHeight="16dp"
+            android:drawSelectorOnTop="true"
+            android:paddingTop="16dip"
+            android:paddingBottom="16dip"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_fab"
+            style="@style/main_floatingButton"
+            app:srcCompat="@drawable/ic_action_add"
+
+            />
+
+        <ImageView
+            android:id="@+id/img_background_forClicking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+        <FrameLayout
+            android:id="@+id/layout_forRearrange"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="48dp"
+            android:visibility="gone"
+
+            />
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout_forRearrange"
-        android:layout_margin="48dp"
-        />
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="Categories">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rearrnge"
+                android:layout_gravity="end"
+                android:layout_margin="16dp"
+                android:id="@+id/viewQuilt"
+                />
+        </androidx.appcompat.widget.Toolbar>
 
 
+    </com.google.android.material.appbar.AppBarLayout>
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

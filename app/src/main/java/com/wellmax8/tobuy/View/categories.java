@@ -36,6 +36,8 @@ public class categories extends AppCompatActivity {
     private FrameLayout frameLayoutForImageView;
     private ImageView imageViewForClicking;
     private VM_categories VM;
+    private viewQuilt viewQuilt;
+    private ImageView viewQuiltView;
 
 
     @Override
@@ -44,6 +46,7 @@ public class categories extends AppCompatActivity {
         setContentView(R.layout.categories);
         instantiateViews();
         setActionOnButtons();
+        viewQuilt=viewQuilt.newInstance();
         VM=new ViewModelProvider(this).get(VM_categories.class);
         VM.setContext(this);
         VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
@@ -51,6 +54,7 @@ public class categories extends AppCompatActivity {
                 categoriesNotEmpty();
             }
         });
+        setViewQuiltSetup();
         showRecyclerView();
 
     }
@@ -62,6 +66,7 @@ public class categories extends AppCompatActivity {
         recyclerView=findViewById(R.id.category_recyclerView);
         imageViewForClicking=findViewById(R.id.img_background_forClicking);
         frameLayoutForImageView=findViewById(R.id.layout_forRearrange);
+        viewQuiltView=findViewById(R.id.viewQuilt);
     }
 
     private void setActionOnButtons(){
@@ -110,29 +115,31 @@ public class categories extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.categories,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.rearrange:{
+    private void setViewQuiltSetup(){
+        viewQuiltView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 showRearrangeFragment();
             }
-        }
-        return super.onOptionsItemSelected(item);
+        });
     }
 
     private void showRearrangeFragment() {
-        viewQuilt viewQuilt=new viewQuilt();
+        switchViewsToFragment();
         FragmentManager fragmentManager= getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(frameLayoutForImageView.getId(),viewQuilt)
                 .commit();
     }
+    private void switchViewsToFragment(){
+        frameLayoutForImageView.setVisibility(View.VISIBLE);
+        imageViewForClicking.setVisibility(View.VISIBLE);
+        add_category.setVisibility(View.GONE);
+    }
+
+
+
 
 
 }
