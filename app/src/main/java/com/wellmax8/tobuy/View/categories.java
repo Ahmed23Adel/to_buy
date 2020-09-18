@@ -3,11 +3,14 @@ package com.wellmax8.tobuy.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -83,7 +86,6 @@ public class categories extends AppCompatActivity {
         adapter_categories_largeStyle adapter=new adapter_categories_largeStyle(this);
         recyclerView.setAdapter(adapter);
         VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
-            Log.v("main","ca"+categories.size());
             adapter.submitList(categories);
         });
     }
@@ -100,6 +102,5 @@ public class categories extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
     }
-
 
 }
