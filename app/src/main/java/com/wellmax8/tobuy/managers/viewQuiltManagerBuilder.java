@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
+
 public class viewQuiltManagerBuilder {
 
     private FrameLayout frameLayoutToShowIn;
@@ -15,6 +17,8 @@ public class viewQuiltManagerBuilder {
 
     private View[] viewsToHide;
     private View [] viewsToVisible;
+
+    private Observer_viewQuilt observer_viewQuilt;
 
     public viewQuiltManagerBuilder setFrameLayoutToShowIn(FrameLayout frameLayoutToShowIn) {
         this.frameLayoutToShowIn = frameLayoutToShowIn;
@@ -51,8 +55,13 @@ public class viewQuiltManagerBuilder {
 
     }
 
+    public viewQuiltManagerBuilder setObserverViewQuilt(Observer_viewQuilt observerViewQuilt){
+        this.observer_viewQuilt=observerViewQuilt;
+        return this;
+    }
+
     public viewQuiltManager build(){
-        viewQuiltManager viewQuiltManager=new viewQuiltManager(frameLayoutToShowIn,backgroundImageView, imgToPress,fragmentActivity,viewsToHide,viewsToVisible);
+        viewQuiltManager viewQuiltManager=new viewQuiltManager(frameLayoutToShowIn,backgroundImageView, imgToPress,fragmentActivity,viewsToHide,viewsToVisible,observer_viewQuilt);
         return viewQuiltManager;
     }
 }

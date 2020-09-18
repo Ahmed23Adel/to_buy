@@ -5,6 +5,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.wellmax8.tobuy.Fragments.viewQuilt;
+import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +25,7 @@ public class viewQuiltManager {
 
     private boolean isFragmentShown=false;
 
-    public viewQuiltManager(FrameLayout frameLayoutToShowIn, ImageView backgroundImageView, ImageView buttonToPress, FragmentActivity fragmentActivity, View[] viewsToHide, View[] viewsToVisible) {
+    public viewQuiltManager(FrameLayout frameLayoutToShowIn, ImageView backgroundImageView, ImageView buttonToPress, FragmentActivity fragmentActivity, View[] viewsToHide, View[] viewsToVisible, Observer_viewQuilt observer) {
         this.frameLayoutToShowIn = frameLayoutToShowIn;
         this.backgroundImageView = backgroundImageView;
         this.buttonToPress = buttonToPress;
@@ -34,6 +35,7 @@ public class viewQuiltManager {
         viewQuilt = com.wellmax8.tobuy.Fragments.viewQuilt.newInstance();
         instantiateButton();
         instantiateBackground();
+        viewQuilt.subscribe(observer);
     }
 
 
@@ -107,5 +109,6 @@ public class viewQuiltManager {
             v.setVisibility(View.GONE);
         }
     }
+
 
 }

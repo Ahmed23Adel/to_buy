@@ -18,7 +18,6 @@ public class VM_Frag_view_quilt extends ViewModel {
     public boolean isCategoriesViewQuiltLarge(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences("com_wellmax8_tobuy",Context.MODE_PRIVATE);
         boolean isLarge=sharedPreferences.getBoolean(context.getString(R.string.keyCategories_largeStyle),true);
-        boolean isSmall=sharedPreferences.getBoolean(context.getString(R.string.keyCategories_smallStyle),false);
         return isLarge;
     }
 

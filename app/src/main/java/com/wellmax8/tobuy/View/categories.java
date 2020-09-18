@@ -2,6 +2,7 @@ package com.wellmax8.tobuy.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
@@ -16,13 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.Fragments.viewQuilt;
+import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.managers.viewQuiltManager;
 import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
 
-public class categories extends AppCompatActivity {
+import java.util.logging.Logger;
+
+public class categories extends AppCompatActivity implements Observer_viewQuilt {
     private ImageView imageView_add_category;
     private FloatingActionButton add_category;
     private RecyclerView recyclerView;
@@ -49,8 +53,9 @@ public class categories extends AppCompatActivity {
                 categoriesNotEmpty();
             }
         });
+
         showRecyclerView();
-       showQuiltViews();
+        showQuiltViews();
 
 
 
@@ -124,12 +129,19 @@ public class categories extends AppCompatActivity {
                 .setFragmentActivity(this)
                 .setViewsToHide(add_category)
                 .setViewsToVisible()
+                .setObserverViewQuilt(this)
                 .build();
+        viewQuilt.subscribe(this);
+
     }
 
+    @Override
+    public void updateCategories(boolean isLarge) {
+        if (isLarge){
+            Log.v("main","large");
+        }else{
+            Log.v("main","small");
 
-
-
-
-
+        }
+    }
 }
