@@ -33,9 +33,10 @@
             android:clipToPadding="false"
             android:dividerHeight="16dp"
             android:drawSelectorOnTop="true"
-            android:paddingTop="16dip"
+            android:paddingTop="56dp"
             android:paddingBottom="16dip"
-            android:visibility="gone" />
+            android:visibility="gone"
+             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/main_fab"
@@ -55,10 +56,11 @@
         <FrameLayout
             android:id="@+id/layout_forRearrange"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:layout_margin="48dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:visibility="gone"
-
             />
     </RelativeLayout>
 
