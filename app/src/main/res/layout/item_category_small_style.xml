@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/oval_red"
+    android:id="@+id/category_item_background_largeStyle"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    >
+
+    <TextView style="@style/add_category_add_field"
+        android:text="Name : Refreigator "
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:id="@+id/item_category_name"
+        />
+
+
+    <LinearLayout style="@style/add_category_Linear"
+        android:padding="10dp"
+        android:weightSum="2"
+        >
+        <TextView style="@style/add_category_add_field"
+            android:text="Created at : May, 6  "
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:id="@+id/item_category_created_at"
+
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -27,6 +27,11 @@ public class VM_categories extends ViewModel {
         return repo.getCategoriesOrderedCreatedAtDESC();
     }
 
+    public boolean isStyleLarge(Context context){
+        VM_Frag_view_quilt VM=new VM_Frag_view_quilt();
+        return VM.isCategoriesViewQuiltLarge(context);
+    }
+
 
 
 }

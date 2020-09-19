@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wellmax8.tobuy.Adapters.adapter_categories_smallStyle;
 import com.wellmax8.tobuy.Fragments.viewQuilt;
 import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
 import com.wellmax8.tobuy.R;
@@ -23,8 +24,6 @@ import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.managers.viewQuiltManager;
 import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
-
-import java.util.logging.Logger;
 
 public class categories extends AppCompatActivity implements Observer_viewQuilt {
     private ImageView imageView_add_category;
@@ -54,12 +53,13 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
             }
         });
 
-        showRecyclerView();
+        determineWhichStyle();
         showQuiltViews();
 
 
 
     }
+
 
 
 
@@ -98,20 +98,44 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
 
     }
 
-    private void showRecyclerView(){
-        instantiateRecyclerView();
+    private void determineWhichStyle() {
+        if (VM.isStyleLarge(this)){
+            showRecyclerViewLargeStyle();
+        }else{
+            showRecyclerViewSmallStyle();
+        }
+    }
+    private void showRecyclerViewLargeStyle(){
+        recyclerView.setAdapter(null);
+        instantiateRecyclerViewForLargeStyle();
         adapter_categories_largeStyle adapter=new adapter_categories_largeStyle(this);
         recyclerView.setAdapter(adapter);
         VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
             adapter.submitList(categories);
         });
     }
-    private void instantiateRecyclerView(){
-        instantiateRecyclerViewForLargeStyle();
+    private void showRecyclerViewSmallStyle(){
+        recyclerView.setAdapter(null);
+        instantiateRecyclerViewForSmallStyle();
+        adapter_categories_smallStyle adapter=new adapter_categories_smallStyle(this);
+        recyclerView.setAdapter(adapter);
+        VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
+            adapter.submitList(categories);
+        });
     }
+
 
     public void instantiateRecyclerViewForLargeStyle(){
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+    }
+    public void instantiateRecyclerViewForSmallStyle(){
+        GridLayoutManager layoutManager=new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
@@ -138,9 +162,9 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
     @Override
     public void updateCategories(boolean isLarge) {
         if (isLarge){
-            Log.v("main","large");
+            showRecyclerViewLargeStyle();
         }else{
-            Log.v("main","small");
+            showRecyclerViewSmallStyle();
 
         }
     }

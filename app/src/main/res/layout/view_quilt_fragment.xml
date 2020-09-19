@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_weight="1"
-                android:src="@drawable/categories_large_style" />
+                android:src="@drawable/categories_small_style" />
         </LinearLayout>
 
         <LinearLayout
