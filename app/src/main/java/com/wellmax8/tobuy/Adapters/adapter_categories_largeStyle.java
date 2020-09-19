@@ -1,6 +1,7 @@
 package com.wellmax8.tobuy.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.view_category_details;
 
 public class adapter_categories_largeStyle extends ListAdapter<category, adapter_categories_largeStyle.categoryItem> {
 
@@ -68,6 +70,15 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
         holder.lastEdit.setText(category.getLastEditReadable());
         GradientDrawable gradientDrawable = (GradientDrawable) holder.textContainer.getBackground();
         gradientDrawable.setColor(ContextCompat.getColor(context, category.getChosenColorID()));
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent= new Intent(context, view_category_details.class);
+                intent.putExtra("pos",position);
+                context.startActivity(intent);
+                return false;
+            }
+        });
 
     }
 
@@ -88,4 +99,5 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
             textContainer = itemView.findViewById(R.id.category_item_background_largeStyle);
         }
     }
+
 }

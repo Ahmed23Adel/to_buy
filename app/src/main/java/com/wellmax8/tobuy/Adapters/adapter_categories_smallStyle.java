@@ -1,6 +1,7 @@
 package com.wellmax8.tobuy.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.view_category_details;
 
 public class adapter_categories_smallStyle extends ListAdapter<category, adapter_categories_smallStyle.categoryItem> {
 
@@ -61,7 +63,15 @@ public class adapter_categories_smallStyle extends ListAdapter<category, adapter
         holder.createdAT.setText(category.getCreatedAtReadableJustTime());
         GradientDrawable gradientDrawable = (GradientDrawable) holder.textContainer.getBackground();
         gradientDrawable.setColor(ContextCompat.getColor(context, category.getChosenColorID()));
-
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent= new Intent(context, view_category_details.class);
+                intent.putExtra("pos",position);
+                context.startActivity(intent);
+                return false;
+            }
+        });
     }
 
     public class categoryItem extends RecyclerView.ViewHolder {

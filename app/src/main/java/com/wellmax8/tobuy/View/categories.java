@@ -2,9 +2,9 @@ package com.wellmax8.tobuy.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Adapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.Adapters.adapter_categories_smallStyle;
@@ -24,6 +25,9 @@ import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.managers.viewQuiltManager;
 import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
+import com.wellmax8.tobuy.DTO.category;
+
+import java.util.ArrayList;
 
 public class categories extends AppCompatActivity implements Observer_viewQuilt {
     private ImageView imageView_add_category;
@@ -37,6 +41,7 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
     private ImageView viewQuiltViewButton;
     private viewQuiltManager viewQuiltManager;
 
+    public static ArrayList<category> categoriesForDetails;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +58,8 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
             }
         });
 
-        determineWhichStyle();
+        determineWhichStyleANDShowRecyclerView();
         showQuiltViews();
-
-
 
     }
 
@@ -98,7 +101,7 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
 
     }
 
-    private void determineWhichStyle() {
+    private void determineWhichStyleANDShowRecyclerView() {
         if (VM.isStyleLarge(this)){
             showRecyclerViewLargeStyle();
         }else{
@@ -110,16 +113,19 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
         instantiateRecyclerViewForLargeStyle();
         adapter_categories_largeStyle adapter=new adapter_categories_largeStyle(this);
         recyclerView.setAdapter(adapter);
-        VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
-            adapter.submitList(categories);
-        });
+        showRecyclerView(adapter);
     }
     private void showRecyclerViewSmallStyle(){
         recyclerView.setAdapter(null);
         instantiateRecyclerViewForSmallStyle();
         adapter_categories_smallStyle adapter=new adapter_categories_smallStyle(this);
         recyclerView.setAdapter(adapter);
+        showRecyclerView(adapter);
+    }
+
+    private void showRecyclerView(ListAdapter adapter){
         VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
+            categoriesForDetails=(ArrayList<category>) categories;
             adapter.submitList(categories);
         });
     }
