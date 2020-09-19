@@ -48,7 +48,7 @@ public class categoryManager {
         return getTextLargeAndSmall(context.getString(R.string.created_at), category.getCreatedAtDetailedReadable());
     }
     private String getLastEdit() {
-        return getTextLargeAndSmall(context.getString(R.string.last_edit), category.getCreatedAtDetailedReadable());
+        return getTextLargeAndSmall(context.getString(R.string.last_edit), category.getLastEditDetailedReadable());
     }
 
     private String getExtra() {

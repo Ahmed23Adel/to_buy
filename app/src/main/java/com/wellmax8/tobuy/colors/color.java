@@ -17,6 +17,7 @@ public class color {
 
     private String[] colorsNames= new String[]{"RED","YELLOW","BLUE","PURPLE","GREEN"};
     private Integer[] colorsValues= new Integer[]{R.color.red,R.color.yellow,R.color.blue,R.color.purple,R.color.green};
+    private String[] colorsValuesHEX= new String[]{"#BF6262","#E7BF74","#4E84BF","#808EDF","#6CB1AC"};
 
 
     public void setChosenColor(int chosenColor) throws IllegalArgumentException{
@@ -31,6 +32,13 @@ public class color {
             throw new colorNotSpecifiedException();
         }
         return chosenColor;
+    }
+
+    public String getColoHEX() throws colorNotSpecifiedException{
+        if (chosenColor==COLOR_NOT_SPECIFIED){
+            throw new colorNotSpecifiedException();
+        }
+        return colorsValuesHEX[chosenColor];
     }
 
     public int getChosenColorID() throws colorNotSpecifiedException{

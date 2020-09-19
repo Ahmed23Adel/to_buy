@@ -80,4 +80,5 @@
     <string name="keyCategories_largeStyle">categories_largeStyle</string>
     <string name="keyCategories_smallStyle">categories_smallStyle</string>
     <string name="pos">pos</string>
+    <string name="editField">Edit</string>
 </resources>
