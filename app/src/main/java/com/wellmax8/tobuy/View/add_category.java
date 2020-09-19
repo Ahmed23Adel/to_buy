@@ -143,7 +143,7 @@ public class add_category extends AppCompatActivity {
     }
 
     private void save() {
-        if (isNameAndRelatedToInserted()) {
+        if (isNameInserted()) {
             VM.getWhereNameAndRelated(getName(),getRelatedTo()).observe(this,categories -> {
                 if (categories.isEmpty()){
                     category category= getCategoryInstance();
@@ -153,26 +153,21 @@ public class add_category extends AppCompatActivity {
             });
         }
         else {
-            nameOrRelatedToNotInserted();
+            nameNotInserted();
         }
 
     }
 
-    private boolean isNameAndRelatedToInserted() {
-        if (!category_name.getText().toString().isEmpty() && !category_relatedTo.getText().toString().isEmpty()) {
+    private boolean isNameInserted() {
+        if (!category_name.getText().toString().isEmpty()) {
             return true;
         } else {
             return false;
         }
     }
 
-    private void nameOrRelatedToNotInserted(){
-        String notInsertedText = null;
-        try {
-            notInsertedText = whichFieldNameWasntInserted();
-        } catch (AllFieldsAreInsertedException e) {
-            save();
-        }
+    private void nameNotInserted(){
+        String notInsertedText = getString(R.string.nameField);
         showDialog(notInsertedText, "Change");
     }
 
