@@ -18,17 +18,22 @@ public class sold {
     private String extra;
     private double price;
 
+    private String created_at;
+    private String last_edit;
+
 
     private boolean isBought;
     private long timeBuying;
 
-    public sold(int id_category, int id_shop, String name, String description, String extra, double price, boolean isBought, long timeBuying) {
+    public sold(int id_category, int id_shop, String name, String description, String extra, double price, String created_at, String last_edit, boolean isBought, long timeBuying) {
         this.id_category = id_category;
         this.id_shop = id_shop;
         this.name = name;
         this.description = description;
         this.extra = extra;
         this.price = price;
+        this.created_at = created_at;
+        this.last_edit = last_edit;
         this.isBought = isBought;
         this.timeBuying = timeBuying;
     }
@@ -63,6 +68,14 @@ public class sold {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public String getLast_edit() {
+        return last_edit;
     }
 
     public boolean isBought() {

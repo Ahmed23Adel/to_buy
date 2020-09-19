@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.solds;
 import com.wellmax8.tobuy.View.view_category_details;
 
 public class adapter_categories_largeStyle extends ListAdapter<category, adapter_categories_largeStyle.categoryItem> {
@@ -76,11 +77,19 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
             @Override
             public boolean onLongClick(View v) {
                 Intent intent= new Intent(context, view_category_details.class);
-                Log.v("main",""+position);
                 intent.putExtra(context.getString(R.string.pos),position);
                 intent.putExtra(context.getString(R.string.id),category.getId());
                 context.startActivity(intent);
                 return false;
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, solds.class);
+                intent.putExtra(context.getString(R.string.pos),position);
+                intent.putExtra(context.getString(R.string.id),category.getId());
+                context.startActivity(intent);
             }
         });
 

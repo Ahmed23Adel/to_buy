@@ -7,6 +7,8 @@ public class soldBuilder {
     private String description;
     private String extra;
     private double price;
+    private String created_at;
+    private String last_edit;
     private boolean isBought;
     private long timeBuying;
 
@@ -40,6 +42,16 @@ public class soldBuilder {
         return this;
     }
 
+    public soldBuilder setCreated_at(String created_at) {
+        this.created_at = created_at;
+        return this;
+    }
+
+    public soldBuilder setLast_edit(String last_edit) {
+        this.last_edit = last_edit;
+        return this;
+    }
+
     public soldBuilder setIsBought(boolean isBought) {
         this.isBought = isBought;
         return this;
@@ -50,7 +62,7 @@ public class soldBuilder {
         return this;
     }
 
-    public sold build() {
-        return new sold(id_category, id_shop, name, description, extra, price, isBought, timeBuying);
+    public sold createSold() {
+        return new sold(id_category, id_shop, name, description, extra, price, created_at, last_edit, isBought, timeBuying);
     }
 }
