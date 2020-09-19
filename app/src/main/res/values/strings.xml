@@ -83,4 +83,5 @@
     <string name="pos" translatable="false">pos</string>
     <string name="id" translatable="false">ID</string>
     <string name="editField">Edit</string>
+    <string name="sure_delete">Are you sure you wat to delete this item?</string>
 </resources>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<item
+    <item
+    android:id="@+id/delete"
+    android:title="@string/Delet"
+    app:showAsAction="ifRoom"
+    android:icon="@drawable/delete_red"
+    />
+    <item
     android:id="@+id/edit"
     android:title="@string/editField"
     app:showAsAction="ifRoom"
