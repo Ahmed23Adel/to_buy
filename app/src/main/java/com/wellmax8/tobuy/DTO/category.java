@@ -99,6 +99,11 @@ public class category {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
         return "Created at: "+simpleDateFormat.format(date).trim();
     }
+    public String getCreatedAtDetailedReadable() {
+        Date date = new Date(Long.parseLong(getCreated_at()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.getDefault());
+        return simpleDateFormat.format(date).trim();
+    }
     public String getCreatedAtReadableJustTime() {
         Date date = new Date(Long.parseLong(getCreated_at()));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
@@ -109,6 +114,12 @@ public class category {
         Date date = new Date(Long.parseLong(getLast_edit()));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
         return "Last edit: "+simpleDateFormat.format(date).trim();
+    }
+
+    public String getLastEditDetailedReadable() {
+        Date date = new Date(Long.parseLong(getLast_edit()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.getDefault());
+        return simpleDateFormat.format(date).trim();
     }
 
     @Override

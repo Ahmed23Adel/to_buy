@@ -174,4 +174,7 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
 
         }
     }
+    public static ArrayList<category> getCategoriesForDetails() {
+        return categoriesForDetails;
+    }
 }

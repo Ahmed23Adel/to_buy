@@ -46,6 +46,7 @@
     <string name="created_at">Created at: </string>
     <string name="last_edit">Last edit:</string>
     <string name="description">Description:</string>
+    <string name="extra">Extra:</string>
     <string name="statistics">Statistics</string>
     <string name="edit">"Edit: "</string>
     <string name="total">Total:</string>
@@ -78,4 +79,5 @@
     <string name="small_sytle">Small style</string>
     <string name="keyCategories_largeStyle">categories_largeStyle</string>
     <string name="keyCategories_smallStyle">categories_smallStyle</string>
+    <string name="pos">pos</string>
 </resources>

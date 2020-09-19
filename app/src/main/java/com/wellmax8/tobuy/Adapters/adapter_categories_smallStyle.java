@@ -67,7 +67,7 @@ public class adapter_categories_smallStyle extends ListAdapter<category, adapter
             @Override
             public boolean onLongClick(View v) {
                 Intent intent= new Intent(context, view_category_details.class);
-                intent.putExtra("pos",position);
+                intent.putExtra(context.getString(R.string.pos),position);
                 context.startActivity(intent);
                 return false;
             }
