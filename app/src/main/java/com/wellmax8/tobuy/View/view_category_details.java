@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.wellmax8.tobuy.BR;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Exceptions.colorNotSpecifiedException;
 import com.wellmax8.tobuy.R;
