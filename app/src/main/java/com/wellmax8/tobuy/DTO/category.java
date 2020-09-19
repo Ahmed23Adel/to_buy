@@ -97,13 +97,18 @@ public class category {
     public String getCreatedAtReadable() {
         Date date = new Date(Long.parseLong(getCreated_at()));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
+        return "Created at: "+simpleDateFormat.format(date).trim();
+    }
+    public String getCreatedAtReadableJustTime() {
+        Date date = new Date(Long.parseLong(getCreated_at()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
         return simpleDateFormat.format(date).trim();
     }
 
     public String getLastEditReadable() {
         Date date = new Date(Long.parseLong(getLast_edit()));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM, dd", Locale.getDefault());
-        return simpleDateFormat.format(date).trim();
+        return "Last edit: "+simpleDateFormat.format(date).trim();
     }
 
     @Override
