@@ -106,8 +106,13 @@ public class update_category extends category_parent {
                     category category= getCategoryInstance();
                     updateCategory(category);
                     onBackPressed();
+                }else if (categories.size()==1&&categories.get(0).getId()==currentCategory.getId()){
+                    category category= getCategoryInstance();
+                    updateCategory(category);
+                    onBackPressed();
                 }
-            });
+            }
+            );
         }
         else {
             nameNotInserted();
