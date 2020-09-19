@@ -171,17 +171,6 @@ public class add_category extends AppCompatActivity {
         showDialog(notInsertedText, "Change");
     }
 
-    private String whichFieldNameWasntInserted() throws AllFieldsAreInsertedException {
-        if (category_name.getText().toString().isEmpty()) {
-            return getString(R.string.nameField);
-        } else if (category_relatedTo.getText().toString().isEmpty()) {
-            return getString(R.string.related_toFiled);
-        } else {
-            throw new AllFieldsAreInsertedException("All fileds are inserted fully, nothing is missing");
-
-        }
-    }
-
     private void showDialog(String fieldName, String buttonMessage) {
         Snackbar.make(wholeLayout, "please insert a " + fieldName + " for that category", Snackbar.LENGTH_LONG).setAction(buttonMessage, v -> {
             undoChanges();
