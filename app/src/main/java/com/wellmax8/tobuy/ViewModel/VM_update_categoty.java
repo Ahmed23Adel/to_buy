@@ -34,4 +34,7 @@ public class VM_update_categoty extends ViewModel {
     public LiveData<List<category>> getWhereNameAndRelated(String name, String relatedTo){
         return repo.getCategoriesByNameAndRelatedTo(name,relatedTo);
     }
+    public void delete(category category){
+        repo.delete(category);
+    }
 }

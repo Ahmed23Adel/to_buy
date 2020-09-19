@@ -1,11 +1,14 @@
 package com.wellmax8.tobuy.View;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.Nullable;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.category_builder;
 import com.wellmax8.tobuy.R;
@@ -15,6 +18,7 @@ import com.wellmax8.tobuy.ViewModel.VM_update_categoty;
 
 public class update_category extends category_parent {
     private category currentCategory;
+    private FloatingActionButton deleteFab;
 
 
     private VM_update_categoty VM;
@@ -29,6 +33,41 @@ public class update_category extends category_parent {
         setTitle(getString(R.string.update_category));
 
 
+    }
+
+    @Override
+    protected void instantiateViews() {
+        super.instantiateViews();
+        deleteFab =findViewById(R.id.delete);
+        deleteFab.setVisibility(View.VISIBLE);
+        deleteFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogToSureDeleting();
+            }
+        });
+    }
+
+    private void delete() {
+        VM.delete(currentCategory);
+        onBackPressed();
+    }
+    private void showDialogToSureDeleting() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage(getString(R.string.sure_delete))
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        delete();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create();
+        alertDialog.show();
     }
 
     private void showSavedData() {
