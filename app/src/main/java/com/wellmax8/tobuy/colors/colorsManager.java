@@ -64,12 +64,6 @@ public class colorsManager {
         return lastPressedColor;
     }
 
-    private void setOtherLayoutsToNormal(RelativeLayout r1,RelativeLayout r2,RelativeLayout r3,RelativeLayout r4){
-        setZeroPaddingToLayout(r1);
-        setZeroPaddingToLayout(r2);
-        setZeroPaddingToLayout(r3);
-        setZeroPaddingToLayout(r4);
-    }
     private void setZeroPaddingToLayout(RelativeLayout relativeLayout) {
         relativeLayout.setPadding(0, 0, 0, 0);
     }

@@ -57,6 +57,7 @@
     <string name="common_where_to_buy">Common sellers:</string>
     <string name="reset">Reset</string>
     <string name="add_category">Add category</string>
+    <string name="update_category">Update category</string>
     <string name="view_content_as">View content As</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
