@@ -3,7 +3,10 @@ package com.wellmax8.tobuy.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.R;
 
@@ -15,6 +18,10 @@ public class solds extends AppCompatActivity {
     private int position;
     private ArrayList<category> categories;
     private category currentCategory;
+
+    private Toolbar toolbar;
+    private ImageView viewQuilt;
+    private FloatingActionButton addSold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +37,14 @@ public class solds extends AppCompatActivity {
             }
         }
 
+        instantiateViews();
+        toolbar.setTitle(currentCategory.getName());
+
+    }
+
+    private void instantiateViews() {
+        viewQuilt=findViewById(R.id.solds_viewQuilt);
+        addSold=findViewById(R.id.add_sold);
+        toolbar=findViewById(R.id.solds_toolbar);
     }
 }

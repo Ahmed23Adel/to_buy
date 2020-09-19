@@ -34,7 +34,6 @@
     </RelativeLayout>
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
@@ -44,10 +43,11 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
+            android:id="@+id/solds_toolbar"
             app:title="Cloths">
 
             <ImageView
-                android:id="@+id/viewQuilt"
+                android:id="@+id/solds_viewQuilt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
