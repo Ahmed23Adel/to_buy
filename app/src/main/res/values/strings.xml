@@ -80,6 +80,7 @@
     <string name="small_sytle">Small style</string>
     <string name="keyCategories_largeStyle">categories_largeStyle</string>
     <string name="keyCategories_smallStyle">categories_smallStyle</string>
-    <string name="pos">pos</string>
+    <string name="pos" translatable="false">pos</string>
+    <string name="id" translatable="false">ID</string>
     <string name="editField">Edit</string>
 </resources>

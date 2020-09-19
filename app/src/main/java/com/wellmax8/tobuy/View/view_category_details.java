@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class view_category_details extends AppCompatActivity {
 
     private int position;
+    private int id;
     private ArrayList<category> categories;
     private static category currentCategory;
     private TextView textView;
@@ -33,8 +34,14 @@ public class view_category_details extends AppCompatActivity {
         setContentView(R.layout.activity_view_category_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         position=getIntent().getIntExtra(getString(R.string.pos),0);
+        id=getIntent().getIntExtra(getString(R.string.id),0);
         categories= com.wellmax8.tobuy.View.categories.getCategoriesForDetails();
-        currentCategory=categories.get(position);
+        for (category c: categories){
+            if (c.getId()==id){
+                currentCategory=c;
+                break;
+            }
+        }
         instantiateViews();
         categoryManager categoryManager =new categoryManager(currentCategory,textView,this);
         categoryManager.showText();

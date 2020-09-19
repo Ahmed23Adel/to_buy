@@ -123,7 +123,7 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
         showRecyclerView(adapter);
     }
 
-    private void showRecyclerView(ListAdapter adapter){
+    private void showRecyclerView(final ListAdapter adapter){
         VM.getCategoriesOrderedCreatedAtDESC().observe(this,categories -> {
             categoriesForDetails=(ArrayList<category>) categories;
             adapter.submitList(categories);

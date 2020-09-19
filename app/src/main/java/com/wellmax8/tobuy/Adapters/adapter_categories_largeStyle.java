@@ -3,6 +3,7 @@ package com.wellmax8.tobuy.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.wellmax8.tobuy.View.view_category_details;
 public class adapter_categories_largeStyle extends ListAdapter<category, adapter_categories_largeStyle.categoryItem> {
 
     private Context context;
+    private int nAdded=0;
 
 
     public adapter_categories_largeStyle(Context context) {
@@ -74,7 +76,9 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
             @Override
             public boolean onLongClick(View v) {
                 Intent intent= new Intent(context, view_category_details.class);
+                Log.v("main",""+position);
                 intent.putExtra(context.getString(R.string.pos),position);
+                intent.putExtra(context.getString(R.string.id),category.getId());
                 context.startActivity(intent);
                 return false;
             }
@@ -89,6 +93,7 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
         public TextView createdAT;
         public TextView lastEdit;
         public LinearLayout textContainer;
+        public int position;
 
         public categoryItem(@NonNull View itemView) {
             super(itemView);
@@ -97,7 +102,12 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
             createdAT = itemView.findViewById(R.id.item_category_created_at);
             lastEdit = itemView.findViewById(R.id.item_category_lastEdit);
             textContainer = itemView.findViewById(R.id.category_item_background_largeStyle);
+
         }
+    }
+
+    public void newItemAdded(){
+        nAdded++;
     }
 
 }
