@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.solds" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".add_sold"></activity>
+        <activity
+            android:name=".View.solds"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".View.view_category_details" />
         <activity android:name=".View.update_category" />
         <activity

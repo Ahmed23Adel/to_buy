@@ -129,7 +129,7 @@ public class update_category extends category_parent {
         String currentTime=VM.getCurrentTime();
         category category= new category_builder()
                 .setName(name)
-                .setCreated_at(currentTime)
+                .setCreated_at(currentCategory.getCreated_at())
                 .setLast_edit(currentTime)
                 .setRelated_to(relatedTo)
                 .setDescription(desc)
