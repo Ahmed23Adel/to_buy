@@ -23,11 +23,12 @@
 
                 <TextView
                     style="@style/add_category_add_field"
-                    android:text="@string/add_category_textView_add_Name"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:layout_width="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingEnd="0dp"/>
+                    android:paddingTop="16dp"
+                    android:paddingEnd="0dp"
+                    android:paddingBottom="16dp"
+                    android:text="@string/add_category_textView_add_Name" />
 
                 <TextView
                     style="@style/add_category_add_field"
@@ -154,7 +155,22 @@
 
                     <TextView
                         style="@style/add_category_add_field"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="0dp"
+                        android:paddingBottom="16dp"
                         android:text="@string/name" />
+
+                    <TextView
+                        style="@style/add_category_add_field"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:padding="0dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:id="@+id/shopMustAdd"
+                        />
 
                     <EditText
                         android:id="@+id/add_shop_name"
@@ -162,6 +178,8 @@
                         android:hint="@string/zara"
 
                         />
+
+
 
                 </LinearLayout>
 
