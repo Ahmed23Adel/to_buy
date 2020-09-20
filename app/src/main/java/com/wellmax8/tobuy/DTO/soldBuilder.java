@@ -62,7 +62,7 @@ public class soldBuilder {
         return this;
     }
 
-    public sold createSold() {
+    public sold build() {
         return new sold(id_category, id_shop, name, description, extra, price, created_at, last_edit, isBought, timeBuying);
     }
 }
