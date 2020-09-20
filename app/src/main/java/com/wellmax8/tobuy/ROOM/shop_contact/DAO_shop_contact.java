@@ -28,4 +28,6 @@ public interface DAO_shop_contact {
 
     @Query("SELECT * FROM shop_contact WHERE id_contact= :id_contact")
     LiveData<List<shop_contact>> getAllAtIDContact(int id_contact);
+
+
 }

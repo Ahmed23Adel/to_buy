@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -21,11 +22,17 @@ public class sold {
     private String created_at;
     private String last_edit;
 
+    @Ignore
+    public static String TIME_BUY_NOT_SPECIFIED="ns";
+
+    @Ignore
+    public static int ID_SHOP_NOT_SPECIFIED=-1;
+
 
     private boolean isBought;
-    private long timeBuying;
+    private String timeBuying;
 
-    public sold(int id_category, int id_shop, String name, String description, String extra, double price, String created_at, String last_edit, boolean isBought, long timeBuying) {
+    public sold(int id_category, int id_shop, String name, String description, String extra, double price, String created_at, String last_edit, boolean isBought, String timeBuying) {
         this.id_category = id_category;
         this.id_shop = id_shop;
         this.name = name;
@@ -82,7 +89,7 @@ public class sold {
         return isBought;
     }
 
-    public long getTimeBuying() {
+    public String getTimeBuying() {
         return timeBuying;
     }
 }

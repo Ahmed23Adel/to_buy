@@ -3,8 +3,12 @@ package com.wellmax8.tobuy.ROOM.contact;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import com.wellmax8.tobuy.DTO.contact;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
+
+import java.util.List;
 
 public class repo_contact {
 
@@ -19,11 +23,19 @@ public class repo_contact {
     public  void insert(contact contact){
         new insertContact(dao).execute(contact);
     }
+
+    public void insertAllContacts(contact ... contacts){
+        new insertAllContacts(dao).execute(contacts);
+    }
     public void update(contact contact){
         new updateContact(dao).execute(contact);
     }
     public void delete(contact contact){
         new updateContact(dao).execute(contact);
+    }
+
+    public LiveData<List<contact>> getLastAddedByLimit(int limit){
+        return dao.getLastAddedByLimit(limit);
     }
 
     private static class insertContact extends AsyncTask<contact,Void,Void> {
@@ -36,6 +48,22 @@ public class repo_contact {
         @Override
         protected Void doInBackground(contact... contacts) {
             dao.insert(contacts[0]);
+            return null;
+        }
+    }
+
+    private static class insertAllContacts extends AsyncTask<contact,Void,Void> {
+        public final DAO_contact dao;
+
+        public insertAllContacts(DAO_contact dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(contact... contacts) {
+            for(contact c :contacts){
+                dao.insert(c);
+            }
             return null;
         }
     }
@@ -67,4 +95,6 @@ public class repo_contact {
             return null;
         }
     }
+
+
 }

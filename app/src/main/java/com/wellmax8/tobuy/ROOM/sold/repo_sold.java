@@ -2,6 +2,7 @@ package com.wellmax8.tobuy.ROOM.sold;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -23,7 +24,13 @@ public class repo_sold {
     }
 
     public void insert(sold sold){
-        new insertSold(dao).execute(sold);
+        if (sold==null){
+            Log.v("main","SOLDnull");
+        }else{
+            Log.v("main","SOLDNMOTnull");
+            new insertSold(dao).execute(sold);
+
+        }
     }
     public void update(sold sold){
         new updateSold(dao).execute(sold);

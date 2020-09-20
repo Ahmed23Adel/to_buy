@@ -10,7 +10,7 @@ public class soldBuilder {
     private String created_at;
     private String last_edit;
     private boolean isBought;
-    private long timeBuying;
+    private String timeBuying;
 
     public soldBuilder setId_category(int id_category) {
         this.id_category = id_category;
@@ -57,7 +57,7 @@ public class soldBuilder {
         return this;
     }
 
-    public soldBuilder setTimeBuying(long timeBuying) {
+    public soldBuilder setTimeBuying(String timeBuying) {
         this.timeBuying = timeBuying;
         return this;
     }

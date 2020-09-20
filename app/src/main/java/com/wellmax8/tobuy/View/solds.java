@@ -19,11 +19,13 @@ public class solds extends AppCompatActivity {
     private int id_category;
     private int position;
     private ArrayList<category> categories;
-    private category currentCategory;
+    private static category currentCategory;
 
     private Toolbar toolbar;
     private ImageView viewQuilt;
     private FloatingActionButton addSold;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +66,9 @@ public class solds extends AppCompatActivity {
             }
         };
         return onClickListener;
+    }
+
+    public static category getCurrentCategory() {
+        return currentCategory;
     }
 }

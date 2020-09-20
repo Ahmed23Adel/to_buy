@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.wellmax8.tobuy.DTO.shop;
+import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public class repo_shop {
         new deleteShop(dao).execute(shop);
     }
 
+    public LiveData<List<shop>> getLastAdded(){
+        return dao.getLastAdded();
+    }
     public LiveData<List<shop>> getShopAtName(String name){
         return dao.getShopAtName(name);
     }

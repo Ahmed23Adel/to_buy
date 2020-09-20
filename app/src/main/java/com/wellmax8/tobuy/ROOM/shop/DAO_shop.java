@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.wellmax8.tobuy.DTO.shop;
+import com.wellmax8.tobuy.DTO.shop_contact;
 
 import java.util.List;
 
@@ -28,5 +29,8 @@ public interface DAO_shop {
 
     @Query("SELECT * FROM shop WHERE id = :id")
     LiveData<List<shop>> getShopAtID(int id);
+
+    @Query("SELECT *  FROM shop ORDER BY id DESC LIMIT 1")
+    LiveData<List<shop>>getLastAdded();
 
 }

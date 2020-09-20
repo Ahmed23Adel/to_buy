@@ -3,11 +3,15 @@ package com.wellmax8.tobuy.ROOM.shop_contact;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.ROOM.shop.DAO_shop;
 import com.wellmax8.tobuy.ROOM.shop.repo_shop;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
+
+import java.util.List;
 
 public class repo_shop_contact {
     private to_buy_db db;
@@ -28,6 +32,7 @@ public class repo_shop_contact {
     public void deleted(shop_contact shop){
         new deleteShop_contact(dao).execute(shop);
     }
+
 
 
     private static class insertShop_contact extends AsyncTask<shop_contact,Void,Void> {
