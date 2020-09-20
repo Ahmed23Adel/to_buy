@@ -89,7 +89,7 @@
                 <EditText
                     android:id="@+id/add_sold_price"
                     style="@style/add_category_add_field_edit"
-                    android:hint="@string/add_category_textView_add_extra"
+                    android:hint="@string/ex_75"
                     android:inputType="numberDecimal"
                     />
 

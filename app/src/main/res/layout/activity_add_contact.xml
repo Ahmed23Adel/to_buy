@@ -68,7 +68,9 @@
                 <EditText
                     android:id="@+id/add_contact_phoneNumber"
                     style="@style/add_category_add_field_edit"
-                    android:hint="@string/ex_number" />
+                    android:hint="@string/ex_number"
+                    android:inputType="phone"
+                    />
 
             </LinearLayout>
 

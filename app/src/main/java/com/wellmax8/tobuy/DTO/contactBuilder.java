@@ -26,7 +26,7 @@ public class contactBuilder {
         return this;
     }
 
-    public contact createContact() {
+    public contact build() {
         return new contact(phoneNumber, name, positionOfNameInCorporation, notes);
     }
 }

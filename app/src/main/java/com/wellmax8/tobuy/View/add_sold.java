@@ -1,6 +1,7 @@
 package com.wellmax8.tobuy.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.contact;
+import com.wellmax8.tobuy.DTO.contactBuilder;
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.DTO.shopBuilder;
 import com.wellmax8.tobuy.DTO.shop_contact;
@@ -30,6 +32,7 @@ import com.wellmax8.tobuy.DTO.sold;
 import com.wellmax8.tobuy.DTO.soldBuilder;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_solds;
+import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +66,8 @@ public class add_sold extends AppCompatActivity {
 
     private LinearLayout wholeLayout;
 
+    private final int LAUNCH_ADD_CONTACT_ACTIVITY = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +84,8 @@ public class add_sold extends AppCompatActivity {
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(add_sold.this, add_contact.class);
-                startActivity(intent);
+                Intent i = new Intent(add_sold.this, add_contact.class);
+                startActivityForResult(i, LAUNCH_ADD_CONTACT_ACTIVITY);
             }
         });
 
@@ -157,7 +162,7 @@ public class add_sold extends AppCompatActivity {
     }
 
     protected void showDialog(String fieldName) {
-        Snackbar.make(wholeLayout, "You can't insert a new " + fieldName + " without it ", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(wholeLayout, "You can't insert a new " + fieldName + " without it a name", Snackbar.LENGTH_LONG).show();
     }
 
     private void nameShopMusBetInserted() {
@@ -206,6 +211,7 @@ public class add_sold extends AppCompatActivity {
     }
 
     private void saveAllContacts() {
+
         sizeOfContacts = contacts.size();
         VM.insertContacts(contacts);
     }
@@ -249,8 +255,9 @@ public class add_sold extends AppCompatActivity {
     }
 
     private void saveSold() {
-        Log.v("main", "saveSold");
+        Log.v("main", "saveSold_add_sold");
         VM.insertSold(getSoldInstance());
+        onBackPressed();
     }
 
 
@@ -337,27 +344,22 @@ public class add_sold extends AppCompatActivity {
         }
     }
 
-
-    private boolean isNewShopInserted() {
-        if (!nameShop.getText().toString().isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private shop getsShopInstance() {
-        shop shop = new shopBuilder()
-                .setName(nameShop.getText().toString())
-                .setAddress(addressShop.getText().toString())
-                .setFacebookLink(FBlinkShop.getText().toString())
-                .setNotes(notesShop.getText().toString())
-                .build();
-        return shop;
-    }
-
-    public static void addInsertedCategory(contact contact) {
+    public static void addInsertedContacts(contact contact) {
         contacts.add(contact);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==LAUNCH_ADD_CONTACT_ACTIVITY&&resultCode==RESULT_OK){
+            contact contact=new contactBuilder()
+                    .setName(data.getStringExtra(constants.returnIntent.NAME))
+                    .setPhoneNumber(data.getStringExtra(constants.returnIntent.PHONE_NUMBER))
+                    .setPositionOfNameInCorporation(data.getStringExtra(constants.returnIntent.POSITION))
+                    .setNotes(data.getStringExtra(constants.returnIntent.NOTES))
+                    .build();
+            addInsertedContacts(contact);
+
+        }
+    }
 }

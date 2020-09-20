@@ -24,13 +24,7 @@ public class repo_sold {
     }
 
     public void insert(sold sold){
-        if (sold==null){
-            Log.v("main","SOLDnull");
-        }else{
-            Log.v("main","SOLDNMOTnull");
-            new insertSold(dao).execute(sold);
-
-        }
+        new insertSold(dao).execute(sold);
     }
     public void update(sold sold){
         new updateSold(dao).execute(sold);
