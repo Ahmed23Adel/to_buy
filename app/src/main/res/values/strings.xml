@@ -84,4 +84,21 @@
     <string name="id" translatable="false">ID</string>
     <string name="editField">Edit</string>
     <string name="sure_delete">Are you sure you wat to delete this item?</string>
+    <string name="is_bought">Is bought?</string>
+    <string name="add_new_shop">Add new shop</string>
+    <string name="zara">ex: Zara</string>
+    <string name="address">Address:</string>
+    <string name="ex_down_town">ex: Down town</string>
+    <string name="facebook_link">Facebook Link</string>
+    <string name="facebook_link_ex">https://facebook.com/example</string>
+    <string name="notes">Notes: </string>
+    <string name="not_today">Not today?</string>
+    <string name="choose_from_existing_shops">Choose from existing shops</string>
+    <string name="add_contact_to_that_shop">Add a contact to that shop</string>
+    <string name="add_contact">Add contact</string>
+    <string name="phone_number">phone number:</string>
+    <string name="position">Position:</string>
+    <string name="hr_or_manager_ex">HR/ Manager</string>
+    <string name="ex_number">01213159</string>
+    <string name="ahmed">Ahmed</string>
 </resources>

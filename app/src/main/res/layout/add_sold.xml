@@ -1,9 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wholeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".add_sold">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="3dp"
+            tools:context=".add_category">
+
+            <LinearLayout style="@style/add_category_Linear">
+
+                <TextView
+                    style="@style/add_category_add_field"
+                    android:text="@string/add_category_textView_add_Name"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"/>
+
+                <TextView
+                    style="@style/add_category_add_field"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:padding="0dp"
+                    android:layout_gravity="center"
+                    />
+
+                <EditText
+                    android:id="@+id/add_sold_name"
+                    style="@style/add_category_add_field_edit"
+                    android:hint="@string/ex_refrigerator"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/add_category_Linear"
+
+                >
+
+                <TextView
+                    style="@style/add_category_add_field"
+                    android:text="@string/add_category_textView_add_desc" />
+
+                <EditText
+                    android:id="@+id/add_sold_desc"
+                    style="@style/add_category_add_field_edit"
+                    android:hint="@string/add_category_textView_add_desc" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/add_category_Linear"
+
+                >
+
+                <TextView
+                    style="@style/add_category_add_field"
+                    android:text="@string/add_category_textView_add_extra" />
+
+                <EditText
+                    android:id="@+id/add_sold_extra"
+                    style="@style/add_category_add_field_edit"
+                    android:hint="@string/add_category_textView_add_extra" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/add_category_Linear"
+
+                >
+
+                <TextView
+                    style="@style/add_category_add_field"
+                    android:text="@string/price" />
+
+                <EditText
+                    android:id="@+id/add_sold_price"
+                    style="@style/add_category_add_field_edit"
+                    android:hint="@string/add_category_textView_add_extra"
+                    android:inputType="numberDecimal"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/add_category_Linear"
+                android:orientation="horizontal"
+
+                >
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_bought"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
+                    android:id="@+id/add_sold_isBought"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/not_today"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#1834DB"
+                    android:layout_margin="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                   android:id="@+id/add_sold_notNow"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_new_shop"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:padding="16dp"
+                    android:layout_weight="1"
+                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/choose_from_existing_shops"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/blue_dark"
+                        android:layout_margin="16dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:id="@+id/add_sold_chooseExistingShops"
+                        />
+                </LinearLayout>
+                <LinearLayout style="@style/add_category_Linear">
+
+                    <TextView
+                        style="@style/add_category_add_field"
+                        android:text="@string/name" />
+
+                    <EditText
+                        android:id="@+id/add_shop_name"
+                        style="@style/add_category_add_field_edit"
+                        android:hint="@string/zara"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_category_Linear">
+
+                    <TextView
+                        style="@style/add_category_add_field"
+                        android:text="@string/address" />
+
+                    <EditText
+                        android:id="@+id/add_shop_address"
+                        style="@style/add_category_add_field_edit"
+                        android:hint="@string/ex_down_town"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_category_Linear">
+
+                    <TextView
+                        style="@style/add_category_add_field"
+                        android:text="@string/facebook_link" />
+
+                    <EditText
+                        android:id="@+id/add_shop_facebookLink"
+                        style="@style/add_category_add_field_edit"
+                        android:hint="@string/facebook_link_ex"
+                        android:linksClickable="true"
+                        android:autoLink="email|web"
+                        android:textColorLink="@color/blue_dark"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_category_Linear">
+
+                    <TextView
+                        style="@style/add_category_add_field"
+                        android:text="@string/notes" />
+
+                    <EditText
+                        android:id="@+id/add_shop_notes"
+                        style="@style/add_category_add_field_edit"
+                        android:hint="@string/notes"
+
+                        />
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_contact_to_that_shop"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="@color/blue_dark"
+                    android:id="@+id/add_sold_add_contact"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/contacts_recyclerView"
+                    style="@style/main_listView"
+                    android:clipToPadding="false"
+                    android:dividerHeight="16dp"
+                    android:drawSelectorOnTop="true"
+                    android:paddingTop="56dp"
+                    android:paddingBottom="16dip"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

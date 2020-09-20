@@ -2,7 +2,9 @@ package com.wellmax8.tobuy.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -39,6 +41,7 @@ public class solds extends AppCompatActivity {
 
         instantiateViews();
         toolbar.setTitle(currentCategory.getName());
+        setActionOnButtons();
 
     }
 
@@ -46,5 +49,20 @@ public class solds extends AppCompatActivity {
         viewQuilt=findViewById(R.id.solds_viewQuilt);
         addSold=findViewById(R.id.add_sold);
         toolbar=findViewById(R.id.solds_toolbar);
+    }
+
+    private void setActionOnButtons(){
+        addSold.setOnClickListener(getActionToAddSold());
+    }
+
+    private View.OnClickListener getActionToAddSold(){
+        View.OnClickListener onClickListener=new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(solds.this,add_sold.class);
+                startActivity(intent);
+            }
+        };
+        return onClickListener;
     }
 }
