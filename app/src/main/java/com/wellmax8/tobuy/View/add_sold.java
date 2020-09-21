@@ -36,6 +36,7 @@ import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class add_sold extends AppCompatActivity {
 
@@ -91,7 +92,15 @@ public class add_sold extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setWatcherToAllShopFileds();
-        VM.testGetAllSolds(currentCategory.getId()).observe(this, solds -> Log.v("main", "" + solds.size()));
+        VM.testGetAllSolds(currentCategory.getId()).observe(this, solds -> {
+            Log.v("main", "+" + solds.size());
+            if (solds.size() > 0) {
+                for (sold s : solds) {
+                    Log.v("main", s.getName());
+                }
+            }
+
+        });
     }
 
     private void instantiateViews() {
@@ -168,7 +177,7 @@ public class add_sold extends AppCompatActivity {
     private void nameShopMusBetInserted() {
         if (isNameShopInserted()) {
             nameShopInserted();
-        }else{
+        } else {
             nameShopNotInserted();
         }
     }
@@ -178,28 +187,29 @@ public class add_sold extends AppCompatActivity {
     }
 
     private void nameShopInserted() {
-        if (isThereContacts()){
-            Log.v("main","iscon"+isThereContacts());
+        if (isThereContacts()) {
+            Log.v("main", "iscon" + isThereContacts());
             saveAllContacts();
             saveShopInstance();
-            VM.getLastAddedContactsByLimit(sizeOfContacts).observe(this,contacts1 -> {
+            VM.getLastAddedContactsByLimit(sizeOfContacts).observe(this, contacts1 -> {
                 idsContactsSaved = getIdsFromContacts(contacts);
-                VM.getLastAddedShop().observe(this,shops -> {
-                    id_shop=shops.get(0).getId();
+                VM.getLastAddedShop().observe(this, shops -> {
+                    Log.v("main","shops id"+shops.get(0).getId());
+                    id_shop = shops.get(0).getId();
                     save_shop_contact_instance(id_shop, idsContactsSaved);
                     saveSold();
                 });
             });
 
-        }else{
-            Log.v("main","iscon"+isThereContacts());
+        } else {
+            Log.v("main", "iscon" + isThereContacts());
             saveShopInstance();
             saveSold();
         }
 
     }
 
-    private void nameShopNotInserted(){
+    private void nameShopNotInserted() {
         showDialog("Shop");
     }
 
@@ -351,8 +361,8 @@ public class add_sold extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==LAUNCH_ADD_CONTACT_ACTIVITY&&resultCode==RESULT_OK){
-            contact contact=new contactBuilder()
+        if (requestCode == LAUNCH_ADD_CONTACT_ACTIVITY && resultCode == RESULT_OK) {
+            contact contact = new contactBuilder()
                     .setName(data.getStringExtra(constants.returnIntent.NAME))
                     .setPhoneNumber(data.getStringExtra(constants.returnIntent.PHONE_NUMBER))
                     .setPositionOfNameInCorporation(data.getStringExtra(constants.returnIntent.POSITION))

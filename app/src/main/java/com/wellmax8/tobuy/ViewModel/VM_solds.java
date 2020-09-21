@@ -63,7 +63,7 @@ public class VM_solds extends ViewModel {
 
     public void insertShop(shop shop) {
         repo_shop.insert(shop);
-        Log.v("main","shopInserted");
+
     }
 
     public LiveData<List<contact>> getLastAddedContactsByLimit(int limit) {

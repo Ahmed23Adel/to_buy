@@ -24,4 +24,7 @@ public interface DAO_sold {
 
     @Query("SELECT * FROM sold WHERE id_category = :id_category ORDER BY created_at DESC")
     LiveData<List<sold>> getSoldsOrderedCreatedAtDESCWHEREIdCategory(int id_category);
+
+    @Query("SELECT last_insert_rowid() FROM sold")
+    LiveData<Integer> add();
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Dao
 public interface DAO_contact {
+
     @Insert
     void insert(contact contact);
 

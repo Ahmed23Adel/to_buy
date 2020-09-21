@@ -21,6 +21,7 @@ public class repo_sold {
     public repo_sold(Context context) {
         db=to_buy_db.getInstance(context);
         dao=db.getDaoSold();
+        Log.v("main","--"+dao.add());
     }
 
     public void insert(sold sold){

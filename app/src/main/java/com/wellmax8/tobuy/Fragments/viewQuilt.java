@@ -87,7 +87,6 @@ public class viewQuilt extends Fragment implements Observable_viewQuilt {
     @Override
     public void onDestroy() {
         updateCategoriesStyle();
-        Log.v("main","des");
         super.onDestroy();
     }
 

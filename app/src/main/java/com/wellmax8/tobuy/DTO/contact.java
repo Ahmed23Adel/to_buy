@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 @Entity()
 public class contact {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String phoneNumber;
