@@ -1,5 +1,6 @@
 package com.wellmax8.tobuy.DTO;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -42,5 +43,14 @@ public class contact {
 
     public String getNotes() {
         return notes;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        contact contact=(com.wellmax8.tobuy.DTO.contact)obj;
+        if(id==contact.getId()&&phoneNumber.equals(contact.getPhoneNumber())&&name.equals(contact.getName())&&positionOfNameInCorporation.equals(contact.getPositionOfNameInCorporation())&&notes.equals(contact.getNotes())){
+            return true;
+        }
+        return false;
     }
 }

@@ -33,11 +33,10 @@
 
                 <TextView
                     style="@style/add_category_add_field"
-                    android:text="*"
-                    android:textColor="@color/red"
-                    android:padding="0dp"
                     android:layout_gravity="center"
-                    />
+                    android:padding="0dp"
+                    android:text="*"
+                    android:textColor="@color/red" />
 
                 <EditText
                     android:id="@+id/add_sold_name"
@@ -90,68 +89,67 @@
                     android:id="@+id/add_sold_price"
                     style="@style/add_category_add_field_edit"
                     android:hint="@string/ex_75"
-                    android:inputType="numberDecimal"
-                    />
+                    android:inputType="numberDecimal" />
 
             </LinearLayout>
 
 
-            <LinearLayout style="@style/add_category_Linear"
+            <LinearLayout
+                style="@style/add_category_Linear"
                 android:orientation="horizontal"
 
                 >
+
                 <CheckBox
+                    android:id="@+id/add_sold_isBought"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/is_bought"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:id="@+id/add_sold_isBought"
-                    />
+                    android:text="@string/is_bought" />
 
                 <TextView
+                    android:id="@+id/add_sold_notNow"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/not_today"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#1834DB"
                     android:layout_margin="16dp"
+                    android:gravity="center"
+                    android:text="@string/not_today"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                   android:id="@+id/add_sold_notNow"
-                    />
+                    android:textColor="#1834DB" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_new_shop"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:padding="16dp"
-                    android:layout_weight="1"
-                    />
+                    android:orientation="horizontal">
+
                     <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:text="@string/add_new_shop"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <TextView
+                        android:id="@+id/add_sold_chooseExistingShops"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/choose_from_existing_shops"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/blue_dark"
                         android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:text="@string/choose_from_existing_shops"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:id="@+id/add_sold_chooseExistingShops"
-                        />
+                        android:textColor="@color/blue_dark" />
                 </LinearLayout>
+
                 <LinearLayout style="@style/add_category_Linear">
 
                     <TextView
@@ -164,14 +162,13 @@
                         android:text="@string/name" />
 
                     <TextView
+                        android:id="@+id/shopMustAdd"
                         style="@style/add_category_add_field"
+                        android:layout_gravity="center"
+                        android:padding="0dp"
                         android:text="*"
                         android:textColor="@color/red"
-                        android:padding="0dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-                        android:id="@+id/shopMustAdd"
-                        />
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/add_shop_name"
@@ -179,7 +176,6 @@
                         android:hint="@string/zara"
 
                         />
-
 
 
                 </LinearLayout>
@@ -208,11 +204,10 @@
                     <EditText
                         android:id="@+id/add_shop_facebookLink"
                         style="@style/add_category_add_field_edit"
+                        android:autoLink="email|web"
                         android:hint="@string/facebook_link_ex"
                         android:linksClickable="true"
-                        android:autoLink="email|web"
-                        android:textColorLink="@color/blue_dark"
-                        />
+                        android:textColorLink="@color/blue_dark" />
 
                 </LinearLayout>
 
@@ -232,14 +227,14 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/add_sold_add_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_contact_to_that_shop"
-                    android:layout_marginRight="16dp"
                     android:layout_marginLeft="16dp"
-                    android:textColor="@color/blue_dark"
-                    android:id="@+id/add_sold_add_contact"
-                    />
+                    android:layout_marginRight="16dp"
+                    android:text="@string/add_contact_to_that_shop"
+                    android:textColor="@color/blue_dark" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/contacts_recyclerView"
                     style="@style/main_listView"
@@ -248,8 +243,8 @@
                     android:drawSelectorOnTop="true"
                     android:paddingTop="56dp"
                     android:paddingBottom="16dip"
-                    android:visibility="gone"
-                    />
+                    android:layout_margin="16dp"
+                     />
 
             </LinearLayout>
 

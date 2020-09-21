@@ -27,4 +27,10 @@ public interface DAO_contact {
     @Query("SELECT * FROM contact ORDER BY id DESC LIMIT :limit")
     LiveData<List<contact>> getLastAddedByLimit(int limit);
 
+    @Query("SELECT * FROM contact ORDER BY id DESC")
+    LiveData<List<contact>> getAll();
+
+    @Insert()
+    Long[] insertAll(contact ...contact);
+
 }

@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-
+import com.wellmax8.tobuy.DTO.contact_saved_or_addedTo_shopContact;
 import com.wellmax8.tobuy.DTO.contact;
 import com.wellmax8.tobuy.DTO.contactBuilder;
 import com.wellmax8.tobuy.R;
@@ -56,6 +56,7 @@ public class add_contact extends AppCompatActivity {
                 break;
             }
             case android.R.id.home:{
+                onBackPressed();
                 break;
             }
         }
@@ -79,22 +80,14 @@ public class add_contact extends AppCompatActivity {
 
     private void saveContact() {
         Intent returnIntent=new Intent();
+        returnIntent.putExtra(constants.returnIntent.STATE,String.valueOf(contact_saved_or_addedTo_shopContact.STATE_NEW));
+        returnIntent.putExtra(constants.returnIntent.ID,"-1");
         returnIntent.putExtra(constants.returnIntent.NAME,getTextOutOfEditText(addName));
         returnIntent.putExtra(constants.returnIntent.PHONE_NUMBER,getTextOutOfEditText(addPhoneNumber));
         returnIntent.putExtra(constants.returnIntent.POSITION,getTextOutOfEditText(addPosition));
         returnIntent.putExtra(constants.returnIntent.NOTES,getTextOutOfEditText(addNotes));
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
-    }
-
-    private contact getContactInstance(){
-        return new contactBuilder()
-                .setPhoneNumber(getTextOutOfEditText(addPhoneNumber))
-                .setName(getTextOutOfEditText(addName))
-                .setPositionOfNameInCorporation(getTextOutOfEditText(addPosition))
-                .setNotes(getTextOutOfEditText(addNotes))
-                .build();
-
     }
 
 

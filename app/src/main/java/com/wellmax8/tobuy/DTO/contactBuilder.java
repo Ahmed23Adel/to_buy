@@ -1,10 +1,17 @@
 package com.wellmax8.tobuy.DTO;
 
 public class contactBuilder {
+
+    private int id;
     private String phoneNumber;
     private String name;
     private String positionOfNameInCorporation;
     private String notes;
+
+    public contactBuilder setId(String id) {
+        this.id = Integer.parseInt(id);
+        return this;
+    }
 
     public contactBuilder setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -27,6 +34,8 @@ public class contactBuilder {
     }
 
     public contact build() {
-        return new contact(phoneNumber, name, positionOfNameInCorporation, notes);
+        contact contact=new contact(phoneNumber, name, positionOfNameInCorporation, notes);
+        contact.setId(id);
+        return contact;
     }
 }

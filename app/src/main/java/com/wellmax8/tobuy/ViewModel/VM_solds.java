@@ -1,7 +1,6 @@
 package com.wellmax8.tobuy.ViewModel;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -82,6 +81,35 @@ public class VM_solds extends ViewModel {
         return repo.getSoldsOrderedCreatedAtDESCWHEREIdCategory(id_category);
     }
 
+    public boolean isNameShopDuplicated(String name){
+        return repo_shop.getShopAtName(name).getValue().size()>0;
+    }
+
+    public int getLastIdForContacts(){
+        List<contact> contacts= repo_contact.getLastAddedByLimit(1).getValue();
+        if (contacts.size()==0){
+            return 0;
+        }else{
+            return contacts.get(0).getId();
+        }
+    }
+
+    public int getLastIdForShop(){
+        return -1;
+
+    }
+
+    public LiveData<List<contact>> testGetAllIdsForContact(){
+        return repo_contact.getAll();
+
+    }
+    public void testDeleteContact(contact contact){
+        repo_contact.delete(contact);
+    }
+
+    public Long[] insertAll(contact ...contacts){
+       return repo_contact.insertAll(contacts);
+    }
 
 
 }
