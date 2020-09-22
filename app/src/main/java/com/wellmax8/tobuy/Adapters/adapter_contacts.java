@@ -19,7 +19,7 @@ public class adapter_contacts extends ListAdapter<contact, adapter_contacts.cont
     public  adapter_contacts() {
         super(diffCallback);
     }
-
+    private onLongItemClicked onLongItemClicked;
     public static  DiffUtil.ItemCallback<contact> diffCallback=new DiffUtil.ItemCallback<contact>() {
         @Override
         public boolean areItemsTheSame(@NonNull contact oldItem, @NonNull contact newItem) {
@@ -48,6 +48,7 @@ public class adapter_contacts extends ListAdapter<contact, adapter_contacts.cont
     public void onBindViewHolder(@NonNull contactItem holder, int position) {
         contact currentContact = getItem(position);
         holder.wholeTextView.setText(getText(currentContact));
+        holder.itemView.setOnClickListener(v -> onLongItemClicked.onClick(position));
     }
 
     private String getText(contact contact) {
@@ -68,5 +69,13 @@ public class adapter_contacts extends ListAdapter<contact, adapter_contacts.cont
             super(itemView);
             wholeTextView = itemView.findViewById(R.id.wholeText);
         }
+    }
+
+    public interface onLongItemClicked{
+        void onClick(int position);
+    }
+
+    public void setOnLongItemClicked(adapter_contacts.onLongItemClicked onLongItemClicked) {
+        this.onLongItemClicked = onLongItemClicked;
     }
 }
