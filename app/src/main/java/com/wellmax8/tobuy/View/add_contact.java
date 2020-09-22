@@ -78,29 +78,72 @@ public class add_contact extends AppCompatActivity {
                 names[i] = contactsByObservable.get(i).getName();
                 phoneNumbers[i] = contactsByObservable.get(i).getPhoneNumber();
             }
-            showSuggestions(addName, names);
-            showSuggestions(addPhoneNumber, phoneNumbers);
+            showSuggestions(addName, names,true);
+            showSuggestions(addPhoneNumber, phoneNumbers,false);
         });
     }
 
-    private void showSuggestions(AppCompatMultiAutoCompleteTextView textView, final String[] values) {
+    private void showSuggestions(AppCompatMultiAutoCompleteTextView textView, final String[] values,boolean isName) {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
         textView.setAdapter(arrayAdapter);
         textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
         textView.setOnItemClickListener((parent, view, position, id) -> {
-            itemOnSuggestionsClicked(position);
+            if (isName){
+                itemOnSuggestionsClicked(getPositionAtNameFromSuggestions((String)parent.getItemAtPosition(position),position));
+            }else{
+
+            }
+            itemOnSuggestionsClicked(getPositionAtPhoneNumberFromSuggestions((String) parent.getItemAtPosition(position), position));
+
         });
     }
 
-    private void itemOnSuggestionsClicked(int position) {
-        chosenFromSuggestions = true;
-        contact contact = suggestedContacts.get(position);
-        setTextTo(addName, contact.getName());
-        setTextTo(addPhoneNumber, contact.getPhoneNumber());
-        setTextTo(addPosition, contact.getPositionOfNameInCorporation());
-        setTextTo(addNotes, contact.getNotes());
+    private int getPositionAtNameFromSuggestions(String name,int position){
+        Log.v("main","atnamne"+name+position);
+        for(int i=0;i<suggestedContacts.size();i++){
+            if (suggestedContacts.get(i).getName().equals(name)){
+                Log.v("main","1atnamne"+i);
+                if (position>0){
+                    Log.v("main","1atnamne"+1);
+                    position--;
+                }else {
+                    Log.v("main","1atnamne"+2);
 
+                    return i;
+                }
+            }
+        }
+        return 0;
+    }
+    private int getPositionAtPhoneNumberFromSuggestions(String phoneNumber,int position){
+        for(int i=0;i<suggestedContacts.size();i++){
+            if (suggestedContacts.get(i).getPhoneNumber().equals(phoneNumber)){
+                if (position>0){
+                    position--;
+                    continue;
+                }
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private int isItemDone=1;
+    private void itemOnSuggestionsClicked(int position) {
+        if (isItemDone%2==1) {
+            Log.v("main", "posHere");
+            Log.v("main", "pos" + position);
+            chosenFromSuggestions = true;
+            contact contact = suggestedContacts.get(position);
+            setTextTo(addName, contact.getName());
+            setTextTo(addPhoneNumber, contact.getPhoneNumber());
+            setTextTo(addPosition, contact.getPositionOfNameInCorporation());
+            setTextTo(addNotes, contact.getNotes());
+            isItemDone++;
+        }else{
+            isItemDone++;
+        }
     }
 
     private void setTextTo(EditText text, String value) {
@@ -274,7 +317,7 @@ public class add_contact extends AppCompatActivity {
         returnIntent.putExtra(constants.returnIntent.POSITION,contact.getPositionOfNameInCorporation());
         returnIntent.putExtra(constants.returnIntent.NOTES, contact.getNotes());
         setResult(Activity.RESULT_OK, returnIntent);
-        finish();
+        //finish();
     }
 
 
