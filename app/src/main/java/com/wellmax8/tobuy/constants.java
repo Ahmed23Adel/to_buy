@@ -16,4 +16,6 @@ public class constants {
     public static class shop{
         public static final Long SHOP_NOT_INSERTED=Long.valueOf(-1);
     }
+
+
 }

@@ -35,81 +35,31 @@ public class VM_solds extends ViewModel {
         repo_shop_contact = new repo_shop_contact(context);
     }
 
-    public LiveData<List<sold>> getSoldsOrderedCreatedAtDESCWHEREIdCategory(int id_category) {
-        return repo.getSoldsOrderedCreatedAtDESCWHEREIdCategory(id_category);
+    public List<shop> isNameShopDuplicated(String name){
+        return repo_shop.getShopAtName(name);
     }
 
-    public void insertSold(sold sold) {
+
+    public Long insertShop(shop shop){
+        return repo_shop.insert(shop);
+    }
+
+    public void insertShop_contacts(shop_contact shop_contact){
+        repo_shop_contact.insert(shop_contact);
+    }
+
+    public void insertSold(sold sold){
         repo.insert(sold);
     }
 
-    public String getCurrentTime() {
+        public String getCurrentTime() {
         Long timeInSecond = System.currentTimeMillis();
         String timeInSecondeText = timeInSecond.toString();
         return timeInSecondeText;
     }
 
-    public void insertContacts(ArrayList<contact> contactsList) {
-        if (contactsList.size() > 0) {
-            contact[] contacts = new contact[contactsList.size()];
-            for (int i = 0; i < contactsList.size(); i++) {
-                contacts[i] = contactsList.get(i);
-            }
-            repo_contact.insertAllContacts(contacts);
-        }
-
+    public LiveData<List<shop>> testGetAllShop(){
+        return repo_shop.getAll();
     }
-
-    public void insertShop(shop shop) {
-        repo_shop.insert(shop);
-
-    }
-
-    public LiveData<List<contact>> getLastAddedContactsByLimit(int limit) {
-        return repo_contact.getLastAddedByLimit(limit);
-    }
-
-    public LiveData<List<shop>> getLastAddedShop() {
-        return repo_shop.getLastAdded();
-    }
-
-    public void insertShopContact(shop_contact shop_contact) {
-        repo_shop_contact.insert(shop_contact);
-    }
-
-    public LiveData<List<sold>> testGetAllSolds(int id_category){
-        return repo.getSoldsOrderedCreatedAtDESCWHEREIdCategory(id_category);
-    }
-
-    public boolean isNameShopDuplicated(String name){
-        return repo_shop.getShopAtName(name).getValue().size()>0;
-    }
-
-    public int getLastIdForContacts(){
-        List<contact> contacts= repo_contact.getLastAddedByLimit(1).getValue();
-        if (contacts.size()==0){
-            return 0;
-        }else{
-            return contacts.get(0).getId();
-        }
-    }
-
-    public int getLastIdForShop(){
-        return -1;
-
-    }
-
-    public LiveData<List<contact>> testGetAllIdsForContact(){
-        return repo_contact.getAll();
-
-    }
-    public void testDeleteContact(contact contact){
-        repo_contact.delete(contact);
-    }
-
-    public Long[] insertAll(contact ...contacts){
-       return repo_contact.insertAll(contacts);
-    }
-
 
 }

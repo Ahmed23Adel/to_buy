@@ -12,6 +12,7 @@ import com.wellmax8.tobuy.ROOM.shop.repo_shop;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class repo_shop_contact {
     private to_buy_db db;
@@ -24,6 +25,14 @@ public class repo_shop_contact {
 
     public void insert(shop_contact shop){
         new insertShop_contact(dao).execute(shop);
+    }
+
+    public void insertAll(shop_contact... shop_contacts){
+        try {
+            new insertAll_Shop_contact(dao).execute(shop_contacts).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     public void update(shop_contact shop){
         new updateShop_contact(dao).execute(shop);
@@ -46,6 +55,19 @@ public class repo_shop_contact {
         protected Void doInBackground(shop_contact... shop_contacts) {
             dao.insert(shop_contacts[0]);
             return null;
+        }
+    }
+
+    private static class insertAll_Shop_contact extends AsyncTask<shop_contact,Void,Long[]> {
+        public final DAO_shop_contact dao;
+
+        public insertAll_Shop_contact(DAO_shop_contact dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Long[] doInBackground(shop_contact... shop_contacts) {
+            return dao.insertAll(shop_contacts);
         }
     }
 

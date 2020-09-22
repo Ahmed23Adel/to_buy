@@ -8,8 +8,11 @@ import androidx.lifecycle.LiveData;
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
+import com.wellmax8.tobuy.constants;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class repo_shop {
 
@@ -21,8 +24,13 @@ public class repo_shop {
         dao=db.getDaoShop();
     }
 
-    public void insert(shop shop){
-        new insertShop(dao).execute(shop);
+    public Long insert(shop shop){
+        try {
+            return new insertShop(dao).execute(shop).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return constants.shop.SHOP_NOT_INSERTED;
     }
     public void update(shop shop){
         new updateShop(dao).execute(shop);
@@ -32,27 +40,33 @@ public class repo_shop {
         new deleteShop(dao).execute(shop);
     }
 
-    public LiveData<List<shop>> getLastAdded(){
-        return dao.getLastAdded();
-    }
-    public LiveData<List<shop>> getShopAtName(String name){
-        return dao.getShopAtName(name);
+    public List<shop> getShopAtName(String name){
+        try {
+            return new isNameShopDuplicated(dao).execute(name).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<shop>();
     }
     public LiveData<List<shop>> getShopAtID(int  id){
         return dao.getShopAtID(id);
     }
 
-    private static class insertShop extends AsyncTask<shop,Void,Void> {
+    public LiveData<List<shop>> getAll(){
+        return dao.getAll();
+    }
+
+    private static class insertShop extends AsyncTask<shop,Void,Long> {
         public final DAO_shop dao;
 
         public insertShop(DAO_shop dao) {
+
             this.dao = dao;
         }
 
         @Override
-        protected Void doInBackground(shop... shops) {
-            dao.insert(shops[0]);
-            return null;
+        protected Long doInBackground(shop... shops) {
+            return dao.insert(shops[0]);
         }
     }
 
@@ -81,6 +95,19 @@ public class repo_shop {
         protected Void doInBackground(shop... shops) {
             dao.delete(shops[0]);
             return null;
+        }
+    }
+
+    private static class isNameShopDuplicated extends AsyncTask<String,Void,List<shop>>{
+        public final DAO_shop dao;
+
+        public isNameShopDuplicated(DAO_shop dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected List<shop> doInBackground(String... names) {
+            return dao.getShopAtName(names[0]);
         }
     }
 }

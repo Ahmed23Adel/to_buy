@@ -17,6 +17,9 @@ public interface DAO_shop_contact {
     @Insert
     void insert(shop_contact shop_contact);
 
+    @Insert
+    Long[] insertAll(shop_contact... shop_contacts);
+
     @Update
     void update(shop_contact shop_contact);
 

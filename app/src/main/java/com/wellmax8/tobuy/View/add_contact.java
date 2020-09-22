@@ -311,13 +311,13 @@ public class add_contact extends AppCompatActivity {
     private void end(contact contact) {
         Log.v("main", "10");
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(constants.returnIntent.ID, contact.getId());
+        returnIntent.putExtra(constants.returnIntent.ID, String.valueOf(contact.getId()));
         returnIntent.putExtra(constants.returnIntent.NAME, contact.getName());
         returnIntent.putExtra(constants.returnIntent.PHONE_NUMBER, contact.getPhoneNumber());
         returnIntent.putExtra(constants.returnIntent.POSITION,contact.getPositionOfNameInCorporation());
         returnIntent.putExtra(constants.returnIntent.NOTES, contact.getNotes());
         setResult(Activity.RESULT_OK, returnIntent);
-        //finish();
+        finish();
     }
 
 

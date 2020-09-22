@@ -16,7 +16,7 @@ import java.util.List;
 public interface DAO_shop {
 
     @Insert
-    void insert(shop shop);
+    Long insert(shop shop);
 
     @Update
     void update(shop shop);
@@ -25,12 +25,14 @@ public interface DAO_shop {
     void delete(shop shop);
 
     @Query("SELECT * FROM shop WHERE name = :nameOfShop")
-    LiveData<List<shop>> getShopAtName(String nameOfShop);
+    List<shop> getShopAtName(String nameOfShop);
 
     @Query("SELECT * FROM shop WHERE id = :id")
     LiveData<List<shop>> getShopAtID(int id);
 
-    @Query("SELECT *  FROM shop ORDER BY id DESC LIMIT 1")
-    LiveData<List<shop>>getLastAdded();
+    @Query("SELECT * FROM shop")
+    LiveData<List<shop>> getAll();
+
+
 
 }

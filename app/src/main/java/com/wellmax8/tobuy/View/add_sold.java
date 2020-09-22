@@ -3,13 +3,11 @@ package com.wellmax8.tobuy.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wellmax8.tobuy.DTO.contact_saved_or_addedTo_shopContact;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -24,18 +22,22 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.wellmax8.tobuy.Adapters.adapter_contacts;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.contact;
 import com.wellmax8.tobuy.DTO.contactBuilder;
+import com.wellmax8.tobuy.DTO.shop;
+import com.wellmax8.tobuy.DTO.shopBuilder;
+import com.wellmax8.tobuy.DTO.shop_contact;
+import com.wellmax8.tobuy.DTO.sold;
+import com.wellmax8.tobuy.DTO.soldBuilder;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_solds;
 import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 
 public class add_sold extends AppCompatActivity {
 
@@ -56,20 +58,17 @@ public class add_sold extends AppCompatActivity {
 
     private RecyclerView recyclerViewContacts;
 
+    private LinearLayout wholeLayout;
+
     private VM_solds VM;
     private category currentCategory;
 
-    private static ArrayList<contact> contactsToBeSaved;
-    private static ArrayList<contact> contactsAlreadySaved;
-    private int id_shop = -1;
+    private final int LAUNCH_ADD_CONTACT = 101;
+    private ArrayList<contact> contacts;
+    private boolean isNameShopMustBeInsertedForContacts = false;
+    private boolean isNameShopMustBeInsertedForAnyField = false;
 
-
-    private LinearLayout wholeLayout;
-
-    private int lastIdContactSaved;
-    private int numsIdsContactsWillBeSaved=0;
-
-    private final int LAUNCH_ADD_CONTACT_ACTIVITY = 100;
+    private boolean isShopAdded = false;
 
 
     @Override
@@ -83,56 +82,18 @@ public class add_sold extends AppCompatActivity {
         setUnderline(notNow);
         setUnderline(chooseExistingShop);
 
-        addContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(add_sold.this, add_contact.class);
-                startActivityForResult(i, LAUNCH_ADD_CONTACT_ACTIVITY);
-            }
+        addContact.setOnClickListener(v -> {
+            Intent intent = new Intent(this, add_contact.class);
+            startActivityForResult(intent, LAUNCH_ADD_CONTACT);
         });
+        contacts = new ArrayList<>();
+        setupRecyclerView();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        contactsToBeSaved = new ArrayList<>();
-        contactsAlreadySaved = new ArrayList<>();
+        nameShop.addTextChangedListener(getWatcherForShop());
+        addressShop.addTextChangedListener(getWatcherForShop());
+        FBlinkShop.addTextChangedListener(getWatcherForShop());
+        notesShop.addTextChangedListener(getWatcherForShop());
 
-        nameShop.addTextChangedListener(getWatcerForShop());
-        addressShop.addTextChangedListener(getWatcerForShop());
-        FBlinkShop.addTextChangedListener(getWatcerForShop());
-        notesShop.addTextChangedListener(getWatcerForShop());
-
-       contact contac=new contact("test","test","test","test");
-        contact contac2=new contact("4905834","AHEMD","AJKDFH","2");
-       contact contac3=new contact("4905834","AHEMD","AJKDFH","3");
-       contact contac4=new contact("4905834","AHEMD","AJKDFH","4");
-
-        ArrayList<contact> c=new ArrayList<>();
-        c.add(contac);
-        c.add(contac2);
-        c.add(contac3);
-       c.add(contac4);
-       Long[] tests=VM.insertAll(contac,contac2,contac3,contac4);
-       for(Long i: tests){
-           Log.v("main","test"+i);
-       }
-
-
-       //contact contac=new contact("test","test","test","test");
-       // contac.setId(17);
-
-        //contact contac2=new contact("4905834","AHEMD","AJKDFH","1");
-        //contac.setId(15);
-       // VM.testDeleteContact(contac);
-       // VM.testDeleteContact(contac2);
-      /*  VM.testGetAllIdsForContact().observe(this, new Observer<List<contact>>() {
-            @Override
-            public void onChanged(List<contact> contactss) {
-                ArrayList<contact> contactss1=(ArrayList<contact>)contactss;
-                int [] ids=new int[contactss1.size()];
-                for (int i=0;i<contactss1.size();i++){
-                    Log.v("main","test"+contactss1.get(i).getId());
-                }
-            }
-        });*/
 
     }
 
@@ -152,8 +113,103 @@ public class add_sold extends AppCompatActivity {
         notesShop = findViewById(R.id.add_shop_notes);
         nameShopMustAdd = findViewById(R.id.shopMustAdd);
         wholeLayout = findViewById(R.id.wholeLayout);
-        recyclerViewContacts=findViewById(R.id.contacts_recyclerView);
+        recyclerViewContacts = findViewById(R.id.contacts_recyclerView);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LAUNCH_ADD_CONTACT && resultCode == RESULT_OK) {
+            addContactInstanceFromIntent(data);
+        }
+    }
+
+    private void addContactInstanceFromIntent(@Nullable Intent data) {
+        String id = data.getStringExtra(constants.returnIntent.ID);
+        Log.v("main","id_contact"+id);
+        String name = data.getStringExtra(constants.returnIntent.NAME);
+        String phoneNumber = data.getStringExtra(constants.returnIntent.PHONE_NUMBER);
+        String position = data.getStringExtra(constants.returnIntent.POSITION);
+        String notes = data.getStringExtra(constants.returnIntent.NOTES);
+        contact contact = new contactBuilder()
+                .setId(id)
+                .setName(name)
+                .setPhoneNumber(phoneNumber)
+                .setPositionOfNameInCorporation(position)
+                .setNotes(notes)
+                .build();
+        contacts.add(contact);
+        updateContactRecyclerView();
+
+    }
+
+    private void updateContactRecyclerView() {
+        changeIsShopNameMustBeInsertedForContacts();
+        recyclerViewContacts.setAdapter(null);
+        adapter_contacts adapterContacts = new adapter_contacts();
+        adapterContacts.submitList(contacts);
+        recyclerViewContacts.setAdapter(adapterContacts);
+        adapterContacts.setOnLongItemClicked(position -> {
+            contacts.remove(position);
+            updateContactRecyclerView();
+        });
+
+
+    }
+
+    private void changeIsShopNameMustBeInsertedForContacts() {
+        if (contacts.size() > 0) {
+            isNameShopMustBeInsertedForContacts = true;
+            switchToNameShopMustBeInserted();
+        } else {
+            isNameShopMustBeInsertedForContacts = false;
+            switchToNameShopMustNotBeInserted();
+
+        }
+    }
+
+
+    private void switchToNameShopMustBeInserted() {
+        nameShopMustAdd.setVisibility(View.VISIBLE);
+    }
+
+    private void switchToNameShopMustNotBeInserted() {
+        nameShopMustAdd.setVisibility(View.GONE);
+    }
+
+    private void setupRecyclerView() {
+        LinearLayoutManager linearLayout = new LinearLayoutManager(this);
+        recyclerViewContacts.setLayoutManager(linearLayout);
+        recyclerViewContacts.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                linearLayout.getOrientation());
+        recyclerViewContacts.addItemDecoration(dividerItemDecoration);
+    }
+
+    private TextWatcher getWatcherForShop() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isAnyFieldShopInserted() || isNameShopMustBeInsertedForContacts) {
+                    switchToNameShopMustBeInserted();
+                } else {
+                    switchToNameShopMustNotBeInserted();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+
+        };
+    }
+
 
     private void setUnderline(TextView textView) {
         textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -183,42 +239,96 @@ public class add_sold extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //TODO :write else for isNameShopMustBeInserted to save sold
-    //TODO save shop-->getIDShop-->save sold
     private void save() {
         if (isNameSoldInserted()) {
             if (isNameShopMustBeInserted()) {
-                if(isNameShopInserted()){
-                    if(VM.isNameShopDuplicated(getNameShop())){
-                        if (isThereContacts()){
-                            lastIdContactSaved=VM.getLastIdForContacts();
-                            saveContacts();
-                        }else{
-                            //TODO save shop-->getIDShop-->save sold
-                        }
-                    }else{
-                        nameShopIsDuplicated();
-                    }
-                }else{
-                    nameShopNotInserted();
-                }
+                nameShopMustBeInserted();
             } else {
-                //TODO :write else for isNameShopMustBeInserted to save sold
+                save_sold((long) sold.ID_SHOP_NOT_SPECIFIED);
             }
+
         } else {
-            showSnackMessage("Item", "name");
+            showSnackBar("item", "name");
         }
     }
 
-    private void showSnackMessage(String soldOrShop, String fieled) {
-        Snackbar.make(wholeLayout, "You can't insert new " + soldOrShop + " without a " + fieled, Snackbar.LENGTH_LONG).show();
+    private void nameShopMustBeInserted() {
+        if (isNameShopInserted()) {
+            checkDuplicationFroNameShop();
+        } else {
+            showSnackBar("shop", "name");
+        }
     }
-    private void showSnackMessage(String message) {
-        Snackbar.make(wholeLayout, message, Snackbar.LENGTH_LONG).show();
+
+    private void checkDuplicationFroNameShop() {
+        ArrayList<shop> oldShopWithSameName = (ArrayList<shop>) VM.isNameShopDuplicated(getTextOutOfEditText(nameShop));
+        if (oldShopWithSameName.size() > 0) {
+            showSnackBarForEditShopName();
+        } else {
+            save_contact_shop_instace();
+        }
+    }
+
+    private void save_contact_shop_instace() {
+        Long id_shop=VM.insertShop(getShopInstance());
+        save_shop_contact_instance(id_shop,contacts);
+        save_sold(id_shop);
+    }
+
+
+    private void save_shop_contact_instance(Long id_shop, ArrayList<contact> contacts) {
+        if (contacts.size()>0){
+            for(int i=0;i<contacts.size();i++){
+                shop_contact shop_contact=new shop_contact(id_shop.intValue(),contacts.get(i).getId());
+                VM.insertShop_contacts(shop_contact);
+            }
+        }
+    }
+
+    private void save_sold(Long id_shop) {
+        VM.insertSold(getSoldInstance(id_shop));
+        onBackPressed();
+
+    }
+
+    private sold getSoldInstance(Long id_shop){
+        String currentTime=VM.getCurrentTime();
+        return new soldBuilder()
+                .setId_category(currentCategory.getId())
+                .setId_shop(id_shop.intValue())
+                .setName(getTextOutOfEditText(nameSold))
+                .setDescription(getTextOutOfEditText(descriptionSold))
+                .setExtra(getTextOutOfEditText(extraSold))
+                .setPrice(getTextOutOfEditText(priceSold).isEmpty()?0.0:Double.parseDouble(getTextOutOfEditText(priceSold)))
+                .setLast_edit(currentTime)
+                .setCreated_at(currentTime)
+                .setIsBought(isBought.isChecked())
+                .setTimeBuying(isBought.isChecked()?currentTime: com.wellmax8.tobuy.DTO.sold .TIME_BUY_NOT_SPECIFIED)
+                .build();
+    }
+    private shop getShopInstance() {
+        return new shopBuilder()
+                .setName(getTextOutOfEditText(nameShop))
+                .setAddress(getTextOutOfEditText(addressShop))
+                .setFacebookLink(getTextOutOfEditText(FBlinkShop))
+                .setNotes(getTextOutOfEditText(notesShop))
+                .build();
     }
 
     private boolean isNameSoldInserted() {
         return isFieldInserted(nameSold);
+    }
+
+    private boolean isNameShopInserted() {
+        return isFieldInserted(nameShop);
+    }
+
+    private void showSnackBar(String kindOfItem, String field) {
+        Snackbar.make(wholeLayout, "You can't inert new " + kindOfItem + " without filling " + field, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void showSnackBarForEditShopName() {
+        Snackbar.make(wholeLayout, "There is a shop with the exact name please change it to something else or choose from exiting shops", Snackbar.LENGTH_LONG).show();
     }
 
     private boolean isFieldInserted(EditText editText) {
@@ -226,31 +336,6 @@ public class add_sold extends AppCompatActivity {
             return true;
         }
         return false;
-    }
-
-    private TextWatcher getWatcerForShop() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (isNameShopMustBeInserted()) {
-                    nameShopMustAdd.setVisibility(View.VISIBLE);
-                } else {
-                    nameShopMustAdd.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        };
-    }
-
-    private boolean isNameShopMustBeInserted() {
-        return isAnyFieldShopInserted() || contactsToBeSaved.size() > 0;
     }
 
     private boolean isAnyFieldShopInserted() {
@@ -261,92 +346,12 @@ public class add_sold extends AppCompatActivity {
         }
     }
 
-    private boolean isNameShopInserted(){
-        return isFieldInserted(nameShop);
-    }
-    private void nameShopNotInserted(){
-        showSnackMessage("shop","name");
+    private boolean isNameShopMustBeInserted() {
+        return isNameShopMustBeInsertedForContacts || isAnyFieldShopInserted();
     }
 
-    private String getNameShop(){
-        return getStringOutOfEditText(nameShop);
-    }
-
-    private String getStringOutOfEditText(EditText editText){
+    private String getTextOutOfEditText(EditText editText) {
         return editText.getText().toString();
-    }
-
-    private void nameShopIsDuplicated(){
-        showSnackMessage("there is a shop with the same name; please change it to something else, or choose the already saved shop");
-    }
-    private boolean isThereContacts(){
-        return contactsToBeSaved.size()>0;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==LAUNCH_ADD_CONTACT_ACTIVITY && resultCode==RESULT_OK){
-           extractDataFromContactIntent(data);
-        }
-    }
-
-    private void extractDataFromContactIntent(@Nullable Intent data){
-        int state=Integer.parseInt(data.getStringExtra(constants.returnIntent.STATE));
-        contact_saved_or_addedTo_shopContact tempContact=new contact_saved_or_addedTo_shopContact(VM);
-        if (tempContact.isNew(state)){
-            numsIdsContactsWillBeSaved++;
-            addContactFromContactIntent(data);
-        }else{
-            addAlreadySavedContact(data);
-        }
-
-        updateContactRecyclerView();
-    }
-
-    private void addContactFromContactIntent(@Nullable Intent data){
-        contact contact = new contactBuilder()
-                .setName(data.getStringExtra(constants.returnIntent.NAME))
-                .setPhoneNumber(data.getStringExtra(constants.returnIntent.PHONE_NUMBER))
-                .setPositionOfNameInCorporation(data.getStringExtra(constants.returnIntent.POSITION))
-                .setNotes(data.getStringExtra(constants.returnIntent.NOTES))
-                .build();
-        contactsToBeSaved.add(contact);
-    }
-
-    private void addAlreadySavedContact(@Nullable Intent data){
-        contact contact = new contactBuilder()
-                .setId(data.getStringExtra(constants.returnIntent.ID))
-                .setName(data.getStringExtra(constants.returnIntent.NAME))
-                .setPhoneNumber(data.getStringExtra(constants.returnIntent.PHONE_NUMBER))
-                .setPositionOfNameInCorporation(data.getStringExtra(constants.returnIntent.POSITION))
-                .setNotes(data.getStringExtra(constants.returnIntent.NOTES))
-                .build();
-        contactsAlreadySaved.add(contact);
-    }
-
-    private void updateContactRecyclerView() {
-        recyclerViewContacts.setAdapter(null);
-        ArrayList<contact> tempContact = new ArrayList<>();
-        for (contact c: contactsToBeSaved){
-            tempContact.add(c);
-        }
-        for (contact c: contactsAlreadySaved){
-            tempContact.add(c);
-        }
-        adapter_contacts adapterContacts=new adapter_contacts();
-        adapterContacts.submitList(tempContact);
-        LinearLayoutManager linearLayout=new LinearLayoutManager(this);
-        recyclerViewContacts.setLayoutManager(linearLayout);
-        recyclerViewContacts.setHasFixedSize(true);
-        recyclerViewContacts.setAdapter(adapterContacts);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
-                linearLayout.getOrientation());
-        recyclerViewContacts.addItemDecoration(dividerItemDecoration);
-    }
-
-    private void saveContacts(){
-        VM.insertContacts(contactsToBeSaved);
     }
 }
 
