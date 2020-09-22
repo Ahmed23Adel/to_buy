@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/wholeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,12 +37,14 @@
                     android:text="*"
                     android:textColor="@color/red" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
                     android:id="@+id/add_contact_name"
                     style="@style/add_category_add_field_edit"
                     android:hint="@string/ahmed"
-
+                    android:completionHint="Select a name"
+                    android:completionThreshold="1"
                     />
+
 
             </LinearLayout>
 
@@ -65,11 +68,13 @@
                     android:text="*"
                     android:textColor="@color/red" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
                     android:id="@+id/add_contact_phoneNumber"
                     style="@style/add_category_add_field_edit"
                     android:hint="@string/ex_number"
                     android:inputType="phone"
+                    android:completionHint="Select a country"
+                    android:completionThreshold="1"
                     />
 
             </LinearLayout>

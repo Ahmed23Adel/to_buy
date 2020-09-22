@@ -12,4 +12,8 @@ public class constants {
         public static final String STATE="state";
 
     }
+
+    public static class shop{
+        public static final Long SHOP_NOT_INSERTED=Long.valueOf(-1);
+    }
 }

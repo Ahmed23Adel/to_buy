@@ -53,4 +53,20 @@ public class contact {
         }
         return false;
     }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPositionOfNameInCorporation(String positionOfNameInCorporation) {
+        this.positionOfNameInCorporation = positionOfNameInCorporation;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

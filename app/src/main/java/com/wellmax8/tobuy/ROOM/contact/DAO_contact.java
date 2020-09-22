@@ -15,7 +15,11 @@ import java.util.List;
 public interface DAO_contact {
 
     @Insert
-    void insert(contact contact);
+    Long insert(contact contact);
+
+
+    @Insert()
+    Long[] insertAll(contact ...contact);
 
     @Update()
     void update(contact contact);
@@ -23,14 +27,11 @@ public interface DAO_contact {
     @Delete()
     void delete(contact contact);
 
-
-    @Query("SELECT * FROM contact ORDER BY id DESC LIMIT :limit")
-    LiveData<List<contact>> getLastAddedByLimit(int limit);
-
     @Query("SELECT * FROM contact ORDER BY id DESC")
-    LiveData<List<contact>> getAll();
+    LiveData<List<contact>> getAllOrderedIdDesc();
 
-    @Insert()
-    Long[] insertAll(contact ...contact);
+    @Query("SELECT * FROM contact WHERE phoneNumber=:phoneNumber")
+    List<contact> getAtPhoneNumber(String phoneNumber);
+
 
 }
