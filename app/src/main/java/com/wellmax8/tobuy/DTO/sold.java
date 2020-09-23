@@ -1,8 +1,5 @@
 package com.wellmax8.tobuy.DTO;
 
-import android.net.Uri;
-import android.provider.BaseColumns;
-
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -11,10 +8,10 @@ import androidx.room.PrimaryKey;
 public class sold {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int id_sold;
     private int id_category;
-    private int id_shop;
-    private String name;
+    private int id_shop_;
+    private String name_sold;
     private String description;
     private String extra;
     private double price;
@@ -32,10 +29,10 @@ public class sold {
     private boolean isBought;
     private String timeBuying;
 
-    public sold(int id_category, int id_shop, String name, String description, String extra, double price, String created_at, String last_edit, boolean isBought, String timeBuying) {
+    public sold(int id_category, int id_shop_, String name_sold, String description, String extra, double price, String created_at, String last_edit, boolean isBought, String timeBuying) {
         this.id_category = id_category;
-        this.id_shop = id_shop;
-        this.name = name;
+        this.id_shop_ = id_shop_;
+        this.name_sold = name_sold;
         this.description = description;
         this.extra = extra;
         this.price = price;
@@ -45,24 +42,24 @@ public class sold {
         this.timeBuying = timeBuying;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_sold(int id_sold) {
+        this.id_sold = id_sold;
     }
 
-    public int getId() {
-        return id;
+    public int getId_sold() {
+        return id_sold;
     }
 
     public int getId_category() {
         return id_category;
     }
 
-    public int getId_shop() {
-        return id_shop;
+    public int getId_shop_() {
+        return id_shop_;
     }
 
-    public String getName() {
-        return name;
+    public String getName_sold() {
+        return name_sold;
     }
 
     public String getDescription() {

@@ -24,10 +24,10 @@ public interface DAO_shop {
     @Delete
     void delete(shop shop);
 
-    @Query("SELECT * FROM shop WHERE name = :nameOfShop")
+    @Query("SELECT * FROM shop WHERE name_shop = :nameOfShop")
     List<shop> getShopAtName(String nameOfShop);
 
-    @Query("SELECT * FROM shop WHERE id = :id")
+    @Query("SELECT * FROM shop WHERE id_shop = :id")
     LiveData<List<shop>> getShopAtID(int id);
 
     @Query("SELECT * FROM shop")

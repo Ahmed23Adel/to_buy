@@ -34,7 +34,7 @@ import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.DTO.sold;
 import com.wellmax8.tobuy.DTO.soldBuilder;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_solds;
+import com.wellmax8.tobuy.ViewModel.VM_add_sold;
 import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class add_sold extends AppCompatActivity {
 
     private LinearLayout wholeLayout;
 
-    private VM_solds VM;
+    private VM_add_sold VM;
     private category currentCategory;
 
     private final int LAUNCH_ADD_CONTACT = 101;
@@ -75,7 +75,7 @@ public class add_sold extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_sold);
-        VM = new ViewModelProvider(this).get(VM_solds.class);
+        VM = new ViewModelProvider(this).get(VM_add_sold.class);
         VM.setContext(this);
         currentCategory = solds.getCurrentCategory();
         instantiateViews();

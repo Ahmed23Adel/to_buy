@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
+import com.wellmax8.tobuy.DTO.sold_large_style;
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.ViewModel.VM_solds;
 
 import java.util.ArrayList;
 
@@ -24,6 +28,8 @@ public class solds extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView viewQuilt;
     private FloatingActionButton addSold;
+
+    private VM_solds VM;
 
 
 
@@ -44,6 +50,16 @@ public class solds extends AppCompatActivity {
         instantiateViews();
         toolbar.setTitle(currentCategory.getName());
         setActionOnButtons();
+
+        VM= new ViewModelProvider(this).get(VM_solds.class);
+        VM.setContext(this);
+        VM.getAllSoldsLargeStyle().observe(this,sold_large_styles -> {
+            for (sold_large_style sls: sold_large_styles){
+                Log.v("main","1sls"+sls.getSold().getName_sold());
+                Log.v("main","1sls"+sls.getShop().getName_shop());
+            }
+
+        });
 
     }
 
