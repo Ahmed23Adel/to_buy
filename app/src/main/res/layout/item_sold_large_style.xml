@@ -19,7 +19,6 @@
         />
 
     <TextView style="@style/add_category_add_field"
-        android:text="From: Zara"
         android:padding="10dp"
         android:textColor="#fff"
         android:id="@+id/item_sold_from"/>

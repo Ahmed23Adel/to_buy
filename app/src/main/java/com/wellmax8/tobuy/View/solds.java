@@ -59,13 +59,6 @@ public class solds extends AppCompatActivity {
 
         VM= new ViewModelProvider(this).get(VM_solds.class);
         VM.setContext(this);
-        VM.getAllSoldsLargeStyle().observe(this,sold_large_styles -> {
-            for (sold_large_style sls: sold_large_styles){
-                Log.v("main","1sls"+sls.getSold().getName_sold());
-                Log.v("main","1sls"+sls.getShop().getName_shop());
-            }
-
-        });
         determineWhichStyleANDShowRecyclerView();
 
     }

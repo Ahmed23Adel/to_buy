@@ -66,6 +66,8 @@ public class adapter_solds_large_style extends ListAdapter<sold_large_style,adap
         holder.name.setText(sold.getName_sold());
         if (writeFrom(sold)){
             holder.from.setText("From: "+shop.getName_shop());
+        }else{
+            holder.from.setVisibility(View.GONE);
         }
         if (sold.isBought()){
             holder.checkBox_bought.setChecked(true);
