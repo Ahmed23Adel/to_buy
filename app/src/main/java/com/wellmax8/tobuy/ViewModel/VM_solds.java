@@ -26,4 +26,8 @@ public class VM_solds extends ViewModel {
     public LiveData<List<sold_large_style>> getAllSoldsLargeStyle(){
         return repoSoldLargeStyle.getAll();
     }
+
+    public LiveData<List<sold_large_style>> getAtIdCategoryLargeStyleOrderLastEditDesc(int id_category){
+        return repoSoldLargeStyle.getAtIdCategoryLargeStyleOrderLastEditDesc(id_category);
+    }
 }

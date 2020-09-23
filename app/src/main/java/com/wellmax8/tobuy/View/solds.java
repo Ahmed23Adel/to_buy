@@ -9,8 +9,13 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
-
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import com.wellmax8.tobuy.Adapters.adapter_solds_large_style;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.sold_large_style;
 import com.wellmax8.tobuy.R;
@@ -28,6 +33,7 @@ public class solds extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView viewQuilt;
     private FloatingActionButton addSold;
+    private RecyclerView recyclerView;
 
     private VM_solds VM;
 
@@ -60,6 +66,7 @@ public class solds extends AppCompatActivity {
             }
 
         });
+        determineWhichStyleANDShowRecyclerView();
 
     }
 
@@ -67,6 +74,7 @@ public class solds extends AppCompatActivity {
         viewQuilt=findViewById(R.id.solds_viewQuilt);
         addSold=findViewById(R.id.add_sold);
         toolbar=findViewById(R.id.solds_toolbar);
+        recyclerView=findViewById(R.id.solds_recyclerView);
     }
 
     private void setActionOnButtons(){
@@ -86,5 +94,35 @@ public class solds extends AppCompatActivity {
 
     public static category getCurrentCategory() {
         return currentCategory;
+    }
+
+
+    private void determineWhichStyleANDShowRecyclerView() {
+        showRecyclerViewLargeStyle();
+    }
+
+    private void showRecyclerViewLargeStyle(){
+        recyclerView.setAdapter(null);
+        instantiateRecyclerViewForLargeStyle();
+        adapter_solds_large_style  adapter=new adapter_solds_large_style (this,currentCategory);
+        recyclerView.setAdapter(adapter);
+        showRecyclerView(adapter);
+    }
+
+
+    public void instantiateRecyclerViewForLargeStyle(){
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+    }
+
+    private void showRecyclerView(final ListAdapter adapter){
+        VM.getAtIdCategoryLargeStyleOrderLastEditDesc(currentCategory.getId()).observe(this,solds -> {
+            adapter.submitList(solds);
+        });
     }
 }

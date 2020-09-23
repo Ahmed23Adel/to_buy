@@ -22,4 +22,8 @@ public class repo_sold_large_style {
     public LiveData<List<sold_large_style>> getAll(){
         return dao.getAll();
     }
+
+    public LiveData<List<sold_large_style>> getAtIdCategoryLargeStyleOrderLastEditDesc(int id_category){
+        return dao.getAtIdCategoryLargeStyleOrderLastEditDesc(id_category);
+    }
 }

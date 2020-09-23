@@ -21,7 +21,6 @@
             android:drawSelectorOnTop="true"
             android:paddingTop="56dp"
             android:paddingBottom="16dip"
-            android:visibility="gone"
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

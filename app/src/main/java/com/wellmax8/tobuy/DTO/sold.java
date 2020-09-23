@@ -1,8 +1,11 @@
 package com.wellmax8.tobuy.DTO;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.Objects;
 
 @Entity
 public class sold {
@@ -89,4 +92,24 @@ public class sold {
     public String getTimeBuying() {
         return timeBuying;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof sold)) return false;
+        sold sold = (sold) o;
+        return getId_sold() == sold.getId_sold() &&
+                getId_category() == sold.getId_category() &&
+                getId_shop_() == sold.getId_shop_() &&
+                Double.compare(sold.getPrice(), getPrice()) == 0 &&
+                isBought() == sold.isBought() &&
+                getName_sold().equals(sold.getName_sold()) &&
+                getDescription().equals(sold.getDescription()) &&
+                getExtra().equals(sold.getExtra()) &&
+                getCreated_at().equals(sold.getCreated_at()) &&
+                getLast_edit().equals(sold.getLast_edit()) &&
+                getTimeBuying().equals(sold.getTimeBuying());
+    }
+
+
 }

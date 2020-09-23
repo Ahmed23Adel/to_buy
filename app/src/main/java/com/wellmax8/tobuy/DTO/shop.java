@@ -3,6 +3,8 @@ package com.wellmax8.tobuy.DTO;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity()
  public class shop {
     @PrimaryKey(autoGenerate = true)
@@ -42,4 +44,17 @@ import androidx.room.PrimaryKey;
     public String getNotes() {
         return notes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof shop)) return false;
+        shop shop = (shop) o;
+        return getId_shop() == shop.getId_shop() &&
+                getName_shop().equals(shop.getName_shop()) &&
+                getAddress().equals(shop.getAddress()) &&
+                getFacebookLink().equals(shop.getFacebookLink()) &&
+                getNotes().equals(shop.getNotes());
+    }
+
 }
