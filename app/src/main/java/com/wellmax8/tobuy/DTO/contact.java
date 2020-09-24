@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity()
 public class contact {
 
@@ -46,13 +48,18 @@ public class contact {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
-        contact contact=(com.wellmax8.tobuy.DTO.contact)obj;
-        if(id==contact.getId()&&phoneNumber.equals(contact.getPhoneNumber())&&name.equals(contact.getName())&&positionOfNameInCorporation.equals(contact.getPositionOfNameInCorporation())&&notes.equals(contact.getNotes())){
-            return true;
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof contact)) return false;
+        contact contact = (contact) o;
+        return getId() == contact.getId() &&
+                getPhoneNumber().equals(contact.getPhoneNumber()) &&
+                getName().equals(contact.getName()) &&
+                getPositionOfNameInCorporation().equals(contact.getPositionOfNameInCorporation()) &&
+                getNotes().equals(contact.getNotes());
     }
+
+
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
