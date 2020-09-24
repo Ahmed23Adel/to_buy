@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.wellmax8.tobuy.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_shops"
+        android:name="com.wellmax8.tobuy.Fragments.shops"
+        android:label="@string/all_shops"
+        tools:layout="@layout/shops" />
 
     <fragment
         android:id="@+id/nav_slideshow"
