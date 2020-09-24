@@ -34,15 +34,9 @@
         <activity android:name=".View.add_category" />
         <activity android:name=".stat_things" />
         <activity
-            android:name=".add_thing"
-            android:label="@string/action_bar_add_new_thing"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".things" />
-        <activity
             android:name=".add_category"
             android:label="@string/action_bar_add_new_category"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".MainActivity" />
 
         <provider
             android:name=".data.toBuyProvider"

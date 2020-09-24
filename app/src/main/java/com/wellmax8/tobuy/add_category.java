@@ -1,7 +1,6 @@
 package com.wellmax8.tobuy;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -16,7 +15,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -26,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.wellmax8.tobuy.data.toBuyContract.categories_entry;
 import com.wellmax8.tobuy.data.toBuyContract;
-import java.net.ConnectException;
-import java.util.ArrayList;
 
 public class add_category extends AppCompatActivity implements  LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -63,7 +59,7 @@ public class add_category extends AppCompatActivity implements  LoaderManager.Lo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
+        setContentView(R.layout.add_category);
 
         Intent intent= getIntent();
         currentUri=intent.getData();

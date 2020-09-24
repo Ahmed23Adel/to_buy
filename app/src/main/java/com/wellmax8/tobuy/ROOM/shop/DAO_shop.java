@@ -30,7 +30,7 @@ public interface DAO_shop {
     @Query("SELECT * FROM shop WHERE id_shop = :id")
     LiveData<List<shop>> getShopAtID(int id);
 
-    @Query("SELECT * FROM shop")
+    @Query("SELECT * FROM shop ORDER BY name_shop DESC")
     LiveData<List<shop>> getAll();
 
 

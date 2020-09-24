@@ -19,7 +19,7 @@ public class add_category extends category_parent {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
+        setContentView(R.layout.add_category);
         VM = new ViewModelProvider(this).get(VM_add_category.class);
         VM.setContext(this);
         instantiateViews();

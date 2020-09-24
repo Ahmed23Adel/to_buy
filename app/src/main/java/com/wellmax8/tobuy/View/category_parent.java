@@ -12,14 +12,10 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.category_builder;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.View.view_category_details;
-import com.wellmax8.tobuy.ViewModel.VM_update_categoty;
 import com.wellmax8.tobuy.colors.color;
 import com.wellmax8.tobuy.colors.colorsManager;
 import com.wellmax8.tobuy.managers.categoryForUndoManager;
@@ -48,7 +44,7 @@ public abstract class category_parent   extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
+        setContentView(R.layout.add_category);
 
         instantiateViews();
         colorsManager = new colorsManager(rRed, rYellow, rBlue, rPurple, rGreen);

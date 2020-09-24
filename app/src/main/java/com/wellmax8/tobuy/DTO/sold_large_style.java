@@ -31,9 +31,13 @@ public class sold_large_style {
         if (this == o) return true;
         if (!(o instanceof sold_large_style)) return false;
         sold_large_style that = (sold_large_style) o;
-        return getSold().equals(that.getSold()) &&
+        if (that.getShop()==null){
+            return getSold().equals(that.getSold());
+        }else{
+            return getSold().equals(that.getSold()) &&
                 getShop().equals(that.getShop());
-    }
+        }
+        }
 
 
 }
