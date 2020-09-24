@@ -72,14 +72,8 @@ public class categories extends Fragment implements Observer_viewQuilt {
         showQuiltViews();
 
         Toolbar toolbar =  root.findViewById(R.id.toolbar_categories);
-
-        //set toolbar appearance
-
-        //for create home button
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
-        //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         ImageView menu=root.findViewById(R.id.drawer_categories);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override

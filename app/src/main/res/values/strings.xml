@@ -113,4 +113,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="all_shops">All shops</string>
+    <string name="categories">Categories</string>
+    <string name="all_contact">All contact</string>
 </resources>

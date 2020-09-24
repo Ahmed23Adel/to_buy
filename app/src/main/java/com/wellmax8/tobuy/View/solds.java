@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.sold_large_style;
+import com.wellmax8.tobuy.Fragments.categories;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_solds;
 
@@ -45,7 +46,7 @@ public class solds extends AppCompatActivity {
         setContentView(R.layout.solds);
         position = getIntent().getIntExtra(getString(R.string.pos), 0);
         id_category = getIntent().getIntExtra(getString(R.string.id), 0);
-        categories = com.wellmax8.tobuy.View.categories.getCategoriesForDetails();
+        categories = com.wellmax8.tobuy.Fragments.categories.getCategoriesForDetails();
         for (category c : categories) {
             if (c.getId() == id_category) {
                 currentCategory = c;

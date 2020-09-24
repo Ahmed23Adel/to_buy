@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Exceptions.colorNotSpecifiedException;
+import com.wellmax8.tobuy.Fragments.categories;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
 import com.wellmax8.tobuy.ViewModel.VM_category_details;
@@ -43,7 +44,7 @@ public class view_category_details extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         position=getIntent().getIntExtra(getString(R.string.pos),0);
         id=getIntent().getIntExtra(getString(R.string.id),0);
-        categories= com.wellmax8.tobuy.View.categories.getCategoriesForDetails();
+        categories= com.wellmax8.tobuy.Fragments.categories.getCategoriesForDetails();
         for (category c: categories){
             if (c.getId()==id){
                 currentCategory=c;
