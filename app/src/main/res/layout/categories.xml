@@ -69,24 +69,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
         >
 
-        <androidx.appcompat.widget.Toolbar
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:title="Categories">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/view_quilt"
-                android:layout_gravity="end"
+                android:src="@drawable/ic_menu_camera"
                 android:layout_margin="16dp"
-                android:id="@+id/viewQuilt"
+                android:id="@+id/drawer_categories"
+                android:layout_alignParentStart="true"
                 />
-        </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:title="Categories"
+                android:id="@+id/toolbar_categories"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:layout_toEndOf="@id/drawer_categories"
+                >
+
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/view_quilt"
+                    android:layout_gravity="end"
+                    android:layout_margin="16dp"
+                    android:id="@+id/viewQuilt"
+                    />
+            </androidx.appcompat.widget.Toolbar>
+
+        </RelativeLayout>
+
+
 
 
     </com.google.android.material.appbar.AppBarLayout>
