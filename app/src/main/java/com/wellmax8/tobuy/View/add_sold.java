@@ -8,14 +8,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.wellmax8.tobuy.Time.DatePicker;
-
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,11 +62,10 @@ public class add_sold extends AppCompatActivity  {
     private category currentCategory;
 
     private final int LAUNCH_ADD_CONTACT = 101;
+    private final int LAUNCH_CHOOSE_EXISTING_SHOP = 102;
     private ArrayList<contact> contacts;
     private boolean isNameShopMustBeInsertedForContacts = false;
-    private boolean isNameShopMustBeInsertedForAnyField = false;
 
-    private boolean isShopAdded = false;
 
     private DatePicker datePicker;
 
@@ -109,6 +105,11 @@ public class add_sold extends AppCompatActivity  {
         notNow.setOnClickListener(v -> {
 
             datePicker.show(getSupportFragmentManager(),"date-picker");
+        });
+
+        chooseExistingShop.setOnClickListener(v -> {
+            Intent intent=new Intent(this,choose_existing_shop.class);
+            startActivityForResult(intent,LAUNCH_CHOOSE_EXISTING_SHOP);
         });
     }
 

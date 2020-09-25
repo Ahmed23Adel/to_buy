@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".View.choose_existing_shop"></activity>
         <activity
             android:name=".Main_Activity"
             android:label="@string/title_activity_main_"
@@ -28,9 +29,7 @@
         <activity android:name=".View.update_category" />
         <activity
             android:name=".View.categories"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name=".View.add_category" />
         <activity android:name=".stat_things" />
         <activity

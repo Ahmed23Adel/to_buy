@@ -117,4 +117,5 @@
     <string name="categories">Categories</string>
     <string name="all_contact">All contact</string>
     <string name="all_contacts">All contacts</string>
+    <string name="view_usage">View usage</string>
 </resources>
