@@ -117,7 +117,9 @@
                     android:gravity="center"
                     android:text="@string/not_today"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="#1834DB" />
+                    android:textColor="#1834DB"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
 
             <LinearLayout

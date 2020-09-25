@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.wellmax8.tobuy.Time.DatePicker;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -22,7 +24,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.wellmax8.tobuy.Adapters.adapter_contacts;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
@@ -39,7 +40,7 @@ import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
 
-public class add_sold extends AppCompatActivity {
+public class add_sold extends AppCompatActivity  {
 
     private EditText nameSold;
     private EditText descriptionSold;
@@ -70,6 +71,7 @@ public class add_sold extends AppCompatActivity {
 
     private boolean isShopAdded = false;
 
+    private DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,19 @@ public class add_sold extends AppCompatActivity {
         notesShop.addTextChangedListener(getWatcherForShop());
 
 
+        isBought.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                notNow.setVisibility(View.VISIBLE);
+            }else {
+                notNow.setVisibility(View.GONE);
+
+            }
+        });
+        datePicker=new DatePicker(isBought);
+        notNow.setOnClickListener(v -> {
+
+            datePicker.show(getSupportFragmentManager(),"date-picker");
+        });
     }
 
     private void instantiateViews() {
@@ -114,6 +129,7 @@ public class add_sold extends AppCompatActivity {
         nameShopMustAdd = findViewById(R.id.shopMustAdd);
         wholeLayout = findViewById(R.id.wholeLayout);
         recyclerViewContacts = findViewById(R.id.contacts_recyclerView);
+
     }
 
     @Override
@@ -126,7 +142,6 @@ public class add_sold extends AppCompatActivity {
 
     private void addContactInstanceFromIntent(@Nullable Intent data) {
         String id = data.getStringExtra(constants.returnIntent.ID);
-        Log.v("main","id_contact"+id);
         String name = data.getStringExtra(constants.returnIntent.NAME);
         String phoneNumber = data.getStringExtra(constants.returnIntent.PHONE_NUMBER);
         String position = data.getStringExtra(constants.returnIntent.POSITION);
@@ -293,6 +308,7 @@ public class add_sold extends AppCompatActivity {
 
     private sold getSoldInstance(Long id_shop){
         String currentTime=VM.getCurrentTime();
+        String timeChosenBuying=datePicker.getDate();
         return new soldBuilder()
                 .setId_category(currentCategory.getId())
                 .setId_shop(id_shop.intValue())
@@ -303,7 +319,7 @@ public class add_sold extends AppCompatActivity {
                 .setLast_edit(currentTime)
                 .setCreated_at(currentTime)
                 .setIsBought(isBought.isChecked())
-                .setTimeBuying(isBought.isChecked()?currentTime: com.wellmax8.tobuy.DTO.sold .TIME_BUY_NOT_SPECIFIED)
+                .setTimeBuying(timeChosenBuying)
                 .build();
     }
     private shop getShopInstance() {
@@ -353,5 +369,7 @@ public class add_sold extends AppCompatActivity {
     private String getTextOutOfEditText(EditText editText) {
         return editText.getText().toString();
     }
+
+
 }
 
