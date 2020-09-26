@@ -1,9 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view_shop_details">
+    android:background="@color/grey"
+    android:orientation="vertical"
+    tools:context=".View.view_shop_details">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/main_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: Cloths \n Address: Down town \n Notes: notes \n created at: sep"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layout_facebookLink"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook link: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/shop_detail_facebookLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:autoLink="web"
+                    android:text="https://facebook.com/id=2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:text="Contacts linked"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <ImageView
+                android:id="@+id/shrink_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:src="@drawable/arrow_up" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/viewShopDetails_contacts"
+            style="@style/main_listView"
+            android:background="@color/grey"
+            android:clipToPadding="false"
+            android:dividerHeight="16dp"
+            android:drawSelectorOnTop="true"
+            tools:listitem="@layout/item_contact" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:text="Things you will buy from this shop"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                />
+
+            <ImageView
+                android:id="@+id/shrink_solds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:src="@drawable/arrow_up" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/viewShopDetails_solds"
+            style="@style/main_listView"
+            android:clipToPadding="false"
+            android:dividerHeight="16dp"
+            android:drawSelectorOnTop="true"
+            android:paddingTop="56dp"
+            android:paddingBottom="16dip"
+            tools:listitem="@layout/item_sold_large_style"
+            />
+    </LinearLayout>
+</ScrollView>

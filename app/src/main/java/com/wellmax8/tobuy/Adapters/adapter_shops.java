@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.view_shop_details;
+import com.wellmax8.tobuy.constants;
 
 import java.util.List;
 
@@ -75,6 +77,12 @@ public class adapter_shops extends ListAdapter<shop, adapter_shops.shopHolder> {
                 }
             });
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent=new Intent(context, view_shop_details.class);
+            intent.putExtra(constants.returnIntent.ID_SHOP,String.valueOf(currentShop.getId_shop()));
+            context.startActivity(intent);
+        });
     }
 
 
