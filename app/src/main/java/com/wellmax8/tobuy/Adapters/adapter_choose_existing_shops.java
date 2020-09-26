@@ -3,6 +3,7 @@ package com.wellmax8.tobuy.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class adapter_choose_existing_shops extends ListAdapter<shop, adapter_cho
 
 
     private Context context;
+    private OnItemClick onItemClick;
     public adapter_choose_existing_shops(Context context) {
         super(diffCallback);
         this.context=context;
@@ -80,8 +82,9 @@ public class adapter_choose_existing_shops extends ListAdapter<shop, adapter_cho
         });
 
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(context, "itemView", Toast.LENGTH_SHORT).show();
+           onItemClick.onClick(currentShop.getId_shop(),currentShop.getName_shop(),currentShop.getAddress());
         });
+
     }
 
     public static class shopHolder extends RecyclerView.ViewHolder {
@@ -98,5 +101,13 @@ public class adapter_choose_existing_shops extends ListAdapter<shop, adapter_cho
             facebookLink = itemView.findViewById(R.id.item_existing_shop_facebookLink);
             viewUsage=itemView.findViewById(R.id.item_existing_shop_viewUsage);
         }
+    }
+
+    public interface OnItemClick{
+        void onClick(int id_shop,String name,String address);
+    }
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
 }

@@ -97,7 +97,6 @@ public class toBuyProvider extends ContentProvider {
 
 
             default:
-                // Log.v("main","no path founded");
         }
         return null;
     }

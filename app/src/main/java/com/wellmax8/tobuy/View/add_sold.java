@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.wellmax8.tobuy.Time.DatePicker;
+
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.wellmax8.tobuy.Adapters.adapter_contacts;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
@@ -37,7 +41,7 @@ import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;
 
-public class add_sold extends AppCompatActivity  {
+public class add_sold extends AppCompatActivity {
 
     private EditText nameSold;
     private EditText descriptionSold;
@@ -53,6 +57,10 @@ public class add_sold extends AppCompatActivity  {
     private EditText notesShop;
     private Button addContact;
     private TextView nameShopMustAdd;
+    private LinearLayout addShop;
+    private TextView addedShop;
+    private shop chosenExistingShop;
+    private boolean isChosenExistingShop=false;
 
     private RecyclerView recyclerViewContacts;
 
@@ -94,22 +102,22 @@ public class add_sold extends AppCompatActivity  {
 
 
         isBought.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
+            if (isChecked) {
                 notNow.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 notNow.setVisibility(View.GONE);
 
             }
         });
-        datePicker=new DatePicker(isBought);
+        datePicker = new DatePicker(isBought);
         notNow.setOnClickListener(v -> {
 
-            datePicker.show(getSupportFragmentManager(),"date-picker");
+            datePicker.show(getSupportFragmentManager(), "date-picker");
         });
 
         chooseExistingShop.setOnClickListener(v -> {
-            Intent intent=new Intent(this,choose_existing_shop.class);
-            startActivityForResult(intent,LAUNCH_CHOOSE_EXISTING_SHOP);
+            Intent intent = new Intent(this, choose_existing_shop.class);
+            startActivityForResult(intent, LAUNCH_CHOOSE_EXISTING_SHOP);
         });
     }
 
@@ -130,7 +138,8 @@ public class add_sold extends AppCompatActivity  {
         nameShopMustAdd = findViewById(R.id.shopMustAdd);
         wholeLayout = findViewById(R.id.wholeLayout);
         recyclerViewContacts = findViewById(R.id.contacts_recyclerView);
-
+        addShop=findViewById(R.id.addShop);
+        addedShop=findViewById(R.id.addedShop);
     }
 
     @Override
@@ -138,7 +147,47 @@ public class add_sold extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LAUNCH_ADD_CONTACT && resultCode == RESULT_OK) {
             addContactInstanceFromIntent(data);
+        } else if (requestCode == LAUNCH_CHOOSE_EXISTING_SHOP && resultCode == RESULT_OK) {
+            switchToExistingShop();
+            showAddedShop(data);
         }
+    }
+
+
+
+    private void switchToExistingShop() {
+        nameShop.setText("");
+        addressShop.setText("");
+        FBlinkShop.setText("");
+        notesShop.setText("");
+        contacts.clear();
+        addShop.setVisibility(View.GONE);
+        addedShop.setVisibility(View.VISIBLE);
+        isChosenExistingShop=true;
+        changeIsShopNameMustBeInsertedForContacts();
+        updateContactRecyclerView();
+    }
+
+    private void switchToAddShop(){
+        addShop.setVisibility(View.VISIBLE);
+        addedShop.setVisibility(View.GONE);
+        isChosenExistingShop=false;
+
+    }
+
+    private void showAddedShop(Intent data) {
+
+        chosenExistingShop=new shopBuilder()
+                .setId(Integer.parseInt(data.getStringExtra(constants.returnIntent.ID_SHOP)))
+                .setName(data.getStringExtra(constants.returnIntent.NAME))
+                .setAddress(data.getStringExtra(constants.returnIntent.ADDRESS))
+                .build();
+        addedShop.setText(chosenExistingShop.getName_shop() + "\n "+ chosenExistingShop.getAddress());
+        addedShop.setOnLongClickListener(v -> {
+            switchToAddShop();
+
+            return false;
+        });
     }
 
     private void addContactInstanceFromIntent(@Nullable Intent data) {
@@ -260,7 +309,12 @@ public class add_sold extends AppCompatActivity  {
             if (isNameShopMustBeInserted()) {
                 nameShopMustBeInserted();
             } else {
-                save_sold((long) sold.ID_SHOP_NOT_SPECIFIED);
+                if (isChosenExistingShop){
+                    save_sold((long)chosenExistingShop.getId_shop());
+                }else{
+                    save_sold((long) sold.ID_SHOP_NOT_SPECIFIED);
+                }
+
             }
 
         } else {
@@ -286,16 +340,16 @@ public class add_sold extends AppCompatActivity  {
     }
 
     private void save_contact_shop_instace() {
-        Long id_shop=VM.insertShop(getShopInstance());
-        save_shop_contact_instance(id_shop,contacts);
+        Long id_shop = VM.insertShop(getShopInstance());
+        save_shop_contact_instance(id_shop, contacts);
         save_sold(id_shop);
     }
 
 
     private void save_shop_contact_instance(Long id_shop, ArrayList<contact> contacts) {
-        if (contacts.size()>0){
-            for(int i=0;i<contacts.size();i++){
-                shop_contact shop_contact=new shop_contact(id_shop.intValue(),contacts.get(i).getId());
+        if (contacts.size() > 0) {
+            for (int i = 0; i < contacts.size(); i++) {
+                shop_contact shop_contact = new shop_contact(id_shop.intValue(), contacts.get(i).getId());
                 VM.insertShop_contacts(shop_contact);
             }
         }
@@ -307,22 +361,23 @@ public class add_sold extends AppCompatActivity  {
 
     }
 
-    private sold getSoldInstance(Long id_shop){
-        String currentTime=VM.getCurrentTime();
-        String timeChosenBuying=datePicker.getDate();
+    private sold getSoldInstance(Long id_shop) {
+        String currentTime = VM.getCurrentTime();
+        String timeChosenBuying = datePicker.getDate();
         return new soldBuilder()
                 .setId_category(currentCategory.getId())
                 .setId_shop(id_shop.intValue())
                 .setName(getTextOutOfEditText(nameSold))
                 .setDescription(getTextOutOfEditText(descriptionSold))
                 .setExtra(getTextOutOfEditText(extraSold))
-                .setPrice(getTextOutOfEditText(priceSold).isEmpty()?0.0:Double.parseDouble(getTextOutOfEditText(priceSold)))
+                .setPrice(getTextOutOfEditText(priceSold).isEmpty() ? 0.0 : Double.parseDouble(getTextOutOfEditText(priceSold)))
                 .setLast_edit(currentTime)
                 .setCreated_at(currentTime)
                 .setIsBought(isBought.isChecked())
                 .setTimeBuying(timeChosenBuying)
                 .build();
     }
+
     private shop getShopInstance() {
         return new shopBuilder()
                 .setName(getTextOutOfEditText(nameShop))

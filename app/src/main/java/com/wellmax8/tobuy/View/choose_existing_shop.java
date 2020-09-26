@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.wellmax8.tobuy.Adapters.adapter_choose_existing_shops;
+import com.wellmax8.tobuy.constants;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,7 +34,6 @@ public class choose_existing_shop extends AppCompatActivity {
         VM=new ViewModelProvider(this).get(VM_choose_existing_shops.class);
         VM.setContext(this);
         VM.getShopList().observe(this,shops -> {
-            Log.v("main","shopsSize"+shops.size());
             showRecyclerView(shops,recyclerView);
         });
     }
@@ -47,6 +48,19 @@ public class choose_existing_shop extends AppCompatActivity {
         adapter_choose_existing_shops adapter_existing_shops=new adapter_choose_existing_shops(this);
         recyclerView.setAdapter(adapter_existing_shops);
         adapter_existing_shops.submitList(shops);
+        adapter_existing_shops.setOnItemClick((id_shop, name, address) -> {
+            end(id_shop,name,address);
+        });
+    }
+
+    private void end(int id_shop, String name, String address) {
+        Intent returnIntent=new Intent();
+        returnIntent.putExtra(constants.returnIntent.ID_SHOP,String.valueOf(id_shop));
+        returnIntent.putExtra(constants.returnIntent.NAME,String.valueOf(name));
+        returnIntent.putExtra(constants.returnIntent.ADDRESS,String.valueOf(address));
+        setResult(RESULT_OK,returnIntent);
+        finish();
+
     }
 
     @Override

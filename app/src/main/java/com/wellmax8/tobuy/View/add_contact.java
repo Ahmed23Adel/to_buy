@@ -55,7 +55,6 @@ public class add_contact extends AppCompatActivity {
         instantiateViews();
 
         AddContactsToMultiAutoCompleteTextView();
-        VM.getAll().observe(this,contacts -> Log.v("main","size"+contacts.size()));
 
         undoManager =new categoryForUndoManager(addName,addPhoneNumber,addPosition,addNotes);
     }
@@ -100,16 +99,12 @@ public class add_contact extends AppCompatActivity {
     }
 
     private int getPositionAtNameFromSuggestions(String name,int position){
-        Log.v("main","atnamne"+name+position);
+
         for(int i=0;i<suggestedContacts.size();i++){
             if (suggestedContacts.get(i).getName().equals(name)){
-                Log.v("main","1atnamne"+i);
                 if (position>0){
-                    Log.v("main","1atnamne"+1);
                     position--;
                 }else {
-                    Log.v("main","1atnamne"+2);
-
                     return i;
                 }
             }
@@ -132,8 +127,6 @@ public class add_contact extends AppCompatActivity {
     private int isItemDone=1;
     private void itemOnSuggestionsClicked(int position) {
         if (isItemDone%2==1) {
-            Log.v("main", "posHere");
-            Log.v("main", "pos" + position);
             chosenFromSuggestions = true;
             contact contact = suggestedContacts.get(position);
             setTextTo(addName, contact.getName());
@@ -219,10 +212,8 @@ public class add_contact extends AppCompatActivity {
     private void checkForDuplication() {
         ArrayList<contact> oldPhoneNumbers= (ArrayList<contact>) VM.getAtPhoneNumber(getPhoneNumberInserted());
         if (oldPhoneNumbers.size() > 0) {
-            Log.v("main", "2");
             phoneDuplicated(oldPhoneNumbers.get(0));
         } else {
-            Log.v("main", "1");
             saveContact();
         }
     }
@@ -237,16 +228,12 @@ public class add_contact extends AppCompatActivity {
 
     private void phoneDuplicated(contact contact) {
         if (chosenFromSuggestions) {
-            Log.v("main", "3");
             if (isDataChangedAfterChoosingSuggestion(contact)) {
-                Log.v("main", "4");
                 showDialogToUpdate();
             } else {
-                Log.v("main", "5");
                 end(contact);
             }
         } else {
-            Log.v("main", "6");
             showDialogToUpdate();
         }
     }
@@ -275,7 +262,6 @@ public class add_contact extends AppCompatActivity {
     }
 
     private void updateContact() {
-        Log.v("main", "7");
         contact oldContact=getContactAtPhoneNumber(getPhoneNumberInserted());
         oldContact.setName(getNameInserted());
         oldContact.setPhoneNumber(getPhoneNumberInserted());
@@ -286,7 +272,6 @@ public class add_contact extends AppCompatActivity {
     }
 
     private void saveContact() {
-        Log.v("main", "8");
         contact contact=new contactBuilder()
                 .setName(getNameInserted())
                 .setPhoneNumber(getPhoneNumberInserted())
@@ -309,7 +294,6 @@ public class add_contact extends AppCompatActivity {
 
 
     private void end(contact contact) {
-        Log.v("main", "10");
         Intent returnIntent = new Intent();
         returnIntent.putExtra(constants.returnIntent.ID, String.valueOf(contact.getId()));
         returnIntent.putExtra(constants.returnIntent.NAME, contact.getName());

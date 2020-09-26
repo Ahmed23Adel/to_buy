@@ -10,7 +10,10 @@ public class constants {
         public static final String POSITION="position";
         public static final String NOTES="notes";
         public static final String STATE="state";
+        public static final String ID_SHOP="id-shop";
+        public static final String ADDRESS="address";
 
+        public static final String FACEBOOK_LINK = "fb-link";
     }
 
     public static class shop{

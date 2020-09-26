@@ -5,6 +5,12 @@ public class shopBuilder {
     private String address;
     private String facebookLink;
     private String notes;
+    private int id;
+
+    public shopBuilder setId(int id) {
+        this.id = id;
+        return this;
+    }
 
     public shopBuilder setName(String name) {
         this.name = name;
@@ -27,6 +33,8 @@ public class shopBuilder {
     }
 
     public shop build() {
-        return new shop(name, address, facebookLink, notes);
+        shop shop= new shop(name, address, facebookLink, notes);
+        shop.setId_shop(id);
+        return shop;
     }
 }
