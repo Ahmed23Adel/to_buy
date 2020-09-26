@@ -1,4 +1,6 @@
-package com.wellmax8.tobuy.DTO;
+package com.wellmax8.tobuy.Builders;
+
+import com.wellmax8.tobuy.DTO.category;
 
 public class category_builder {
     private int id;

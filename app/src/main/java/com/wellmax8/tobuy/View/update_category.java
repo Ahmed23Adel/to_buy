@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.category_builder;
+import com.wellmax8.tobuy.Builders.category_builder;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.colors.color;
 import com.wellmax8.tobuy.ViewModel.VM_update_categoty;

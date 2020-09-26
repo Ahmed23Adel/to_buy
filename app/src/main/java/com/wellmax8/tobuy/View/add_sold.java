@@ -15,7 +15,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,12 +28,12 @@ import com.wellmax8.tobuy.Adapters.adapter_contacts;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.contact;
-import com.wellmax8.tobuy.DTO.contactBuilder;
+import com.wellmax8.tobuy.Builders.contactBuilder;
 import com.wellmax8.tobuy.DTO.shop;
-import com.wellmax8.tobuy.DTO.shopBuilder;
+import com.wellmax8.tobuy.Builders.shopBuilder;
 import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.DTO.sold;
-import com.wellmax8.tobuy.DTO.soldBuilder;
+import com.wellmax8.tobuy.Builders.soldBuilder;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_add_sold;
 import com.wellmax8.tobuy.constants;
@@ -176,11 +175,12 @@ public class add_sold extends AppCompatActivity {
     }
 
     private void showAddedShop(Intent data) {
-
+        String createdAt=VM.getCurrentTime();
         chosenExistingShop=new shopBuilder()
                 .setId(Integer.parseInt(data.getStringExtra(constants.returnIntent.ID_SHOP)))
                 .setName(data.getStringExtra(constants.returnIntent.NAME))
                 .setAddress(data.getStringExtra(constants.returnIntent.ADDRESS))
+                .setCreatedAt(createdAt)
                 .build();
         addedShop.setText(chosenExistingShop.getName_shop() + "\n "+ chosenExistingShop.getAddress());
         addedShop.setOnLongClickListener(v -> {
@@ -379,11 +379,13 @@ public class add_sold extends AppCompatActivity {
     }
 
     private shop getShopInstance() {
+        String currentTime=VM.getCurrentTime();
         return new shopBuilder()
                 .setName(getTextOutOfEditText(nameShop))
                 .setAddress(getTextOutOfEditText(addressShop))
                 .setFacebookLink(getTextOutOfEditText(FBlinkShop))
                 .setNotes(getTextOutOfEditText(notesShop))
+                .setCreatedAt(currentTime)
                 .build();
     }
 

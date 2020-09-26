@@ -13,12 +13,15 @@ import java.util.Objects;
     private String address;
     private String facebookLink;
     private String notes;
+    private String created_at_shop;
 
-    public shop(String name_shop, String address, String facebookLink, String notes) {
+
+    public shop(String name_shop, String address, String facebookLink, String notes, String created_at_shop) {
         this.name_shop = name_shop;
         this.address = address;
         this.facebookLink = facebookLink;
         this.notes = notes;
+        this.created_at_shop = created_at_shop;
     }
 
     public void setId_shop(int id_shop) {
@@ -45,6 +48,10 @@ import java.util.Objects;
         return notes;
     }
 
+    public String getCreated_at_shop() {
+        return created_at_shop;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,7 +61,9 @@ import java.util.Objects;
                 getName_shop().equals(shop.getName_shop()) &&
                 getAddress().equals(shop.getAddress()) &&
                 getFacebookLink().equals(shop.getFacebookLink()) &&
-                getNotes().equals(shop.getNotes());
+                getNotes().equals(shop.getNotes()) &&
+                getCreated_at_shop().equals(shop.getCreated_at_shop());
     }
+
 
 }

@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -18,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.wellmax8.tobuy.DTO.contactBuilder;
+import com.wellmax8.tobuy.Builders.contactBuilder;
 import com.wellmax8.tobuy.managers.categoryForUndoManager;
 import com.wellmax8.tobuy.DTO.contact;
 import com.wellmax8.tobuy.R;

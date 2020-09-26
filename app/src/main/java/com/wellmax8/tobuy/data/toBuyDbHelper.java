@@ -3,13 +3,9 @@ package com.wellmax8.tobuy.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 
 import androidx.annotation.Nullable;
-
-import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.category_builder;
 
 public class toBuyDbHelper extends SQLiteOpenHelper {
 
