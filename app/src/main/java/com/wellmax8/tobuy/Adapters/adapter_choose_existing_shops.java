@@ -92,7 +92,7 @@ public class adapter_choose_existing_shops extends ListAdapter<shop, adapter_cho
         TextView name;
         TextView address;
         ImageView facebookLink;
-        Button viewUsage;
+        TextView viewUsage;
 
         public shopHolder(@NonNull View itemView) {
             super(itemView);
