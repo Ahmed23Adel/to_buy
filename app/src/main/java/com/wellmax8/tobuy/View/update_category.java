@@ -71,10 +71,10 @@ public class update_category extends category_parent {
     }
 
     private void showSavedData() {
-        category_name.setText(currentCategory.getName());
+        category_name.setText(currentCategory.getName_category());
         category_relatedTo.setText(currentCategory.getRelated_to());
-        category_desc.setText(currentCategory.getDescription());
-        category_extra.setText(currentCategory.getExtra());
+        category_desc.setText(currentCategory.getDescription_category());
+        category_extra.setText(currentCategory.getExtra_category());
         clickChosenColor();
     }
 
@@ -129,7 +129,7 @@ public class update_category extends category_parent {
         String currentTime=VM.getCurrentTime();
         category category= new category_builder()
                 .setName(name)
-                .setCreated_at(currentCategory.getCreated_at())
+                .setCreated_at(currentCategory.getCreated_at_category())
                 .setLast_edit(currentTime)
                 .setRelated_to(relatedTo)
                 .setDescription(desc)

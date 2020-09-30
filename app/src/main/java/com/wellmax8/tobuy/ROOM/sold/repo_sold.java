@@ -2,13 +2,11 @@ package com.wellmax8.tobuy.ROOM.sold;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.sold;
-import com.wellmax8.tobuy.ROOM.category.DAO_category;
+import com.wellmax8.tobuy.DTO.sold_at_shopId;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
 
 import java.util.List;
@@ -35,6 +33,9 @@ public class repo_sold {
 
     public LiveData<List<sold>> getSoldsOrderedCreatedAtDESCWHEREIdCategory(int id_category){
         return dao.getSoldsOrderedCreatedAtDESCWHEREIdCategory(id_category);
+    }
+    public LiveData<List<sold_at_shopId>> getSoldsAtIdShop(int id_shop){
+        return dao.getSoldsAtIdShop(id_shop);
     }
 
     private static class insertSold extends AsyncTask<sold,Void,Void> {

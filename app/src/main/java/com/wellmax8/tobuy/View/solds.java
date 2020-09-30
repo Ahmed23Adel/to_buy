@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
@@ -15,10 +14,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.wellmax8.tobuy.Adapters.adapter_solds_large_style;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.DTO.category;
-import com.wellmax8.tobuy.DTO.sold_large_style;
-import com.wellmax8.tobuy.Fragments.categories;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_solds;
 
@@ -55,7 +51,7 @@ public class solds extends AppCompatActivity {
         }
 
         instantiateViews();
-        toolbar.setTitle(currentCategory.getName());
+        toolbar.setTitle(currentCategory.getName_category());
         setActionOnButtons();
 
         VM= new ViewModelProvider(this).get(VM_solds.class);

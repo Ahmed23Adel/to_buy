@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.wellmax8.tobuy.DTO.shop;
+import com.wellmax8.tobuy.DTO.sold;
+import com.wellmax8.tobuy.DTO.sold_at_shopId;
 import com.wellmax8.tobuy.ROOM.shop.repo_shop;
 import com.wellmax8.tobuy.ROOM.sold.repo_sold;
 
@@ -28,6 +30,10 @@ public class VM_shop_details extends ViewModel {
 
     public LiveData<List<shop>> getShopAtId(int id_shp){
         return repo_shop.getShopAtID(id_shp);
+    }
+
+    public LiveData<List<sold_at_shopId>>getSoldsAtIdShop(int id_shop){
+        return repo_sold.getSoldsAtIdShop(id_shop);
     }
 
 

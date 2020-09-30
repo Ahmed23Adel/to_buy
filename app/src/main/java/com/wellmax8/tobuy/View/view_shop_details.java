@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wellmax8.tobuy.Adapters.adapter_solds_at_shop;
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_shop_details;
-import com.wellmax8.tobuy.ViewModel.VM_shops;
+import com.wellmax8.tobuy.Adapters.adapter_solds_large_style ;
 import com.wellmax8.tobuy.constants;
 
 public class view_shop_details extends AppCompatActivity {
@@ -47,9 +50,24 @@ public class view_shop_details extends AppCompatActivity {
         setupMainTextView(shop_id);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        showSoldsRecyclerView();
     }
 
-       private void instantiateViews(){
+    private void showSoldsRecyclerView() {
+        adapter_solds_at_shop adapter=new adapter_solds_at_shop(this);
+        setupSolds(soldsRecyclerView);
+        soldsRecyclerView.setAdapter(adapter);
+        VM.getSoldsAtIdShop(shop_id).observe(this, adapter::submitList);
+    }
+
+    private void setupSolds(RecyclerView recyclerView) {
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+    }
+
+    private void instantiateViews(){
         mainTextView=findViewById(R.id.main_textView);
         layout_facebook=findViewById(R.id.layout_facebookLink);
         facebookLink=findViewById(R.id.shop_detail_facebookLink);

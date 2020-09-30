@@ -59,7 +59,7 @@ public class adapter_categories_smallStyle extends ListAdapter<category, adapter
     @Override
     public void onBindViewHolder(@NonNull adapter_categories_smallStyle.categoryItem holder, int position) {
         category category = getItem(position);
-        holder.name.setText(category.getName());
+        holder.name.setText(category.getName_category());
         holder.createdAT.setText(category.getCreatedAtReadableJustTime());
         GradientDrawable gradientDrawable = (GradientDrawable) holder.textContainer.getBackground();
         gradientDrawable.setColor(ContextCompat.getColor(context, category.getChosenColorID()));

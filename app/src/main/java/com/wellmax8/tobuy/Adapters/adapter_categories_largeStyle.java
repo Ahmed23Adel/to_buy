@@ -3,7 +3,6 @@ package com.wellmax8.tobuy.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +63,7 @@ public class adapter_categories_largeStyle extends ListAdapter<category, adapter
     @Override
     public void onBindViewHolder(@NonNull categoryItem holder, int position) {
         category category = getItem(position);
-        holder.name.setText(category.getName());
+        holder.name.setText(category.getName_category());
         if (category.getRelated_to().isEmpty()) {
             holder.relatedTo.setVisibility(View.GONE);
         }

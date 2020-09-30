@@ -22,10 +22,10 @@ public interface DAO_category {
     @Delete
     void delete(category item);
 
-    @Query("SELECT * from category ORDER BY created_at DESC")
+    @Query("SELECT * from category ORDER BY created_at_category DESC")
     LiveData<List<category>> getCategoriesOrderedCreatedAtDESC();
 
-    @Query("SELECT * FROM category WHERE name = :name AND related_to = :relatedTo")
+    @Query("SELECT * FROM category WHERE name_category = :name AND related_to = :relatedTo")
     LiveData<List<category>> getCategoriesByNameAndRelatedTo(String name,String relatedTo);
 
 

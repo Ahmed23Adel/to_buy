@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/oval_red"
+    android:id="@+id/wholeLayout"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    >
+
+    <TextView style="@style/add_category_add_field"
+        android:text="pants"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:id="@+id/item_sold_name"
+        />
+
+    <LinearLayout style="@style/add_category_Linear"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        >
+
+
+
+        <CheckBox
+            style="@style/add_category_add_field"
+            android:padding="10dp"
+            android:text="@string/bought"
+            android:layout_alignParentEnd="true"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:id="@+id/checkBought_sold"
+            />
+
+
+        <TextView style="@style/add_category_add_field"
+            android:text="30$"
+            android:padding="10dp"
+            android:textColor="#fff"
+            android:id="@+id/item_sold_price"/>
+
+
+    </LinearLayout>
+</LinearLayout>

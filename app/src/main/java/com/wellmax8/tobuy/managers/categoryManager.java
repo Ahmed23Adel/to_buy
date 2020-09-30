@@ -29,7 +29,7 @@ public class categoryManager {
     }
 
     private String getName() {
-        return getTextLargeAndSmall(context.getString(R.string.name), category.getName());
+        return getTextLargeAndSmall(context.getString(R.string.name), category.getName_category());
     }
 
     private String getRelatedTo() {
@@ -37,8 +37,8 @@ public class categoryManager {
     }
 
     private String getDescription() {
-        if (!category.getDescription().isEmpty()) {
-            return getTextLargeAndSmall(context.getString(R.string.description), category.getDescription());
+        if (!category.getDescription_category().isEmpty()) {
+            return getTextLargeAndSmall(context.getString(R.string.description), category.getDescription_category());
         } else {
             return "";
         }
@@ -52,8 +52,8 @@ public class categoryManager {
     }
 
     private String getExtra() {
-        if (!category.getExtra().isEmpty()) {
-            return getTextLargeAndSmall(context.getString(R.string.extra), category.getExtra());
+        if (!category.getExtra_category().isEmpty()) {
+            return getTextLargeAndSmall(context.getString(R.string.extra), category.getExtra_category());
         } else {
             return "";
         }
