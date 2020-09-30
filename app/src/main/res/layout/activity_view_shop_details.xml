@@ -115,7 +115,6 @@
             android:clipToPadding="false"
             android:dividerHeight="16dp"
             android:drawSelectorOnTop="true"
-            android:paddingTop="56dp"
             android:paddingBottom="16dip"
             tools:listitem="@layout/item_sold_large_style"
             />

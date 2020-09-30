@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,9 @@ public class view_shop_details extends AppCompatActivity {
     private RecyclerView soldsRecyclerView;
 
     private shop currentShop;
+
+    private boolean isSoldRecShown=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,19 @@ public class view_shop_details extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         showSoldsRecyclerView();
+
+        shrinkSolds.setOnClickListener(v -> {
+            if (!isSoldRecShown){
+                soldsRecyclerView.setVisibility(View.GONE);
+                isSoldRecShown=true;
+                shrinkSolds.setImageResource(R.drawable.arrow_down);
+            }else{
+                soldsRecyclerView.setVisibility(View.VISIBLE);
+                isSoldRecShown=false;
+                shrinkSolds.setImageResource(R.drawable.arrow_up);
+
+            }
+        });
     }
 
     private void showSoldsRecyclerView() {
