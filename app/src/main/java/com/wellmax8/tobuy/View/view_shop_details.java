@@ -7,9 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,12 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import com.wellmax8.tobuy.Adapters.adapter_contacts_large_style;
 import com.wellmax8.tobuy.Adapters.adapter_solds_at_shop;
 import com.wellmax8.tobuy.DTO.shop;
+import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_shop_details;
-import com.wellmax8.tobuy.Adapters.adapter_solds_large_style ;
 import com.wellmax8.tobuy.constants;
 
 public class view_shop_details extends AppCompatActivity {
@@ -56,6 +53,7 @@ public class view_shop_details extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         showSoldsRecyclerView();
+        showContactRecyclerView();
 
         shrinkSolds.setOnClickListener(v -> {
             if (!isSoldRecShown){
@@ -69,16 +67,25 @@ public class view_shop_details extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void showSoldsRecyclerView() {
         adapter_solds_at_shop adapter=new adapter_solds_at_shop(this);
-        setupSolds(soldsRecyclerView);
+        setupRecyclerView(soldsRecyclerView);
         soldsRecyclerView.setAdapter(adapter);
         VM.getSoldsAtIdShop(shop_id).observe(this, adapter::submitList);
     }
 
-    private void setupSolds(RecyclerView recyclerView) {
+    private void showContactRecyclerView() {
+        adapter_contacts_large_style adapter=new adapter_contacts_large_style();
+        setupRecyclerView(contactsRecyclerView);
+        contactsRecyclerView.setAdapter(adapter);
+        VM.getContactsAtShopId(shop_id).observe(this, adapter::submitList);
+    }
+
+    private void setupRecyclerView(RecyclerView recyclerView) {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);

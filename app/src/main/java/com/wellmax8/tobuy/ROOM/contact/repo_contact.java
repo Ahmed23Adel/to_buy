@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.wellmax8.tobuy.DTO.contact;
+import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.ROOM.to_buy_db;
 
 import java.util.ArrayList;
@@ -52,6 +53,12 @@ public class repo_contact {
     public LiveData<List<contact>> getAll(){
         return dao.getAllOrderedIdDesc();
     }
+
+    public LiveData<List<contact>> getContactAtShopId(int id_shop){
+        return dao.getContactAtShopId(id_shop);
+    }
+
+
 
     public List<contact> getAtPhoneNumber(String phoneNumber){
         try {
