@@ -15,12 +15,10 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.wellmax8.tobuy.Adapters.adapter_contacts_large_style;
-import com.wellmax8.tobuy.Adapters.adapter_shops;
+import com.wellmax8.tobuy.Adapters.contacts.adapter_contacts_large_style;
 import com.wellmax8.tobuy.Main_Activity;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_contacts;
-import com.wellmax8.tobuy.ViewModel.VM_shops;
+import com.wellmax8.tobuy.ViewModel.contacts.VM_contacts;
 
 public class contacts extends Fragment {
 

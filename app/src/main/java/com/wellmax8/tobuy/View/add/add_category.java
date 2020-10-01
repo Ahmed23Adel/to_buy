@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.add;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Builders.category_builder;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_add_category;
+import com.wellmax8.tobuy.View.category_parent;
+import com.wellmax8.tobuy.ViewModel.add.VM_add_category;
 import com.wellmax8.tobuy.colors.color;
 import com.wellmax8.tobuy.colors.colorsManager;
 import com.wellmax8.tobuy.managers.categoryForUndoManager;

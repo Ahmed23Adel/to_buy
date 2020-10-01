@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.ViewModel;
+package com.wellmax8.tobuy.ViewModel.details;
 
 import android.content.Context;
 import android.util.Log;

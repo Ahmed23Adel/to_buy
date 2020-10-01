@@ -1,9 +1,7 @@
-package com.wellmax8.tobuy.Adapters;
+package com.wellmax8.tobuy.Adapters.shops;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.View.view_shop_details;
+import com.wellmax8.tobuy.View.viewDetails.view_shop_details;
 import com.wellmax8.tobuy.constants;
-
-import java.util.List;
 
 public class adapter_shops extends ListAdapter<shop, adapter_shops.shopHolder> {
 

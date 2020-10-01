@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey"
     android:orientation="vertical"
-    tools:context=".View.view_shop_details">
+    tools:context=".View.viewDetails.view_shop_details">
 
     <LinearLayout
         android:layout_width="match_parent"

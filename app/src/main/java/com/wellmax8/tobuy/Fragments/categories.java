@@ -2,7 +2,6 @@ package com.wellmax8.tobuy.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
@@ -26,15 +24,13 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
-import com.wellmax8.tobuy.Adapters.adapter_categories_smallStyle;
+import com.wellmax8.tobuy.Adapters.categories.adapter_categories_largeStyle;
+import com.wellmax8.tobuy.Adapters.categories.adapter_categories_smallStyle;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Main_Activity;
 import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.View.add_category;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
-import com.wellmax8.tobuy.managers.viewQuiltManager;
 import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
 
 import java.util.ArrayList;
@@ -107,7 +103,7 @@ public class categories extends Fragment implements Observer_viewQuilt {
         View.OnClickListener onClickListener=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getContext(), com.wellmax8.tobuy.View.add_category.class);
+                Intent intent= new Intent(getContext(), com.wellmax8.tobuy.View.add.add_category.class);
                 startActivity(intent);
             }
         };

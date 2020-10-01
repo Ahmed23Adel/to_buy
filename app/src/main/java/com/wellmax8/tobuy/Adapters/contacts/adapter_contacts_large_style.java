@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.Adapters;
+package com.wellmax8.tobuy.Adapters.contacts;
 
 import android.view.LayoutInflater;
 import android.view.View;

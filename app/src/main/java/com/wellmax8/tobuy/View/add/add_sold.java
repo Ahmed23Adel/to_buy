@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.add;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +24,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wellmax8.tobuy.Adapters.adapter_contacts;
+import com.wellmax8.tobuy.Adapters.contacts.adapter_contacts;
 import com.google.android.material.snackbar.Snackbar;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.DTO.contact;
@@ -35,7 +35,9 @@ import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.DTO.sold;
 import com.wellmax8.tobuy.Builders.soldBuilder;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_add_sold;
+import com.wellmax8.tobuy.View.choose_existing_shop;
+import com.wellmax8.tobuy.View.solds;
+import com.wellmax8.tobuy.ViewModel.add.VM_add_sold;
 import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;

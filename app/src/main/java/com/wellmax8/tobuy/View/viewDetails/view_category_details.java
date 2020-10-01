@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.viewDetails;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -6,24 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Exceptions.colorNotSpecifiedException;
-import com.wellmax8.tobuy.Fragments.categories;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_categories;
-import com.wellmax8.tobuy.ViewModel.VM_category_details;
+import com.wellmax8.tobuy.View.update.update_category;
+import com.wellmax8.tobuy.ViewModel.details.VM_category_details;
 import com.wellmax8.tobuy.managers.categoryManager;
 
 import java.util.ArrayList;
@@ -123,7 +119,7 @@ public class view_category_details extends AppCompatActivity {
     }
 
     public void goToEdit(){
-        Intent intent = new Intent(this,update_category.class);
+        Intent intent = new Intent(this, update_category.class);
         startActivity(intent);
     }
     public static category getCurrentCategory(){

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Adapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,12 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wellmax8.tobuy.Adapters.adapter_categories_smallStyle;
+import com.wellmax8.tobuy.Adapters.categories.adapter_categories_smallStyle;
 import com.wellmax8.tobuy.Fragments.viewQuilt;
 import com.wellmax8.tobuy.Observers.Observer_viewQuilt;
 import com.wellmax8.tobuy.R;
 import com.wellmax8.tobuy.ViewModel.VM_categories;
-import com.wellmax8.tobuy.Adapters.adapter_categories_largeStyle;
+import com.wellmax8.tobuy.Adapters.categories.adapter_categories_largeStyle;
 import com.wellmax8.tobuy.managers.viewQuiltManager;
 import com.wellmax8.tobuy.managers.viewQuiltManagerBuilder;
 import com.wellmax8.tobuy.DTO.category;
@@ -87,7 +86,7 @@ public class categories extends AppCompatActivity implements Observer_viewQuilt 
         OnClickListener onClickListener=new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(categories.this,add_category.class);
+                Intent intent= new Intent(categories.this, com.wellmax8.tobuy.View.add.add_category.class);
                 startActivity(intent);
             }
         };

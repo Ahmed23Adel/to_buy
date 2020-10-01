@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.viewDetails;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wellmax8.tobuy.Adapters.adapter_contacts_large_style;
-import com.wellmax8.tobuy.Adapters.adapter_solds_at_shop;
+import com.wellmax8.tobuy.Adapters.contacts.adapter_contacts_large_style;
+import com.wellmax8.tobuy.Adapters.sold.adapter_solds_at_shop;
 import com.wellmax8.tobuy.DTO.shop;
-import com.wellmax8.tobuy.DTO.shop_contact;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_shop_details;
+import com.wellmax8.tobuy.ViewModel.shops.VM_shop_details;
 import com.wellmax8.tobuy.constants;
 
 public class view_shop_details extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.Adapters;
+package com.wellmax8.tobuy.Adapters.sold;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -20,7 +20,6 @@ import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.DTO.sold;
 import com.wellmax8.tobuy.DTO.sold_large_style;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.colors.color;
 
 public class adapter_solds_large_style extends ListAdapter<sold_large_style,adapter_solds_large_style.soldItemHolder> {
 

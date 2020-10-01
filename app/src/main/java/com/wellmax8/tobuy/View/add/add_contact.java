@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.add;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ import com.wellmax8.tobuy.Builders.contactBuilder;
 import com.wellmax8.tobuy.managers.categoryForUndoManager;
 import com.wellmax8.tobuy.DTO.contact;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_add_contact;
+import com.wellmax8.tobuy.ViewModel.add.VM_add_contact;
 import com.wellmax8.tobuy.constants;
 
 import java.util.ArrayList;

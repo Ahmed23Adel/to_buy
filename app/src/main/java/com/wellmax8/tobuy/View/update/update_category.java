@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.View;
+package com.wellmax8.tobuy.View.update;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,8 +12,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.Builders.category_builder;
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.category_parent;
+import com.wellmax8.tobuy.View.viewDetails.view_category_details;
 import com.wellmax8.tobuy.colors.color;
-import com.wellmax8.tobuy.ViewModel.VM_update_categoty;
+import com.wellmax8.tobuy.ViewModel.update.VM_update_categoty;
 
 
 public class update_category extends category_parent {
@@ -25,7 +27,7 @@ public class update_category extends category_parent {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        currentCategory=view_category_details.getCurrentCategory();
+        currentCategory= view_category_details.getCurrentCategory();
 
         VM=new ViewModelProvider(this).get(VM_update_categoty.class);
         VM.setContext(this);

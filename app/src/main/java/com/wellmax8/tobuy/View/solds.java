@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import com.wellmax8.tobuy.Adapters.adapter_solds_large_style;
+import com.wellmax8.tobuy.Adapters.sold.adapter_solds_large_style;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wellmax8.tobuy.DTO.category;
 import com.wellmax8.tobuy.R;
+import com.wellmax8.tobuy.View.add.add_sold;
 import com.wellmax8.tobuy.ViewModel.VM_solds;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class solds extends AppCompatActivity {
         View.OnClickListener onClickListener=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(solds.this,add_sold.class);
+                Intent intent= new Intent(solds.this, add_sold.class);
                 startActivity(intent);
             }
         };

@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.ViewModel;
+package com.wellmax8.tobuy.ViewModel.contacts;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.wellmax8.tobuy.Adapters;
+package com.wellmax8.tobuy.Adapters.sold;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;

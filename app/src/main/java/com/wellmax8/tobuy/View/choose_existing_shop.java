@@ -5,16 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.wellmax8.tobuy.Adapters.adapter_choose_existing_shops;
+import com.wellmax8.tobuy.Adapters.shops.adapter_choose_existing_shops;
 import com.wellmax8.tobuy.constants;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.wellmax8.tobuy.DTO.shop;
 import com.wellmax8.tobuy.R;
-import com.wellmax8.tobuy.ViewModel.VM_choose_existing_shops;
+import com.wellmax8.tobuy.ViewModel.shops.VM_choose_existing_shops;
 
 import java.util.List;
 
