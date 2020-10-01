@@ -20,6 +20,9 @@ public interface DAO_sold {
     @Update
     void update(sold sold);
 
+    @Query("UPDATE sold SET id_shop_=-1 WHERE id_shop_=:shopId")
+    void updateShopIdAtShopID(int shopId);
+
     @Delete
     void delete(sold sold);
 

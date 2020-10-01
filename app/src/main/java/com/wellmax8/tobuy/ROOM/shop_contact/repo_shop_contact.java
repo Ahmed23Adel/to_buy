@@ -42,6 +42,10 @@ public class repo_shop_contact {
         new deleteShop_contact(dao).execute(shop);
     }
 
+    public void deleteShop_contactAtShopId(int  shop_id){
+        new deleteShop_contactAtShopId(dao).execute(shop_id);
+    }
+
 
 
     private static class insertShop_contact extends AsyncTask<shop_contact,Void,Void> {
@@ -85,7 +89,7 @@ public class repo_shop_contact {
         }
     }
 
-    private static class deleteShop_contact extends AsyncTask<shop_contact,Void,Void>{
+    private static class deleteShop_contact extends AsyncTask<shop_contact,Void,Void> {
         public final DAO_shop_contact dao;
 
         public deleteShop_contact(DAO_shop_contact dao) {
@@ -95,6 +99,20 @@ public class repo_shop_contact {
         @Override
         protected Void doInBackground(shop_contact... shop_contacts) {
             dao.delete(shop_contacts[0]);
+            return null;
+        }
+    }
+
+    private static class deleteShop_contactAtShopId extends AsyncTask<Integer, Void, Void> {
+        public final DAO_shop_contact dao;
+
+        public deleteShop_contactAtShopId(DAO_shop_contact dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... ids) {
+            dao.deleteAtIdShop(ids[0]);
             return null;
         }
     }

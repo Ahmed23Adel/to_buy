@@ -26,6 +26,9 @@ public interface DAO_shop_contact {
     @Delete
     void delete(shop_contact shop_contact);
 
+    @Query("DELETE FROM shop_contact WHERE id_shop=:id_shop")
+    void deleteAtIdShop(int  id_shop);
+
     @Query("SELECT * FROM shop_contact WHERE id_shop= :id_shop")
     LiveData<List<shop_contact>> getAllAtIDShop(int id_shop);
 

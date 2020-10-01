@@ -7,13 +7,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.wellmax8.tobuy.Adapters.adapter_contacts_large_style;
 import com.wellmax8.tobuy.Adapters.adapter_solds_at_shop;
 import com.wellmax8.tobuy.DTO.shop;
@@ -24,7 +28,7 @@ import com.wellmax8.tobuy.constants;
 
 public class view_shop_details extends AppCompatActivity {
 
-    private int shop_id=-1;
+    private int shop_id = -1;
     private VM_shop_details VM;
 
     private TextView mainTextView;
@@ -37,14 +41,14 @@ public class view_shop_details extends AppCompatActivity {
 
     private shop currentShop;
 
-    private boolean isSoldRecShown=false;
+    private boolean isSoldRecShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_shop_details);
-        shop_id=Integer.parseInt(getIntent().getStringExtra(constants.returnIntent.ID_SHOP));
-        VM=new ViewModelProvider(this).get(VM_shop_details.class);
+        shop_id = Integer.parseInt(getIntent().getStringExtra(constants.returnIntent.ID_SHOP));
+        VM = new ViewModelProvider(this).get(VM_shop_details.class);
         VM.setContext(this);
         instantiateViews();
 
@@ -56,13 +60,13 @@ public class view_shop_details extends AppCompatActivity {
         showContactRecyclerView();
 
         shrinkSolds.setOnClickListener(v -> {
-            if (!isSoldRecShown){
+            if (!isSoldRecShown) {
                 soldsRecyclerView.setVisibility(View.GONE);
-                isSoldRecShown=true;
+                isSoldRecShown = true;
                 shrinkSolds.setImageResource(R.drawable.arrow_down);
-            }else{
+            } else {
                 soldsRecyclerView.setVisibility(View.VISIBLE);
-                isSoldRecShown=false;
+                isSoldRecShown = false;
                 shrinkSolds.setImageResource(R.drawable.arrow_up);
 
             }
@@ -72,101 +76,145 @@ public class view_shop_details extends AppCompatActivity {
     }
 
     private void showSoldsRecyclerView() {
-        adapter_solds_at_shop adapter=new adapter_solds_at_shop(this);
+        adapter_solds_at_shop adapter = new adapter_solds_at_shop(this);
         setupRecyclerView(soldsRecyclerView);
         soldsRecyclerView.setAdapter(adapter);
         VM.getSoldsAtIdShop(shop_id).observe(this, adapter::submitList);
     }
 
     private void showContactRecyclerView() {
-        adapter_contacts_large_style adapter=new adapter_contacts_large_style();
+        adapter_contacts_large_style adapter = new adapter_contacts_large_style();
         setupRecyclerView(contactsRecyclerView);
         contactsRecyclerView.setAdapter(adapter);
         VM.getContactsAtShopId(shop_id).observe(this, adapter::submitList);
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
     }
 
-    private void instantiateViews(){
-        mainTextView=findViewById(R.id.main_textView);
-        layout_facebook=findViewById(R.id.layout_facebookLink);
-        facebookLink=findViewById(R.id.shop_detail_facebookLink);
-        shrinkContacts=findViewById(R.id.shrink_contacts);
-        shrinkSolds=findViewById(R.id.shrink_solds);
-        contactsRecyclerView=findViewById(R.id.viewShopDetails_contacts);
-        soldsRecyclerView=findViewById(R.id.viewShopDetails_solds);
+    private void instantiateViews() {
+        mainTextView = findViewById(R.id.main_textView);
+        layout_facebook = findViewById(R.id.layout_facebookLink);
+        facebookLink = findViewById(R.id.shop_detail_facebookLink);
+        shrinkContacts = findViewById(R.id.shrink_contacts);
+        shrinkSolds = findViewById(R.id.shrink_solds);
+        contactsRecyclerView = findViewById(R.id.viewShopDetails_contacts);
+        soldsRecyclerView = findViewById(R.id.viewShopDetails_solds);
     }
 
+    boolean doneOnce = false;
     private void setupMainTextView(int shop_id) {
-        VM.getShopAtId(shop_id).observe(this,shops -> {
-            currentShop=shops.get(0);
-            String textForMainTextView=getMainTextFromShop(currentShop);
-            mainTextView.setText(HtmlCompat.fromHtml(textForMainTextView,HtmlCompat.FROM_HTML_MODE_LEGACY));
-            checkForFacebook(currentShop);
+        VM.getShopAtId(shop_id).observe(this, shops -> {
+            if (!doneOnce) {
+                currentShop = shops.get(0);
+                String textForMainTextView = getMainTextFromShop(currentShop);
+                mainTextView.setText(HtmlCompat.fromHtml(textForMainTextView, HtmlCompat.FROM_HTML_MODE_LEGACY));
+                checkForFacebook(currentShop);
+                doneOnce=true;
+            }
         });
     }
 
-    private void checkForFacebook(shop  currentShop) {
-        if (!getFBLinkShop(currentShop).isEmpty()){
+    private void checkForFacebook(shop currentShop) {
+        if (!getFBLinkShop(currentShop).isEmpty()) {
             facebookLink.setText(getFBLinkShop(currentShop));
-        }else{
+        } else {
             layout_facebook.setVisibility(View.GONE);
         }
     }
 
     private String getMainTextFromShop(shop currentShop) {
-        return getNameShop(currentShop)+ getAddressShop(currentShop)+getNotesShop(currentShop)+getCreatedAtShop(currentShop);
+        return getNameShop(currentShop) + getAddressShop(currentShop) + getNotesShop(currentShop) + getCreatedAtShop(currentShop);
     }
 
-    private String getNameShop(shop currentShop){
-        return getTextLargeAndSmall("Name: ",currentShop.getName_shop());
+    private String getNameShop(shop currentShop) {
+        return getTextLargeAndSmall("Name: ", currentShop.getName_shop());
     }
 
-    private String getAddressShop(shop currentShop){
-        if (!currentShop.getAddress().isEmpty()){
-            return getTextLargeAndSmall("Address: ",currentShop.getAddress());
-        }else {
+    private String getAddressShop(shop currentShop) {
+        if (!currentShop.getAddress().isEmpty()) {
+            return getTextLargeAndSmall("Address: ", currentShop.getAddress());
+        } else {
             return "";
         }
 
     }
 
-    private String getFBLinkShop(shop currentShop){
-        if (!currentShop.getFacebookLink().isEmpty()){
+    private String getFBLinkShop(shop currentShop) {
+        if (!currentShop.getFacebookLink().isEmpty()) {
             return currentShop.getFacebookLink();
-        }else {
+        } else {
             return "";
         }
 
     }
 
-    private String getNotesShop(shop currentShop){
-        if (!currentShop.getNotes().isEmpty()){
-            return getTextLargeAndSmall("Notes: ",currentShop.getNotes());
-        }else {
+    private String getNotesShop(shop currentShop) {
+        if (!currentShop.getNotes().isEmpty()) {
+            return getTextLargeAndSmall("Notes: ", currentShop.getNotes());
+        } else {
             return "";
         }
 
     }
 
-    private String getCreatedAtShop(shop currentShop){
+    private String getCreatedAtShop(shop currentShop) {
         return "<b> " + "Created at: " + " " + "</b> " + "<small> " + currentShop.getCreated_at_shop() + " </small> " + "<br/>";
     }
+
     private String getTextLargeAndSmall(String large, String small) {
         return "<b> " + large + " " + "</b> " + "<small> " + small + " </small> " + "<br/>" + "<br/>";
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.view_category_details, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
+        switch (item.getItemId()) {
+            case R.id.edit: {
+                //goToEdit();
+                break;
+            }
+            case R.id.delete: {
+                showDialogToSureDeleting();
+                break;
+            }
+            case android.R.id.home: {
                 onBackPressed();
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void showDialogToSureDeleting() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage(getString(R.string.sure_delete))
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        delete();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create();
+        alertDialog.show();
+    }
+
+    private void delete() {
+        VM.deleteCurrentShop(shop_id);
+        onBackPressed();
+    }
+
 }

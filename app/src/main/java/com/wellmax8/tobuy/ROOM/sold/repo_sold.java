@@ -27,6 +27,10 @@ public class repo_sold {
     public void update(sold sold){
         new updateSold(dao).execute(sold);
     }
+
+    public void updateSoldShopIdAtShopId(int shopId){
+        new updateSoldShopIdAtShopId(dao).execute(shopId);
+    }
     public void delete(sold sold){
         new deleteSold(dao).execute(sold);
     }
@@ -62,6 +66,20 @@ public class repo_sold {
         @Override
         protected Void doInBackground(sold... solds) {
             dao.update(solds[0]);
+            return null;
+        }
+    }
+
+    private static class updateSoldShopIdAtShopId extends AsyncTask<Integer,Void,Void>{
+        public final DAO_sold dao;
+
+        public updateSoldShopIdAtShopId(DAO_sold dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... ids) {
+            dao.updateShopIdAtShopID(ids[0]);
             return null;
         }
     }

@@ -24,6 +24,9 @@ public interface DAO_shop {
     @Delete
     void delete(shop shop);
 
+    @Query("DELETE FROM shop WHERE id_shop=:shop_id")
+    void deleteAtId(int  shop_id);
+
     @Query("SELECT * FROM shop WHERE name_shop = :nameOfShop")
     List<shop> getShopAtName(String nameOfShop);
 

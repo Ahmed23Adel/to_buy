@@ -36,8 +36,12 @@ public class repo_shop {
         new updateShop(dao).execute(shop);
     }
 
-    public void deleted(shop shop){
+    public void delete(shop shop){
         new deleteShop(dao).execute(shop);
+    }
+
+    public void deleteAtId(int  shop_id){
+        new deleteShopAtId(dao).execute(shop_id);
     }
 
     public List<shop> getShopAtName(String name){
@@ -94,6 +98,20 @@ public class repo_shop {
         @Override
         protected Void doInBackground(shop... shops) {
             dao.delete(shops[0]);
+            return null;
+        }
+    }
+
+    private static class deleteShopAtId extends AsyncTask<Integer,Void,Void>{
+        public final DAO_shop dao;
+
+        public deleteShopAtId(DAO_shop dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... ids) {
+            dao.deleteAtId(ids[0]);
             return null;
         }
     }
