@@ -4,6 +4,11 @@ I used here Java and Room,Viewmodel, and LiveData for database
 
 here is the link on Google play: https://play.google.com/store/apps/details?id=com.wellmax8.tobuy
 
+
+Sample:
+ [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/https://youtu.be/h7NitfZreY4E/0.jpg)](https://www.youtube.com/watch?v=https://youtu.be/h7NitfZreY4)
+
+ 
 Screenshot:
 
 once you open your app, you can create your own categories.
