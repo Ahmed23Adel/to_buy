@@ -7,16 +7,8 @@ here is the link on Google play: https://play.google.com/store/apps/details?id=c
 
 Sample:
 
-Complete Example
-Expanding on @MGA's Answer
+https://www.youtube.com/watch?v=T1DRQaALCCI
 
-While it's not possible to embed a video in Markdown you can "fake it" by including a valid linked image in your markup file, using this format:
-
-[![IMAGE ALT TEXT](https://youtu.be/h7NitfZreY4)](https://youtu.be/h7NitfZreY4"Sample ")
-
- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/https://youtu.be/h7NitfZreY4E/0.jpg)](https://www.youtube.com/watch?v=https://youtu.be/h7NitfZreY4)
-
- 
 Screenshot:
 
 once you open your app, you can create your own categories.
