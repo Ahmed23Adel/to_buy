@@ -8,6 +8,9 @@ here is the link on Google play: https://play.google.com/store/apps/details?id=c
 Demo:
 https://www.youtube.com/watch?v=T1DRQaALCCI
 
+Sample from demo:
+
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/69484554/135718331-e4e94f16-7194-4c37-8b6e-bece31278a56.gif)
 
 
 
